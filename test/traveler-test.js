@@ -12,5 +12,7 @@ describe('Traveler', () => {
   it('should have an object of my data', () => {
     expect(traveler.myTravelInfo).to.be.an('object');
   })
-
+  it('should have a property of ID', () => {
+    expect(traveler.id).to.equal(15);
+  })
 });
