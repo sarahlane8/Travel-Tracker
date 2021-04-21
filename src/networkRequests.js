@@ -34,8 +34,30 @@ const fetchData = () => {
 }
 
 
+const addNewTrip = object => {
+  fetch('http://localhost:3001/api/v1/trips', {
+    method: 'POST',
+    body: JSON.stringify(object),
+    headers: {
+      'Content-Type: 'application/json'
+    }
+  })
+  .catch(err => console.log('ERROR', err))
+}
+
+const addNewDestination = object => {
+  fetch('http://localhost:3001/api/v1/destinations', {
+    method: 'POST',
+    body: JSON.stringify(object),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .catch(err => console.log('ERROR', err))
+}
 
 
 
 
-export { fetchData };
+
+export { fetchData, addNewTrip, addNewDestination };
