@@ -5,5 +5,13 @@ $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,1
 body {
   background: $primary-background;
 }
-// import
-// MAKE SURE MEDIA QUERIES IS LAST IMPORT!!!!
+
+
+// Am i missing any imports?? Rethink this before starting CSS
+
+@import "partials/mixins";
+@import "partials/normalize";
+@import "partials/styles";
+@import "partials/typography";
+@import "partials/variables";
+@import "partials/mediaQueries";//KEEP THIS LAST!!!!!
