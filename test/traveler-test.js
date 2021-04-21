@@ -12,11 +12,17 @@ describe('Traveler', () => {
   it('should have an object of my data', () => {
     expect(traveler.myTravelInfo).to.be.an('object');
   })
+
   it('should have a property of ID', () => {
     expect(traveler.id).to.equal(15);
   })
+
   it('should have a property of name', () => {
     expect(traveler.name).to.equal("Monica Gellar");
+  })
+
+  it('should have a property of travelerType', () => {
+    expect(traveler.travelerType).to.equal('relaxer');
   })
 
 });
