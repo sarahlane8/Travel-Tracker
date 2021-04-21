@@ -145,7 +145,7 @@ let trips = [
 }
 ]
 
-let destinations = destinations ": [
+let destinations = [
   {
     "id": 14,
     "destination": "Lima, Peru",

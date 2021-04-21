@@ -1,6 +1,6 @@
 class Traveler {
   constructor() {
-    
+
   }
 }
 
@@ -16,4 +16,4 @@ class Traveler {
 //method to calculate total cost spent on trips + 10% of that total
 //method to calculate cost of a proposed trip + 10%
 
-export deault Traveler;
+export default Traveler;
