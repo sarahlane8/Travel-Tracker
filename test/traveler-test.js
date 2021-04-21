@@ -15,4 +15,8 @@ describe('Traveler', () => {
   it('should have a property of ID', () => {
     expect(traveler.id).to.equal(15);
   })
+  it('should have a property of name', () => {
+    expect(traveler.name).to.equal("Monica Gellar");
+  })
+
 });

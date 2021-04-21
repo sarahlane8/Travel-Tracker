@@ -2,7 +2,8 @@ class Traveler {
   constructor(travelerInfo) {
     this.myTravelInfo = travelerInfo;
     console.log(travelerInfo)
-    this.id = travelerInfo.id
+    this.id = travelerInfo.id;
+    this.name = travelerInfo.name;
   }
 }
 
