@@ -9,8 +9,8 @@ describe('Traveler', () => {
     traveler = new Traveler(travelers[0])
   });
 
-  it('should have an array of my data', () => {
-    expect(traveler.myData).to.be.an('array');
+  it('should have an object of my data', () => {
+    expect(traveler.myTravelInfo).to.be.an('object');
   })
 
 });

@@ -1,6 +1,6 @@
 class Traveler {
-  constructor() {
-
+  constructor(travelerInfo) {
+    this.myTravelInfo = travelerInfo
   }
 }
 
