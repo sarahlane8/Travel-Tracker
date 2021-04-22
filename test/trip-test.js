@@ -42,5 +42,11 @@ describe('Trip', () => {
     expect(trip.suggestedActivities).to.deep.equal(['reading']);
   })
 
-  
+  it('should have a property of estimatedLodgingCostPerDay', () => {
+    expect(trip.estimatedLodgingCostPerDay).to.equal(1400);
+  })
+
+  it('should have a property of estimatedFlightCostPerPerson', () => {
+    expect(trip.estimatedFlightCostPerPerson).to.equal(75);
+  })
 })

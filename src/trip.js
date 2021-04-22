@@ -8,6 +8,8 @@ class Trip {
     this.duration = tripData.duration;
     this.status = tripData.status;
     this.suggestedActivities = tripData.suggestedActivities;
+    this.estimatedLodgingCostPerDay = tripData.estimatedLodgingCostPerDay;
+    this.estimatedFlightCostPerPerson = tripData.estimatedFlightCostPerPerson;
   }
 }
 
