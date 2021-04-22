@@ -23,7 +23,7 @@ const fetchAllData = () => {
     return Promise.all([travelersData, tripsData, destinationsData])
       .then(data => {
       const allData = {};
-      allData.travelersData= data[0];
+      allData.travelersData = data[0];
       allData.tripsData = data[1];
       allData.destinationsData = data[2];
       return allData;
@@ -49,7 +49,7 @@ const addNewTrip = object => {
     method: 'POST',
     body: JSON.stringify(object),
     headers: {
-      'Content-Type: 'application/json'
+      'Content-Type': 'application/json'
     }
   })
   .catch(err => console.log('ERROR', err));

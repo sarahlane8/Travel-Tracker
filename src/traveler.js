@@ -2,9 +2,10 @@
 const dayjs = require('dayjs')
 dayjs().format()
 const isBetween = require('dayjs/plugin/isBetween');
-const isBefore = require('dayjs/plugin/isBefore');
+// const isBefore = require('dayjs/plugin/isBefore');
+// import isBefore from 'dayjs/plugin/isBefore.js'
 dayjs.extend(isBetween);
-dayjs.extend(isBefore);
+// dayjs.extend(isBefore);
 
 
 class Traveler {
@@ -30,8 +31,8 @@ class Traveler {
   }
 
   findMyCurrentTrip(date) {
+    console.log(this.myTrips)
     this.myTrips.forEach(trip => {
-      // let startDate = trip.date;
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       if (dayjs(date).isBetween(trip.date, endDate, null, [])) {//includes start and end date
         this.myCurrentTrip = trip;
@@ -42,8 +43,8 @@ class Traveler {
   findMyPastTrips(date) {
     this.myTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
-      if (endDate.isBefore(date)) {
-        console.log(true)
+      if (dayjs(endDate).isBefore(date)) {
+        console.log(47, true)
       } else {
         console.log(false)
       }
@@ -61,7 +62,7 @@ class Traveler {
 
   calculateSpentOnTripsThisYear() {
     //iterate through the trips in my trips, and for each trip calcule duration * cost per day* flights * number of people * 10%
-    
+
   }
 
 }
