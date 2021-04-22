@@ -1,4 +1,3 @@
-// import Trip from '..src/Trip.js'//*************
 const dayjs = require('dayjs')
 dayjs().format()
 const isBetween = require('dayjs/plugin/isBetween');
@@ -59,7 +58,7 @@ class Traveler {
       return "You haven't traveled with us recently! We'd love to help you book your next trip!"
     } else {
       const cost = this.myTripsInLastYear.reduce((sum, trip) => {
-        sum += (trip.travelers * trip.duration * trip.estimatedLodgingCostPerDay)
+        sum += (trip.duration * trip.estimatedLodgingCostPerDay)
                 + (trip.travelers * trip.estimatedFlightCostPerPerson);
         return sum;
       }, 0)

@@ -49,14 +49,14 @@ describe('Traveler', () => {
   })
 
   it('should calculate how much a traveler has spend on their trips in the past year', () => {
-    expect(traveler.calculateSpentOnTripsThisYear('2021/04/22')).to.equal(24431)
+    expect(traveler.calculateSpentOnTripsThisYear('2021/04/22')).to.equal(13475)
   })
 
   it('should calculate cost in last year for different travelers', () => {
     const traveler3 = new Traveler(travelers[6])
     myTrips = trips.filter(trip => trip.userID === traveler3.id);
     traveler3.sortMyTrips(myTrips)
-    expect(traveler3.calculateSpentOnTripsThisYear('2021/04/22')).to.equal(15906)
+    expect(traveler3.calculateSpentOnTripsThisYear('2021/04/22')).to.equal(11682)
   })
 
   it('should return a string if a traveler hasn\'t traveled in the last 12 months', () => {
