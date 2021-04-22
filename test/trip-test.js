@@ -33,4 +33,8 @@ describe('Trip', () => {
   it('should have a property of duration', () => {
     expect(trip.duration).to.equal(17);
   })
+
+  it('should have a property of status', () => {
+    expect(trip.status).to.equal('approved');
+  })
 })
