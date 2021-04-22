@@ -2,10 +2,7 @@
 const dayjs = require('dayjs')
 dayjs().format()
 const isBetween = require('dayjs/plugin/isBetween');
-// const isBefore = require('dayjs/plugin/isBefore');
-// import isBefore from 'dayjs/plugin/isBefore.js'
 dayjs.extend(isBetween);
-// dayjs.extend(isBefore);
 
 
 class Traveler {
@@ -14,23 +11,24 @@ class Traveler {
     this.id = travelerInfo.id;
     this.name = travelerInfo.name;
     this.travelerType = travelerInfo.travelerType;
-    this.myTrips;//do I need this?  list of all trips for 1 travler, take it out of constructor
+    this.myTrips;
     this.myCurrentTrip;
-    this.myPastTrips= [];
+    this.myPastTrips = [];
     this.myFutureTrips = [];
     this.myPendingTrips = [];
+    this.myTripsInLastYear = [];
   }
 
-  sortMyTrips(myTrips) {//all 4 trips for this user ID
+  sortMyTrips(myTrips) {
     this.myTrips = myTrips;
-    const todaysDate = dayjs().format('YYYY/MM/DD')//gives me 2021/04/22
-    this.findMyCurrentTrip(todaysDate);
-    this.findMyPastTrips(todaysDate);
-    this.findMyFutureTrips(todaysDate);
-    this.findMyPendingTrips();
+    const todaysDate = dayjs().format('YYYY/MM/DD')
+    this.findCurrentTrip(todaysDate);
+    this.findPastTrips(todaysDate);
+    this.findFutureTrips(todaysDate);
+    this.findPendingTrips();
   }
 
-  findMyCurrentTrip(date) {
+  findCurrentTrip(date) {
     this.myTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       if (dayjs(date).isBetween(trip.date, endDate, null, [])) {//includes start and end date
@@ -39,7 +37,7 @@ class Traveler {
     })
   }
 
-  findMyPastTrips(date) {
+  findPastTrips(date) {
     this.myTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       if (dayjs(endDate).isBefore(date)) {
@@ -48,25 +46,40 @@ class Traveler {
     })
   }
 
-  findMyFutureTrips(date) {
-
+  findFutureTrips(date) {
+    this.myTrips.forEach(trip => {
+      if (dayjs(date).isBefore(trip.date)) {
+        this.myFutureTrips.push(trip)
+      }
+    })
   }
 
-  findMyPendingTrips() {
-    const pendingTrips = this.myTrips.filter(trip => trip.status ==='pending');
+  findPendingTrips() {
+    const pendingTrips = this.myTrips.filter(trip => trip.status === 'pending');
     this.myPendingTrips = pendingTrips;
   }
 
-  calculateSpentOnTripsThisYear() {
-    //iterate through the trips in my trips, and for each trip calcule duration * cost per day* flights * number of people * 10%
+  findTripsInLastYear(todaysDate) {
+    const oneYearAgo = dayjs(todaysDate).subtract(1, 'year').format('YYY/MM/DD')
+    this.myTrips.forEach(trip => {
+      if (dayjs(trip.date).isBetween(oneYearAgo, todaysDate, null, [])) {
+        this.myTripsInLastYear.push(trip)
+      }
+    })
+  }
 
+  calculateSpentOnTripsThisYear(todaysDate) {
+    this.findTripsInLastYear(todaysDate);
+    const cost = this.myTripsInLastYear.reduce((sum, trip) => {
+      sum += (trip.travelers * trip.duration * trip.estimatedLodgingCostPerDay)
+              + (trip.travelers * trip.estimatedFlightCostPerPerson);
+      return sum;
+    }, 0)
+    const totalCost = (cost * 0.1) + cost;
+    return totalCost;
   }
 
 }
-
-
-
-
 
 
 export default Traveler;

@@ -38,8 +38,13 @@ describe('Traveler', () => {
     traveler.sortMyTrips(traveler.myTrips)
     expect(traveler.myCurrentTrip).to.equal(trips[0]);
     expect(traveler.myPastTrips.length).to.equal(2);
-    // expect(traveler.myFutureTrips.length).to.equal(1);
+    expect(traveler.myFutureTrips.length).to.equal(1);
     expect(traveler.myPendingTrips.length).to.equal(2);
+  })
+
+  it('should calculate how much a traveler has spend on their trips in the past year', () => {
+
+    traveler.calculateSpentOnTripsThisYear('2021/04/22')
   })
 
 });
