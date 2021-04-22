@@ -49,4 +49,8 @@ describe('Trip', () => {
   it('should have a property of estimatedFlightCostPerPerson', () => {
     expect(trip.estimatedFlightCostPerPerson).to.equal(75);
   })
+
+  it('should estimate how much a trip will cost', () => {
+    expect(trip.estimateTripCost()).to.equal(157575)
+  })
 })
