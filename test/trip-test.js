@@ -15,6 +15,6 @@ describe('Trip', () => {
   })
 
   it('should have a property of userID', () => {
-    expect(trip.property).to.equal(100)
+    expect(trip.userID).to.equal(100)
   })
 })
