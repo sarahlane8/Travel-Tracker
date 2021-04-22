@@ -5,6 +5,7 @@ class Trip {
     this.destinationID = tripData.destinationID;
     this.travelers = tripData.travelers;
     this.date = tripData.date;
+    this.duration = tripData.duration;
   }
 }
 
