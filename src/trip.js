@@ -7,6 +7,7 @@ class Trip {
     this.date = tripData.date;
     this.duration = tripData.duration;
     this.status = tripData.status;
+    this.suggestedActivities = tripData.suggestedActivities;
   }
 }
 

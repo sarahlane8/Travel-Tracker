@@ -37,4 +37,10 @@ describe('Trip', () => {
   it('should have a property of status', () => {
     expect(trip.status).to.equal('approved');
   })
+
+  it('should have a property of suggestedActivities', () => {
+    expect(trip.suggestedActivities).to.deep.equal(['reading']);
+  })
+
+  
 })
