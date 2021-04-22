@@ -22,34 +22,19 @@ class Traveler {
   sortMyTrips(myTrips) {
     this.myTrips = myTrips;
     const todaysDate = dayjs().format('YYYY/MM/DD')
-    this.findCurrentTrip(todaysDate);
-    this.findPastTrips(todaysDate);
-    this.findFutureTrips(todaysDate);
+    this.sortByType(todaysDate);
     this.findPendingTrips();
   }
 
-  findCurrentTrip(date) {
+  sortByType(date) {
     this.myTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       if (dayjs(date).isBetween(trip.date, endDate, null, [])) {//includes start and end date
         this.myCurrentTrip = trip;
-      }
-    })
-  }
-
-  findPastTrips(date) {
-    this.myTrips.forEach(trip => {
-      let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
-      if (dayjs(endDate).isBefore(date)) {
+      } else if (dayjs(date).isBefore(trip.date)) {
+          this.myFutureTrips.push(trip)
+      } else if (dayjs(endDate).isBefore(date)) {
         this.myPastTrips.push(trip)
-      }
-    })
-  }
-
-  findFutureTrips(date) {
-    this.myTrips.forEach(trip => {
-      if (dayjs(date).isBefore(trip.date)) {
-        this.myFutureTrips.push(trip)
       }
     })
   }
@@ -70,7 +55,7 @@ class Traveler {
 
   calculateSpentOnTripsThisYear(todaysDate) {
     this.findTripsInLastYear(todaysDate);
-    if (this.myTripsInLastYear.length === 0) {
+    if (!this.myTripsInLastYear.length) {
       return "You haven't traveled with us recently! We'd love to help you book your next trip!"
     } else {
       const cost = this.myTripsInLastYear.reduce((sum, trip) => {
