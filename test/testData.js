@@ -109,7 +109,7 @@ let trips = [
     "estimatedFlightCostPerPerson": 1100
   }, {
     "id": 23,
-    "userID": 63,
+    "userID": 27,
     "destinationID": 35,
     "travelers": 3,
     "date": "2020/06/29",
@@ -142,7 +142,7 @@ let trips = [
     "estimatedFlightCostPerPerson": 90
   }, {
     "id": 9,
-    "userID": 59,
+    "userID": 2,
     "destinationID": 19,
     "travelers": 5,
     "date": "2019/12/19",
@@ -156,7 +156,7 @@ let trips = [
     "userID": 100,
     "destinationID": 50,
     "travelers": 6,
-    "date": "2020/07/23",
+    "date": "2017/07/23",
     "duration": 17,
     "status": "approved",
     "suggestedActivities": ["reading"],

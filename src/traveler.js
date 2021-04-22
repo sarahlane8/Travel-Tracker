@@ -60,7 +60,7 @@ class Traveler {
   }
 
   findTripsInLastYear(todaysDate) {
-    const oneYearAgo = dayjs(todaysDate).subtract(1, 'year').format('YYY/MM/DD')
+    const oneYearAgo = dayjs(todaysDate).subtract(1, 'year').format('YYYY/MM/DD')
     this.myTrips.forEach(trip => {
       if (dayjs(trip.date).isBetween(oneYearAgo, todaysDate, null, [])) {
         this.myTripsInLastYear.push(trip)
@@ -70,13 +70,17 @@ class Traveler {
 
   calculateSpentOnTripsThisYear(todaysDate) {
     this.findTripsInLastYear(todaysDate);
-    const cost = this.myTripsInLastYear.reduce((sum, trip) => {
-      sum += (trip.travelers * trip.duration * trip.estimatedLodgingCostPerDay)
-              + (trip.travelers * trip.estimatedFlightCostPerPerson);
-      return sum;
-    }, 0)
-    const totalCost = (cost * 0.1) + cost;
-    return totalCost;
+    if (this.myTripsInLastYear.length === 0) {
+      return "You haven't traveled with us recently! We'd love to help you book your next trip!"
+    } else {
+      const cost = this.myTripsInLastYear.reduce((sum, trip) => {
+        sum += (trip.travelers * trip.duration * trip.estimatedLodgingCostPerDay)
+                + (trip.travelers * trip.estimatedFlightCostPerPerson);
+        return sum;
+      }, 0)
+      const totalCost = (cost * 0.1) + cost;
+      return totalCost;
+    }
   }
 
 }
