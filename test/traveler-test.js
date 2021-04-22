@@ -36,7 +36,7 @@ describe('Traveler', () => {
 
   it('should sort my trips by past, present, future, and pending trips', () => {
     traveler.sortMyTrips(traveler.myTrips)
-    // expect(traveler.pendingTrips.length).to.equal(2)
+    expect(traveler.myPendingTrips.length).to.equal(2)
   })
 
 });

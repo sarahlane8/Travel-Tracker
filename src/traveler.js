@@ -18,6 +18,7 @@ class Traveler {
 
   sortMyTrips(myTrips) {//all 4 trips for this user ID
     this.myTrips = myTrips;
+    // console.log(this.pendingTrips)
     const todaysDate = dayjs().format('YYYY/MM/DD')//gives me 2021/04/22
     this.findMyCurrentTrip(todaysDate);
     this.findMyPastTrips(todaysDate);
@@ -38,7 +39,8 @@ class Traveler {
   }
 
   findMyPendingTrips() {
-
+    const pendingTrips = this.myTrips.filter(trip => trip.status ==='pending');
+    this.myPendingTrips = pendingTrips;
   }
 
 
