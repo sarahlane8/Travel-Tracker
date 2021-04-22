@@ -4,11 +4,15 @@ import { trips } from './testData.js'
 import Traveler from '../src/traveler.js'
 
 let traveler;
+let myTrips;
 
 describe('Traveler', () => {
   beforeEach(() => {
-    traveler = new Traveler(travelers[0], )
-  });
+    traveler = new Traveler(travelers[0]);
+    myTrips = trips.filter(trip => trip.userID === traveler.id);
+    traveler.myTrips = myTrips;
+  })
+
 
   it('should have an object of my data', () => {
     expect(traveler.myTravelInfo).to.be.an('object');
@@ -27,8 +31,12 @@ describe('Traveler', () => {
   })
 
   it('should return a list of my trips based on a userID', () => {
-    traveler.filterMyTrips(trips);
     expect(traveler.myTrips.length).to.equal(4);
+  })
+
+  it('should sort my trips by past, present, future, and pending trips', () => {
+    traveler.sortMyTrips(traveler.myTrips)
+    // expect(traveler.pendingTrips.length).to.equal(2)
   })
 
 });

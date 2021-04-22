@@ -155,21 +155,21 @@ let destinations = [
     "alt": "overview of city buildings with a clear sky"
   },
   {
-    "id": 25,
+    "id": 22,
     "destination": "Stockholm, Sweden",
     "estimatedLodgingCostPerDay": 90,
     "estimatedFlightCostPerPerson": 70,
     "image": "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "alt": "city with boats on the water during the day time"
   }, {
-    "id": 32,
+    "id": 12,
     "destination": "Sydney, Austrailia",
     "estimatedLodgingCostPerDay": 430,
     "estimatedFlightCostPerPerson": 1050,
     "image": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "alt": "opera house and city buildings on the water with boats"
   }, {
-    "id": 34,
+    "id": 44,
     "destination": "Cartagena, Colombia",
     "estimatedLodgingCostPerDay": 25,
     "estimatedFlightCostPerPerson": 300,
