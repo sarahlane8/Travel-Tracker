@@ -24,5 +24,6 @@ describe('Traveler', () => {
   it('should have a property of travelerType', () => {
     expect(traveler.travelerType).to.equal('relaxer');
   })
+  it('should return a list of my ')
 
 });

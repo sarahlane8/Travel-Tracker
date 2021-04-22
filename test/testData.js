@@ -63,7 +63,7 @@ let trips = [
   "suggestedActivities": ["swimming"]
 }, {
   "id": 2,
-  "userID": 26,
+  "userID": 15,
   "destinationID": 22,
   "travelers": 4,
   "date": "2020/10/04",
@@ -72,7 +72,7 @@ let trips = [
   "suggestedActivities": ["swim with dolphins"]
 }, {
   "id": 3,
-  "userID": 13,
+  "userID": 15,
   "destinationID": 12,
   "travelers": 3,
   "date": "2020/05/22",
@@ -81,7 +81,7 @@ let trips = [
   "suggestedActivities": ["swimming"]
 }, {
   "id": 43,
-  "userID": 43,
+  "userID": 15,
   "destinationID": 14,
   "travelers": 2,
   "date": "2020/02/25",
