@@ -65,7 +65,7 @@ describe('Traveler', () => {
     traveler2.sortMyTrips(myTrips)
     traveler2.calculateSpentOnTripsThisYear('2021/04/22')
     expect(traveler2.calculateSpentOnTripsThisYear('2021/04/22'))
-    .to.equal("You haven't traveled with us recently! We'd love to help you book your next trip!")
+      .to.equal("You haven't traveled with us recently! We'd love to help you book your next trip!")
   })
-  
+
 });
