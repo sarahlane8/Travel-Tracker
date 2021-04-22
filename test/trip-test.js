@@ -25,4 +25,8 @@ describe('Trip', () => {
   it('should have a property of number of travelers', () => {
     expect(trip.travelers).to.equal(6);
   })
+
+  it('should have a property of trip start date', () => {
+    expect(trip.date).to.equal('2017/07/23');
+  })
 })
