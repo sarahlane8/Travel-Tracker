@@ -15,6 +15,14 @@ describe('Trip', () => {
   })
 
   it('should have a property of userID', () => {
-    expect(trip.userID).to.equal(100)
+    expect(trip.userID).to.equal(100);
+  })
+
+  it('should have a property of destinationID', () => {
+    expect(trip.destinationID).to.equal(50);
+  })
+
+  it('should have a property of number of travelers', () => {
+    expect(trip.travelers).to.equal(6);
   })
 })
