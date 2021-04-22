@@ -29,10 +29,10 @@ class Traveler {
   sortByType(date) {
     this.myTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
-      if (dayjs(date).isBetween(trip.date, endDate, null, [])) {//includes start and end date
+      if (dayjs(date).isBetween(trip.date, endDate, null, [])) { //includes start and end date
         this.myCurrentTrip = trip;
       } else if (dayjs(date).isBefore(trip.date)) {
-          this.myFutureTrips.push(trip)
+        this.myFutureTrips.push(trip)
       } else if (dayjs(endDate).isBefore(date)) {
         this.myPastTrips.push(trip)
       }
