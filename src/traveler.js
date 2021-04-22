@@ -31,7 +31,6 @@ class Traveler {
   }
 
   findMyCurrentTrip(date) {
-    console.log(this.myTrips)
     this.myTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       if (dayjs(date).isBetween(trip.date, endDate, null, [])) {//includes start and end date
@@ -44,9 +43,7 @@ class Traveler {
     this.myTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       if (dayjs(endDate).isBefore(date)) {
-        console.log(47, true)
-      } else {
-        console.log(false)
+        this.myPastTrips.push(trip)
       }
     })
   }
