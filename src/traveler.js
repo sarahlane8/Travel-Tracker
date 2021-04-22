@@ -1,7 +1,11 @@
 // import Trip from '..src/Trip.js'//*************
-var dayjs = require('dayjs')
+const dayjs = require('dayjs')
+dayjs().format()
 const isBetween = require('dayjs/plugin/isBetween');
+const isBefore = require('dayjs/plugin/isBefore');
 dayjs.extend(isBetween);
+dayjs.extend(isBefore);
+
 
 class Traveler {
   constructor(travelerInfo) {//info for 1 person  filter trips before passing them through?
@@ -18,43 +22,32 @@ class Traveler {
 
   sortMyTrips(myTrips) {//all 4 trips for this user ID
     this.myTrips = myTrips;
-    // console.log(this.pendingTrips)
     const todaysDate = dayjs().format('YYYY/MM/DD')//gives me 2021/04/22
     this.findMyCurrentTrip(todaysDate);
     this.findMyPastTrips(todaysDate);
     this.findMyFutureTrips(todaysDate);
     this.findMyPendingTrips();
   }
-//date = 2021/04/22
+
   findMyCurrentTrip(date) {
-    const currentTrips = this.myTrips.forEach(trip => {
-      let startDate = trip.date;
-      let endDate = dayjs(startDate).add(trip.duration, 'day').format('YYYY/MM/DD')
-      if (dayjs(date).isBetween(startDate, endDate, null, [])) {
+    this.myTrips.forEach(trip => {
+      // let startDate = trip.date;
+      let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
+      if (dayjs(date).isBetween(trip.date, endDate, null, [])) {//includes start and end date
         this.myCurrentTrip = trip;
       }
     })
-    console.log(this.myCurrentTrip)
   }
-// (({date}) => dayjs(date).isBetween(weekBeginningDate, weekEndingDate, null, '[]'));
-
-
-
-
-//   var isBetween = require('dayjs/plugin/isBetween')
-// dayjs.extend(isBetween)
-//
-// // To use `year` granularity pass the third parameter
-// dayjs('2010-10-20').isBetween('2010-10-19', dayjs('2010-10-25'), 'year')
-//
-// // Parameter 4 is a string with two characters; '[' means inclusive, '(' exclusive
-// // '()' excludes start and end date (default)
-// // '[]' includes start and end date
-// // '[)' includes the start date but excludes the stop
-// dayjs('2016-10-30').isBetween('2016-01-01', '2016-10-30', null, '[)')
 
   findMyPastTrips(date) {
-
+    this.myTrips.forEach(trip => {
+      let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
+      if (endDate.isBefore(date)) {
+        console.log(true)
+      } else {
+        console.log(false)
+      }
+    })
   }
 
   findMyFutureTrips(date) {
@@ -66,13 +59,12 @@ class Traveler {
     this.myPendingTrips = pendingTrips;
   }
 
-
-
-//so for each trip, i need to compare it against today's date and the duration
-    // const now2 = dayjs("2019-09-16").format('MM/DD/YYYY')
-    // console.log(now2)
-    // const now = dayjs('2019/09/16').format(YYYY/MM/DD)
+  calculateSpentOnTripsThisYear() {
+    //iterate through the trips in my trips, and for each trip calcule duration * cost per day* flights * number of people * 10%
+    
   }
+
+}
 
 
 

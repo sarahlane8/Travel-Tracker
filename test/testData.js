@@ -84,7 +84,7 @@ let trips = [
   "userID": 15,
   "destinationID": 14,
   "travelers": 2,
-  "date": "2020/02/25",
+  "date": "2022/02/25",
   "duration": 10,
   "status": "approved",
   "suggestedActivities": ["zip-lining"]
