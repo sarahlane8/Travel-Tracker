@@ -1,6 +1,12 @@
-import { expect } from 'chai';
-import { travelers } from './testData.js'//CHANGE THIS ONE!
-import { trips } from './testData.js'
+import {
+  expect
+} from 'chai';
+import {
+  travelers
+} from './testData.js' //CHANGE THIS ONE!
+import {
+  trips
+} from './testData.js'
 import Trip from '../src/trip.js'
 
 let trip;

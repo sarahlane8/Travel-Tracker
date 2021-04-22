@@ -13,13 +13,13 @@ class Trip {
   }
 
 
-estimateTripCost() {
-  let totalFlightCost = this.travelers * this.estimatedFlightCostPerPerson;
-  let totalLodgingCost = this.travelers * this.estimatedLodgingCostPerDay * this.duration;
-  let totalCost = totalFlightCost + totalLodgingCost;
-  let finalCost = (totalCost * 0.1) + totalCost;
-  return finalCost;
+  estimateTripCost() {
+    let totalFlightCost = this.travelers * this.estimatedFlightCostPerPerson;
+    let totalLodgingCost = this.travelers * this.estimatedLodgingCostPerDay * this.duration;
+    let totalCost = totalFlightCost + totalLodgingCost;
+    let finalCost = (totalCost * 0.1) + totalCost;
+    return finalCost;
+  }
 }
-}
-//create a method to calculate the cost of a proposed trip
+
 export default Trip;
