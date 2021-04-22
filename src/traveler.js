@@ -25,10 +25,33 @@ class Traveler {
     this.findMyFutureTrips(todaysDate);
     this.findMyPendingTrips();
   }
-
+//date = 2021/04/22
   findMyCurrentTrip(date) {
-
+    const currentTrips = this.myTrips.forEach(trip => {
+      let startDate = trip.date;
+      let endDate = dayjs(startDate).add(trip.duration, 'day').format('YYYY/MM/DD')
+      if (dayjs(date).isBetween(startDate, endDate, null, [])) {
+        this.myCurrentTrip = trip;
+      }
+    })
+    console.log(this.myCurrentTrip)
   }
+// (({date}) => dayjs(date).isBetween(weekBeginningDate, weekEndingDate, null, '[]'));
+
+
+
+
+//   var isBetween = require('dayjs/plugin/isBetween')
+// dayjs.extend(isBetween)
+//
+// // To use `year` granularity pass the third parameter
+// dayjs('2010-10-20').isBetween('2010-10-19', dayjs('2010-10-25'), 'year')
+//
+// // Parameter 4 is a string with two characters; '[' means inclusive, '(' exclusive
+// // '()' excludes start and end date (default)
+// // '[]' includes start and end date
+// // '[)' includes the start date but excludes the stop
+// dayjs('2016-10-30').isBetween('2016-01-01', '2016-10-30', null, '[)')
 
   findMyPastTrips(date) {
 
