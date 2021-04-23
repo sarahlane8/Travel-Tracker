@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { travelers, trips } from './testData.js'
-// import { trips } from './testData.js'
 import Traveler from '../src/traveler.js'
 
 let traveler;
