@@ -12,7 +12,6 @@ class Trip {
     this.estimatedFlightCostPerPerson = tripData.estimatedFlightCostPerPerson;
   }
 
-
   estimateTripCost() {
     let totalFlightCost = this.travelers * this.estimatedFlightCostPerPerson;
     let totalLodgingCost = this.estimatedLodgingCostPerDay * this.duration;
