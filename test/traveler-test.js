@@ -9,12 +9,10 @@ let myTrips;
 describe('Traveler', () => {
   beforeEach(() => {
     traveler = new Traveler(travelers[0]);
+    // console.log('line 12', traveler.id)
     myTrips = trips.filter(trip => trip.userID === traveler.id);
     traveler.myTrips = myTrips;
-  })
-
-  it('should have an object of my data', () => {
-    expect(traveler.myTravelInfo).to.be.an('object');
+    // console.log(15, myTrips)
   })
 
   it('should have a property of ID', () => {
@@ -43,7 +41,7 @@ describe('Traveler', () => {
   it('should sort my trips by past, present, future, and pending trips', () => {
     traveler.sortMyTrips(traveler.myTrips)
     expect(traveler.myCurrentTrip).to.deep.equal(trips[0]);
-    expect(traveler.myPastTrips.length).to.equal(2);
+    expect(traveler.myPastTrips.length).to.equal(0);
     expect(traveler.myFutureTrips.length).to.equal(1);
     expect(traveler.myPendingTrips.length).to.equal(2);
   })
