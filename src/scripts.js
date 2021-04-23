@@ -1,6 +1,6 @@
-import Traveler from './traveler';//do i need this here?
-// import Trip from './trip';
-// import domUpdates from './domUpdates.js'
+import Traveler from './traveler.js';//do i need this here?
+import Trip from './trip.js';
+import domUpdates from './domUpdates.js'
 import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests.js'
 
 
