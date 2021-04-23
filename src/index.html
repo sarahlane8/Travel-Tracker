@@ -7,36 +7,32 @@
     <header>
       <h1>Wanderlust Excursions</h1>
     </header>
-    <main id='userDashboard'
-      <section class='user-trips' id='userTrips'>
+    <main id='userDashboard'>
+      <section class="user-trips" id="userTrips">
         <p id="pastTrips"></p>
         <p id="presentTrips"></p>
         <p id="upcomingTrips"></p>
         <p id="pendingTrips"></p>
       </section>
+      <article>
+        <h2>My Trips</h2>
+        <p>My Past Trips<p>
+        <p>My Present Trips</p>
+        <p>My Upcoming Trips</p>
+        <p>My Pending Trip Requests</p>
+      </article>
       <form class="request-trip-form">
         <label class="date-label" for="date">Date</label>
-        <input class="date-input" type="text" name="title" id="dateInput">
+        <input class="date-input" type="text" name="date" id="dateInput">
+        <label class="duration-label" for="duration">Duration of Trip</label>
+        <input class="duration-input" type="text" name="duration" id="durationInput">
+        <label class="travelers-label" for="travelers">Number of Travelers</label>
+        <input class="travelers-input" type="text" name="travelers" id="travelersInput">
+        <label class="destination-search-label" for="destination">Enter Destination</label>
+        <input class="destination-input" type="text" name="destinationSearch" id="destinationInput">
+        <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
+        <button class="submit-request" id="submitRequest">Submit My Request</button>
       </form>
-
-
-
-        <!-- <form class="user-idea-form">
-              <label class="title-label" for="title">Title</label>
-
-              <input class="user-input" type="text" name="title" id="userCardTitle">
-              <label for="body-label">Body</label>
-              <input class="user-input body-input" type="text" name="body" id="userCardBody">
-              <button class="save-idea-btn" id="saveButton">Save</button>
-              <div class="search-ideas">
-                <img class="magnifying-img" src="https://drive.google.com/uc?export=view&id=1vblRBbEK9Hk8tiqteZ-65a1u2dJGtEDa" alt="search icon">
-                <input class="search-cards" id="searchBar" type="text" name="searchBar" placeholder="Search ideas">
-              </div>
-            </form> -->
-
-
-
-
     </main>
   </body>
 </html>
