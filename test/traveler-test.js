@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { travelers } from './testData.js'//CHANGE THIS ONE!
-import { trips } from './testData.js'
+import { travelers, trips } from './testData.js'
+// import { trips } from './testData.js'
 import Traveler from '../src/traveler.js'
 
 let traveler;
@@ -9,10 +9,8 @@ let myTrips;
 describe('Traveler', () => {
   beforeEach(() => {
     traveler = new Traveler(travelers[0]);
-    // console.log('line 12', traveler.id)
     myTrips = trips.filter(trip => trip.userID === traveler.id);
     traveler.myTrips = myTrips;
-    // console.log(15, myTrips)
   })
 
   it('should have a property of ID', () => {
