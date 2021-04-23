@@ -32,15 +32,15 @@
         <label class="duration-label" for="duration">Duration of Trip</label>
         <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput">
         <label class="travelers-label" for="travelers">Number of Travelers</label>
-        <input class="travelers-input" type="text" name="travelers" placeholder="number of travelers" id="travelersInput">
-        <label class="destination-search-label" for="destination">Enter Destination</label>
+        <input class="travelers-input" type="text" name="travelers" id="travelersInput">
+        <label class="destination-search-label" for="destination">Destination</label>
         <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for an available destination" id="destinationInput">
         <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
         <p id="tripEstimate"></p>
         <button class="submit-request" id="submitRequest">Submit My Request</button>
       </form>
       <article class="user-total-money-spent">
-        <p>You have spent a lot of money!</p>
+        <p id="moneySpent"></p>
     </main>
   </body>
 </html>
