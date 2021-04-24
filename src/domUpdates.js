@@ -21,19 +21,23 @@ const domUpdates = {
     const userPendingTrips = document.getElementById('userPendingTrips');
     if (!traveler.myTrips) {
       myTripsDisplay.innerText = "Book your first trip with us!"
-    } else if (!traveler.myPastTrips) {
+    }
+    if (traveler.myPastTrips.length === 0) {
       userPastTrips.innerText = "You don't have any past trips!"
     } else if (traveler.myPastTrips) {
       domUpdates.renderTripCards(traveler.myPastTrips, userPastTrips)
-    } else if (!traveler.myCurrentTrip) {
+    }
+    if (!traveler.myCurrentTrip) {
       userPresentTrip.innerText = "You're stuck at home for now!"
     } else if (traveler.myCurrentTrip) {
       domUpdates.renderTripCards(traveler.myCurrentTrip, userPresentTrip)
-    } else if (!traveler.myFutureTrips) {
+    }
+    if (traveler.myFutureTrips.length === 0) {
       userFutureTrips.innerText = "You don't have any upcoming trips!"
     } else if (traveler.myFutureTrips) {
       domUpdates.renderTripCards(traveler.myFutureTrips, userFutureTrips)
-    } else if (!traveler.myPendingTrips) {
+    }
+    if (traveler.myPendingTrips.length === 0) {
       userPendingTrips.innerText = "You don't have any pending trips!"
     } else {
       domUpdates.renderTripCards(traveler.myPendingTrips, userPendingTrips)
@@ -56,7 +60,7 @@ const domUpdates = {
       </article>`
     })
     pageArea.innerHTML = tripCardsToDisplay;
-  }
+  },
 
 
 }
