@@ -1,13 +1,13 @@
 import Traveler from './traveler.js';//do i need this here?
 import Trip from './trip.js';
 import domUpdates from './domUpdates.js'
-import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests.js'
+import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests'
 
-
+//change traveler later based on the log in page
 
 //*******MEDIA QUERIES********//
 
-let travelers, trips, destinations;
+let travelers, trips, destinations, currentTraveler;
 
 //*******Event Listeners******//
 
@@ -15,14 +15,26 @@ window.onload = onPageLoad();
 
 
 function onPageLoad() {
-  fetchAllData()
+  fetchAllData(25)
   .then(allData => {
+    // console.log(allData)
     travelers = allData.travelersData;
     trips = allData.tripsData;
     destinations = allData.destinationsData;
+    currentTraveler = allData.singleTravelerData;
     combineDataSets(trips, destinations);
   })
-}
+  // fetchSingleTravelerData(25)
+  // .then(singleTravelerData => {
+  //   console.log(28, singleTravelerData)
+  //   traveler = new Traveler(response)
+  }
+  // let travelerInfo = (fetchSingleTravelerData(25));
+  // console.log(27, travelerInfo)
+  // traveler = new Traveler(travelerInfo);
+  // console.log(travelerInfo.id)
+
+
 
 function combineDataSets(tripData, destinationData) {
   const result = tripData.trips.map(trip => {
