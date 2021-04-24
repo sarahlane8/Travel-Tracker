@@ -37,8 +37,8 @@ input {
   width: 100px;
   height: 100px;
 }
-.trips-display {
-  height: 50vh;
+.trips-display, .destinations-display {
+  height: 75vh;
   overflow-y: scroll;
 }
 article {

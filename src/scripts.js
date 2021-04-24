@@ -59,18 +59,14 @@ function filterTripsByTraveler(travelerID) {//move to stripts
 }
 
 function filterDestinationsBySearch(e) {
-  let searchText = e.target.value.toLowerCase()//the user input
-console.log(destinations.destinations)
-let filteredDestinations = [];
-destinations.destinations.forEach(location => {
-  if (location.destination.toLowerCase().includes(searchText)) {
-    filteredDestinations.push(location)
-  }
-  // console.log(69, filteredDestinations)
-  domUpdates.displayDestinationCards(filteredDestinations)
-})
-
-
+  let searchText = e.target.value.toLowerCase()
+  let filteredDestinations = [];
+  destinations.destinations.forEach(location => {
+    if (location.destination.toLowerCase().includes(searchText)) {
+      filteredDestinations.push(location)
+    }
+    domUpdates.displayDestinationCards(filteredDestinations)
+  })
 }
 
 function calculateTripEstimate() {

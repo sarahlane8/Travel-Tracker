@@ -69,7 +69,6 @@ const domUpdates = {
 
   displayDestinationCards(destinationData) {
     let destinationCardsToDisplay = '';
-    // console.log(72, destinationData)
     destinationData.forEach(trip => {
     destinationCardsToDisplay +=
     `<article class="card">
