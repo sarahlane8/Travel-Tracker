@@ -13,28 +13,50 @@ const domUpdates = {
 
 
   displayTrips(traveler) {
-    const tripCardsDisplayArea = document.getElementById('tripCardsDisplay')
+    console.log(traveler)
+    const myTripsDisplay = document.getElementById('tripsDisplayArea')
+    const userPastTrips = document.getElementById('userPastTrips');
+    const userPresentTrip = document.getElementById('userPresentTrip');
+    const userFutureTrips = document.getElementById('userUpcomingTrips');
+    const userPendingTrips = document.getElementById('userPendingTrips');
     if (!traveler.myTrips) {
-      tripCardsDisplayArea.innerText = "Book your first trip with us!"
+      myTripsDisplay.innerText = "Book your first trip with us!"
+    } else if (!traveler.myPastTrips) {
+      userPastTrips.innerText = "You don't have any past trips!"
+    } else if (traveler.myPastTrips) {
+      domUpdates.renderTripCards(traveler.myPastTrips, userPastTrips)
+    } else if (!traveler.myCurrentTrip) {
+      userPresentTrip.innerText = "You're stuck at home for now!"
+    } else if (traveler.myCurrentTrip) {
+      domUpdates.renderTripCards(traveler.myCurrentTrip, userPresentTrip)
+    } else if (!traveler.myFutureTrips) {
+      userFutureTrips.innerText = "You don't have any upcoming trips!"
+    } else if (traveler.myFutureTrips) {
+      domUpdates.renderTripCards(traveler.myFutureTrips, userFutureTrips)
+    } else if (!traveler.myPendingTrips) {
+      userPendingTrips.innerText = "You don't have any pending trips!"
     } else {
-      let tripCardsToDisplay = '';
-      traveler.myTrips.forEach(trip => {
-        let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
-        tripCardsToDisplay +=
-        `<article class="card">
-          <div class="upper-card">
-           <img src=${trip.image} alt=${trip.alt}>
-          </div>
-          <div class="lower-card">
-            <p class="location">${trip.destination}</p>
-            <p class="dates">${trip.date} - ${endDate}</p>
-          </div>
-        </article>`
-      })
-      tripCardsDisplayArea.innerHTML = tripCardsToDisplay;
+      domUpdates.renderTripCards(traveler.myPendingTrips, userPendingTrips)
     }
-  }
+  },
 
+  renderTripCards(filteredTrips, pageArea) {
+    let tripCardsToDisplay = '';
+    filteredTrips.forEach(trip => {
+      let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
+      tripCardsToDisplay +=
+      `<article class="card">
+        <div class="upper-card">
+         <img src=${trip.image} alt=${trip.alt}>
+        </div>
+        <div class="lower-card">
+          <p class="location">${trip.destination}</p>
+          <p class="dates">${trip.date} - ${endDate}</p>
+        </div>
+      </article>`
+    })
+    pageArea.innerHTML = tripCardsToDisplay;
+  }
 
 
 }
