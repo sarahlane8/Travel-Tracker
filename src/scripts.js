@@ -8,7 +8,7 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 //*******MEDIA QUERIES********//
 const getEstimateButton = document.getElementById('getTripEstimate');
 const submitRequestButton = document.getElementById('submitRequest');
-
+const userGreeting = document.getElementById('userGreeting');
 
 let travelers, trips, destinations, singleTraveler, currentTraveler;
 
@@ -29,7 +29,9 @@ function onPageLoad() {
     combineDataSets(trips, destinations);
     currentTraveler = new Traveler(singleTraveler)
     console.log(32, currentTraveler)
-    domUpdates.greetUser()
+    domUpdates.greetUser(currentTraveler)
+    //invoke datamodel to update trips
+    domUpdates.displayTrips(currentTraveler)
   })
   }
 
