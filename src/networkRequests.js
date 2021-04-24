@@ -2,13 +2,6 @@
 //************FETCHING ALL DATA************//
 const fetchAllData = id => {
 
-  const travelersData = fetch('http://localhost:3001/api/v1/travelers')
-    .then(response => response.json())
-    .then(travelersData => {
-      // console.log(8, travelersData)
-      return travelersData;
-    });
-
   const tripsData = fetch('http://localhost:3001/api/v1/trips')
     .then(response => response.json())
     .then(tripsData => {
@@ -19,20 +12,17 @@ const fetchAllData = id => {
   const destinationsData = fetch('http://localhost:3001/api/v1/destinations')
     .then(response => response.json())
     .then(destinationsData => {
-      // console.log(22, destinationsData)
       return destinationsData;
     });
 
     const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
       .then(response => response.json())
       .then(singleTravelerData => {
-        // console.log(29, singleTravelerData)
         return singleTravelerData;
     });
 
     return Promise.all([travelersData, tripsData, destinationsData, singleTravelerData])
       .then(data => {
-        // console.log(40, data)
       const allData = {};
       allData.travelersData = data[0];
       allData.tripsData = data[1];
@@ -49,12 +39,19 @@ const fetchSingleTravelerData = id => {
   const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
     .then(response => response.json())
     .then(singleTravelerData => {
-      // console.log(40, response)
       return response;
     })
     .catch(err => console.log('ERROR', err));
-  }
-
+};
+//************FETCHING ALL TRAVELERS' DATA************//
+const fetchAllTravelersData = () => {
+  const travelersData = fetch('http://localhost:3001/api/v1/travelers')
+    .then(response => response.json())
+    .then(travelersData => {
+      return travelersData;
+    })
+    .catch(err => console.log('ERROR', err));
+};
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = object => {
