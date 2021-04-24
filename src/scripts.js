@@ -29,6 +29,7 @@ function onPageLoad() {
     domUpdates.greetUser(currentTraveler)
     domUpdates.displayTrips(currentTraveler)
     domUpdates.displayTotalSpent(currentTraveler)
+    domUpdates.displayDestinationCards(destinations)
   })
 }
 
