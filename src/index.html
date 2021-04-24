@@ -8,7 +8,7 @@
   <body>
     <header>
       <h1>Wanderlust Excursions</h1>
-      <h2>Welcome back!</h2>
+      <h2 id="userGreeting"></h2>
     </header>
     <main id='userDashboard'>
       <!-- <section class="user-trips" id="userTrips">
@@ -18,31 +18,36 @@
         <p id="pendingTrips"></p>
       </section> -->
       <section class="trips-display">
-        <h3>My Trips</h3>
+        <h3 id="tripsDisplayArea">My Trips</h3>
+        <!-- <article id="tripCardsDisplay">
+
+        </article> -->
         <p>My Past Trips<p>
         <p id="userPastTrips"></p>
         <p>My Present Trip</p>
-        <p id="userPresentTrips"></p>
+        <p id="userPresentTrip"></p>
         <p>My Upcoming Trips</p>
         <p id="userUpcomingTrips"></p>
         <p>My Pending Trip Requests</p>
         <p id="userPendingTrips"></p>
       </section>
       <form class="request-trip-form">
-        <label class="date-label" for="date">Date</label>
-        <input class="date-input" type="text" name="date" placeholder="YYYY/MM/DD" id="dateInput"></br>
+        <h3>Request a new trip!</h3>
+        <label class="date-label" for="date">Departure Date</label>
+        <input class="date-input" type="date" name="date" placeholder="YYYY/MM/DD" id="dateInput"></br>
         <label class="duration-label" for="duration">Duration of Trip</label>
         <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput"></br>
         <label class="travelers-label" for="travelers">Number of Travelers</label>
         <input class="travelers-input" type="text" name="travelers" id="travelersInput"></br>
         <label class="destination-search-label" for="destination">Destination</label>
-        <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for an available destination" id="destinationInput">
+        <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for destination" id="destinationInput">
         <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
         <p id="tripEstimate"></p>
         <button class="submit-request" id="submitRequest">Submit My Request</button>
       </form>
       <article class="user-total-money-spent">
         <p id="moneySpent"></p>
+      </article>
     </main>
   </body>
 </html>

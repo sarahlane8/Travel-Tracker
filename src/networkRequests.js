@@ -1,16 +1,11 @@
 
 //************FETCHING ALL DATA************//
-const fetchAllData = () => {
-
-  const travelersData = fetch('http://localhost:3001/api/v1/travelers')
-    .then(response => response.json())
-    .then(travelersData => {
-      return travelersData;
-    });
+const fetchAllData = id => {
 
   const tripsData = fetch('http://localhost:3001/api/v1/trips')
     .then(response => response.json())
     .then(tripsData => {
+      // console.log(15, tripsData)
       return tripsData;
     });
 
@@ -20,12 +15,18 @@ const fetchAllData = () => {
       return destinationsData;
     });
 
-    return Promise.all([travelersData, tripsData, destinationsData])
+    const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
+      .then(response => response.json())
+      .then(singleTravelerData => {
+        return singleTravelerData;
+    });
+
+    return Promise.all([tripsData, destinationsData, singleTravelerData])
       .then(data => {
       const allData = {};
-      allData.travelersData = data[0];
-      allData.tripsData = data[1];
-      allData.destinationsData = data[2];
+      allData.tripsData = data[0];
+      allData.destinationsData = data[1];
+      allData.singleTravelerData = data[2];
       return allData;
   })
   .catch(err => console.log('ERROR', err));
@@ -37,11 +38,19 @@ const fetchSingleTravelerData = id => {
   const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
     .then(response => response.json())
     .then(singleTravelerData => {
-      return singleTravelerData
+      return response;
     })
     .catch(err => console.log('ERROR', err));
-  }
-
+};
+//************FETCHING ALL TRAVELERS' DATA************//
+const fetchAllTravelersData = () => {
+  const travelersData = fetch('http://localhost:3001/api/v1/travelers')
+    .then(response => response.json())
+    .then(travelersData => {
+      return travelersData;
+    })
+    .catch(err => console.log('ERROR', err));
+};
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = object => {

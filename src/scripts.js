@@ -6,10 +6,13 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 //change traveler later based on the log in page
 
 //*******MEDIA QUERIES********//
-
-let travelers, trips, destinations, currentTraveler;
+const getEstimateButton = document.getElementById('getTripEstimate');
+const submitRequestButton = document.getElementById('submitRequest');
+let travelers, trips, destinations, singleTraveler, currentTraveler;
 
 //*******Event Listeners******//
+getEstimateButton.addEventListener('click', calculateTripEstimate)
+submitRequestButton.addEventListener('click', submitNewTripRequest)
 
 window.onload = onPageLoad();
 
@@ -17,24 +20,17 @@ window.onload = onPageLoad();
 function onPageLoad() {
   fetchAllData(25)
   .then(allData => {
-    // console.log(allData)
-    travelers = allData.travelersData;
     trips = allData.tripsData;
     destinations = allData.destinationsData;
-    currentTraveler = allData.singleTravelerData;
+    singleTraveler = allData.singleTravelerData;
     combineDataSets(trips, destinations);
+    currentTraveler = new Traveler(singleTraveler)
+    filterTripsByTraveler(singleTraveler.id)
+    domUpdates.greetUser(currentTraveler)
+    domUpdates.displayTrips(currentTraveler)
+    domUpdates.displayTotalSpent(currentTraveler)
   })
-  // fetchSingleTravelerData(25)
-  // .then(singleTravelerData => {
-  //   console.log(28, singleTravelerData)
-  //   traveler = new Traveler(response)
-  }
-  // let travelerInfo = (fetchSingleTravelerData(25));
-  // console.log(27, travelerInfo)
-  // traveler = new Traveler(travelerInfo);
-  // console.log(travelerInfo.id)
-
-
+}
 
 function combineDataSets(tripData, destinationData) {
   const result = tripData.trips.map(trip => {
@@ -42,16 +38,33 @@ function combineDataSets(tripData, destinationData) {
       if (trip.destinationID === destination.id) {
         trip['estimatedLodgingCostPerDay'] = destination.estimatedLodgingCostPerDay;
         trip['estimatedFlightCostPerPerson'] = destination.estimatedFlightCostPerPerson;
+        trip['image'] = destination.image;
+        trip['alt'] = destination.alt;
+        trip['destination'] = destination.destination;
       }
     })
     return trip;
   })
-  travelers = result;
+  trips = result;
 }
 
 
-// filterMyTrips(trips) {//move to stripts
-//   const myTrips = trips.filter(trip => trip.userID === this.id)
-//   this.myTrips.push(...myTrips)
-//   this.sortMyTrips(this.myTrips)
-// }
+function filterTripsByTraveler(travelerID) {//move to stripts
+  const myTrips = trips.filter(trip => trip.userID === travelerID)
+  currentTraveler.sortMyTrips(myTrips)
+  // console.log(54, currentTraveler)
+}
+
+function calculateTripEstimate() {
+  console.log('hello')
+  //invoke estimate trip cost from trip class
+  //invoke domUpdates to display price from whatever estimate returns
+}
+
+function submitNewTripRequest() {
+  console.log('hello')
+  //make new instance of trips
+  //invoke post request from networkRequests
+  //invoke something from dom Updates to say you're request has been submitted!
+  //update dom to show new trip in my pending trip requests
+}
