@@ -8,8 +8,11 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 //*******MEDIA QUERIES********//
 const getEstimateButton = document.getElementById('getTripEstimate');
 const submitRequestButton = document.getElementById('submitRequest');
-const userGreeting = document.getElementById('userGreeting');
-
+// const userGreeting = document.getElementById('userGreeting');
+// const userPastTrips = document.getElementById('userPastTrips');
+// const userPresentTrip = document.getElementById('userPresentTrip');
+// // const userFutureTrips = document.getElementById('userUpcomingTrips');
+// const userPendingTrips = document.getElementById('userPendingTrips');
 let travelers, trips, destinations, singleTraveler, currentTraveler;
 
 //*******Event Listeners******//
@@ -29,10 +32,10 @@ function onPageLoad() {
     currentTraveler = new Traveler(singleTraveler)//new instance of traveler
     filterTripsByTraveler(singleTraveler.id)
     domUpdates.greetUser(currentTraveler)
+    // console.log(25, currentTraveler.myFutureTrips)
     domUpdates.displayTrips(currentTraveler)
   })
 }
-
 
 function combineDataSets(tripData, destinationData) {
   const result = tripData.trips.map(trip => {
@@ -40,6 +43,9 @@ function combineDataSets(tripData, destinationData) {
       if (trip.destinationID === destination.id) {
         trip['estimatedLodgingCostPerDay'] = destination.estimatedLodgingCostPerDay;
         trip['estimatedFlightCostPerPerson'] = destination.estimatedFlightCostPerPerson;
+        trip['image'] = destination.image;
+        trip['alt'] = destination.alt;
+        trip['destination'] = destination.destination;
       }
     })
     return trip;
@@ -50,10 +56,8 @@ function combineDataSets(tripData, destinationData) {
 
 function filterTripsByTraveler(travelerID) {//move to stripts
   const myTrips = trips.filter(trip => trip.userID === travelerID)
-  // this.myTrips.push(...myTrips)
-  // console.log(traveler)
   currentTraveler.sortMyTrips(myTrips)
-  // console.log(59, myTrips)
+  // console.log(54, currentTraveler)
 }
 
 function calculateTripEstimate() {
