@@ -22,13 +22,12 @@ window.onload = onPageLoad();
 function onPageLoad() {
   fetchAllData(25)
   .then(allData => {
-    travelers = allData.travelersData;
     trips = allData.tripsData;
     destinations = allData.destinationsData;
     singleTraveler = allData.singleTravelerData;
     combineDataSets(trips, destinations);
     currentTraveler = new Traveler(singleTraveler)
-    console.log(32, currentTraveler)
+    console.log(30, currentTraveler)
     domUpdates.greetUser(currentTraveler)
     //invoke datamodel to update trips
     domUpdates.displayTrips(currentTraveler)

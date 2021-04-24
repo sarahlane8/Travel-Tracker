@@ -21,13 +21,12 @@ const fetchAllData = id => {
         return singleTravelerData;
     });
 
-    return Promise.all([travelersData, tripsData, destinationsData, singleTravelerData])
+    return Promise.all([tripsData, destinationsData, singleTravelerData])
       .then(data => {
       const allData = {};
-      allData.travelersData = data[0];
-      allData.tripsData = data[1];
-      allData.destinationsData = data[2];
-      allData.singleTravelerData = data[3];
+      allData.tripsData = data[0];
+      allData.destinationsData = data[1];
+      allData.singleTravelerData = data[2];
       return allData;
   })
   .catch(err => console.log('ERROR', err));
