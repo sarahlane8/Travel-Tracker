@@ -3,8 +3,8 @@
 @mixin rounded-corners($radius) {
   border-radius: $radius
 }
-@mixin padding($padding){
-  padding: $padding 0;
+@mixin padding($padding1){
+  padding: $padding1, 0;
 }
 @mixin width($width) {
   width: $width;

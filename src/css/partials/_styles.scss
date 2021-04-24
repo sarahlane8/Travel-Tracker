@@ -25,12 +25,10 @@ main {
 .trips-display, .request-trip-form {
   flex-direction: column;
   @include width(50%);
+  padding: 25px
 
 }
 
 input {
     width: -webkit-fill-available;
 }
-// .request-trip-form {
-//   flex-direction: column;
-// }
