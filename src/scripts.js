@@ -8,11 +8,6 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 //*******MEDIA QUERIES********//
 const getEstimateButton = document.getElementById('getTripEstimate');
 const submitRequestButton = document.getElementById('submitRequest');
-const userGreeting = document.getElementById('userGreeting');
-// const userPastTrips = document.getElementById('userPastTrips');
-// const userPresentTrip = document.getElementById('userPresentTrip');
-// const userFutureTrips = document.getElementById('userUpcomingTrips');
-// const userPendingTrips = document.getElementById('userPendingTrips');
 let travelers, trips, destinations, singleTraveler, currentTraveler;
 
 //*******Event Listeners******//
