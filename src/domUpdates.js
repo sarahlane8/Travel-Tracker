@@ -69,9 +69,8 @@ const domUpdates = {
 
   displayDestinationCards(destinationData) {
     let destinationCardsToDisplay = '';
-    console.log(72, destinationData.destinations[0]);
-    destinationData.destinations.forEach(trip => {
-      // console.log(74, trip)
+    // console.log(72, destinationData)
+    destinationData.forEach(trip => {
     destinationCardsToDisplay +=
     `<article class="card">
       <div class="upper-card">
