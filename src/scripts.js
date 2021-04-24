@@ -6,8 +6,8 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 //change traveler later based on the log in page
 
 //*******MEDIA QUERIES********//
-const getEstimateButton = document.getElementById('getTripEstimate');
-const submitRequestButton = document.getElementById('submitRequest');
+const getEstimateButton = document.querySelector('.get-trip-estimate');
+const submitRequestButton = document.querySelector('.submit-request');
 const searchbar = document.getElementById('destinationInput')
 let travelers, trips, destinations, singleTraveler, currentTraveler;
 
@@ -70,9 +70,14 @@ function filterDestinationsBySearch(e) {
 }
 
 function calculateTripEstimate() {
-  console.log('hello')
+document.getElementById('tripEstimate').innerText = 'hello';
+
   //invoke estimate trip cost from trip class
   //invoke domUpdates to display price from whatever estimate returns
+
+// HTMLFormElement.reset()
+
+
 }
 
 function submitNewTripRequest() {
