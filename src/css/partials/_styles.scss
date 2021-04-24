@@ -1,0 +1,34 @@
+@import 'variables';
+
+
+body {
+  background-color: $primary-background-color;
+  font-family: Roboto;
+}
+header {
+  background-color: $header-background-color;
+  @include padding(5px)
+  @include centered;
+}
+
+h1 {
+  color: $main-text-color;
+  // font-family: Roboto;
+}
+
+.submit-request, .get-trip-estimate {
+  @include rounded-corners(5px)
+}
+main {
+  display: flex;
+}
+.trips-display, .request-trip-form {
+  flex-direction: column;
+  @include width(50%);
+  padding: 25px
+
+}
+
+input {
+    width: -webkit-fill-available;
+}

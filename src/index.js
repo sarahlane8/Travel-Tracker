@@ -5,9 +5,6 @@
 import './css/base.scss';
 
 import './scripts.js';
-// import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests.js'
-// import Traveler from './traveler.js'
-// import Trip from './trip.js'
 
 
 
