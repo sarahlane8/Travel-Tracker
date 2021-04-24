@@ -21,10 +21,11 @@ h1 {
 }
 main {
   display: flex;
+
 }
-.trips-display, .request-trip-form {
+.trips-display, .form-section, .destinations-display {
   flex-direction: column;
-  @include width(50%);
+  @include width(33%);
   padding: 25px
 
 }
@@ -32,7 +33,14 @@ main {
 input {
     width: -webkit-fill-available;
 }
-.card {
-  width: 40px;
-  height: 40px;
+.location-pic {
+  width: 100px;
+  height: 100px;
+}
+.trips-display, .destinations-display {
+  height: 75vh;
+  overflow-y: scroll;
+}
+article {
+  background-color: white;
 }

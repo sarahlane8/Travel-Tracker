@@ -8,11 +8,13 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 //*******MEDIA QUERIES********//
 const getEstimateButton = document.getElementById('getTripEstimate');
 const submitRequestButton = document.getElementById('submitRequest');
+const searchbar = document.getElementById('destinationInput')
 let travelers, trips, destinations, singleTraveler, currentTraveler;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', calculateTripEstimate)
 submitRequestButton.addEventListener('click', submitNewTripRequest)
+searchbar.addEventListener('keyup', filterDestinationsBySearch)
 
 window.onload = onPageLoad();
 
@@ -29,6 +31,7 @@ function onPageLoad() {
     domUpdates.greetUser(currentTraveler)
     domUpdates.displayTrips(currentTraveler)
     domUpdates.displayTotalSpent(currentTraveler)
+    domUpdates.displayDestinationCards(destinations.destinations)
   })
 }
 
@@ -53,6 +56,17 @@ function filterTripsByTraveler(travelerID) {//move to stripts
   const myTrips = trips.filter(trip => trip.userID === travelerID)
   currentTraveler.sortMyTrips(myTrips)
   // console.log(54, currentTraveler)
+}
+
+function filterDestinationsBySearch(e) {
+  let searchText = e.target.value.toLowerCase()
+  let filteredDestinations = [];
+  destinations.destinations.forEach(location => {
+    if (location.destination.toLowerCase().includes(searchText)) {
+      filteredDestinations.push(location)
+    }
+    domUpdates.displayDestinationCards(filteredDestinations)
+  })
 }
 
 function calculateTripEstimate() {

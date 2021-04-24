@@ -24,33 +24,33 @@ const domUpdates = {
     if (traveler.myPastTrips.length === 0) {
       userPastTrips.innerText = "You don't have any past trips!"
     } else if (traveler.myPastTrips) {
-      domUpdates.renderTripCards(traveler.myPastTrips, userPastTrips)
+      domUpdates.renderUserTripCards(traveler.myPastTrips, userPastTrips)
     }
     if (!traveler.myCurrentTrip) {
       userPresentTrip.innerText = "You're stuck at home for now!"
     } else if (traveler.myCurrentTrip) {
-      domUpdates.renderTripCards(traveler.myCurrentTrip, userPresentTrip)
+      domUpdates.renderUserTripCards(traveler.myCurrentTrip, userPresentTrip)
     }
     if (traveler.myFutureTrips.length === 0) {
       userFutureTrips.innerText = "You don't have any upcoming trips!"
     } else if (traveler.myFutureTrips) {
-      domUpdates.renderTripCards(traveler.myFutureTrips, userFutureTrips)
+      domUpdates.renderUserTripCards(traveler.myFutureTrips, userFutureTrips)
     }
     if (traveler.myPendingTrips.length === 0) {
       userPendingTrips.innerText = "You don't have any pending trips!"
     } else {
-      domUpdates.renderTripCards(traveler.myPendingTrips, userPendingTrips)
+      domUpdates.renderUserTripCards(traveler.myPendingTrips, userPendingTrips)
     }
   },
 
-  renderTripCards(filteredTrips, pageArea) {
+  renderUserTripCards(filteredTrips, pageArea) {
     let tripCardsToDisplay = '';
     filteredTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       tripCardsToDisplay +=
       `<article class="card">
         <div class="upper-card">
-         <img src=${trip.image} alt=${trip.alt}>
+         <img class="location-pic" src=${trip.image} alt=${trip.alt}>
         </div>
         <div class="lower-card">
           <p class="location">${trip.destination}</p>
@@ -65,6 +65,22 @@ const domUpdates = {
     const todaysDate = dayjs().format('YYYY/MM/DD')
     const totalAmount = traveler.calculateSpentOnTripsThisYear(todaysDate);
     document.getElementById('moneySpent').innerText = `You spent $${totalAmount} on trips in the last year!`
+  },
+
+  displayDestinationCards(destinationData) {
+    let destinationCardsToDisplay = '';
+    destinationData.forEach(trip => {
+    destinationCardsToDisplay +=
+    `<article class="card">
+      <div class="upper-card">
+       <img class="location-pic" src=${trip.image} alt=${trip.alt}>
+      </div>
+      <div class="lower-card">
+        <p class="location">${trip.destination}</p>
+      </div>
+    </article>`
+  })
+  document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
   },
 
 }
