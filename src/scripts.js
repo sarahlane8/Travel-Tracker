@@ -10,7 +10,7 @@ const getEstimateButton = document.getElementById('getTripEstimate');
 const submitRequestButton = document.getElementById('submitRequest');
 
 
-let travelers, trips, destinations, currentTraveler;
+let travelers, trips, destinations, singleTraveler, currentTraveler;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', calculateTripEstimate)
@@ -22,22 +22,16 @@ window.onload = onPageLoad();
 function onPageLoad() {
   fetchAllData(25)
   .then(allData => {
-    // console.log(allData)
     travelers = allData.travelersData;
     trips = allData.tripsData;
     destinations = allData.destinationsData;
-    currentTraveler = allData.singleTravelerData;
+    singleTraveler = allData.singleTravelerData;
     combineDataSets(trips, destinations);
+    currentTraveler = new Traveler(singleTraveler)
+    console.log(32, currentTraveler)
+    domUpdates.greetUser()
   })
-  // fetchSingleTravelerData(25)
-  // .then(singleTravelerData => {
-  //   console.log(28, singleTravelerData)
-  //   traveler = new Traveler(response)
   }
-  // let travelerInfo = (fetchSingleTravelerData(25));
-  // console.log(27, travelerInfo)
-  // traveler = new Traveler(travelerInfo);
-  // console.log(travelerInfo.id)
 
 
 
@@ -51,7 +45,7 @@ function combineDataSets(tripData, destinationData) {
     })
     return trip;
   })
-  travelers = result;
+  trips = result;
 }
 
 
