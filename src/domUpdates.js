@@ -50,7 +50,7 @@ const domUpdates = {
       tripCardsToDisplay +=
       `<article class="card">
         <div class="upper-card">
-         <img src=${trip.image} alt=${trip.alt}>
+         <img class="location-pic" src=${trip.image} alt=${trip.alt}>
         </div>
         <div class="lower-card">
           <p class="location">${trip.destination}</p>

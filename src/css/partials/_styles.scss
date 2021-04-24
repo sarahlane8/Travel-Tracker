@@ -21,6 +21,7 @@ h1 {
 }
 main {
   display: flex;
+
 }
 .trips-display, .request-trip-form {
   flex-direction: column;
@@ -32,7 +33,14 @@ main {
 input {
     width: -webkit-fill-available;
 }
-.card {
-  width: 40px;
-  height: 40px;
+.location-pic {
+  width: 100px;
+  height: 100px;
+}
+.trips-display {
+  height: 50vh;
+  overflow-y: scroll;
+}
+article {
+  background-color: white;
 }

@@ -31,23 +31,25 @@
         <p>My Pending Trip Requests</p>
         <p id="userPendingTrips"></p>
       </section>
-      <form class="request-trip-form">
-        <h3>Request a new trip!</h3>
-        <label class="date-label" for="date">Departure Date</label>
-        <input class="date-input" type="date" name="date" placeholder="YYYY/MM/DD" id="dateInput"></br>
-        <label class="duration-label" for="duration">Duration of Trip</label>
-        <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput"></br>
-        <label class="travelers-label" for="travelers">Number of Travelers</label>
-        <input class="travelers-input" type="text" name="travelers" id="travelersInput"></br>
-        <label class="destination-search-label" for="destination">Destination</label>
-        <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for destination" id="destinationInput">
-        <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
-        <p id="tripEstimate"></p>
-        <button class="submit-request" id="submitRequest">Submit My Request</button>
-      </form>
-      <article class="user-total-money-spent">
-        <p id="moneySpent"></p>
-      </article>
+      <div>
+        <article class="user-total-money-spent">
+          <p id="moneySpent"></p>
+        </article>
+        <form class="request-trip-form">
+          <h3>Request a new trip!</h3>
+          <label class="date-label" for="dateInput">Departure Date</label>
+          <input class="date-input" type="date" name="date" placeholder="YYYY/MM/DD" id="dateInput"></br>
+          <label class="duration-label" for="durationInput">Duration of Trip</label>
+          <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput"></br>
+          <label class="travelers-label" for="travelersInput">Number of Travelers</label>
+          <input class="travelers-input" type="text" name="travelers" id="travelersInput"></br>
+          <label class="destination-search-label" for="destinationInput">Destination</label>
+          <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for destination" id="destinationInput">
+          <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
+          <p id="tripEstimate"></p>
+          <button class="submit-request" id="submitRequest">Submit My Request</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>
