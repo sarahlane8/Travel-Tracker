@@ -2,17 +2,23 @@
 // $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 // ;
 //
-body {
-  // background: $primary-background;
-  // display: flex;
-}
+// body {
+//   background: $primary-background;
+//   display: flex;
+//   flex
+// }
 
 
 // Am i missing any imports?? Rethink this before starting CSS
 
-@import "partials/mixins";
-@import "partials/normalize";
-@import "partials/styles";
-@import "partials/typography";
-@import "partials/variables";
-@import "partials/mediaQueries";//KEEP THIS LAST!!!!!
+// body {
+//   // background-color: $primary-background-color;
+//   background-color: #478978;
+// }
+
+@import "partials/mixins.scss";
+@import "partials/normalize.scss";
+@import "partials/styles.scss";
+@import "partials/typography.scss";
+@import "partials/variables.scss";
+@import "partials/mediaQueries.scss";//KEEP THIS LAST!!!!!

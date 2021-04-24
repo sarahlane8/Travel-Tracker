@@ -2,6 +2,8 @@
 <html lang="en-US" dir="ltr">
   <head>
     <title>Wanderlust Excursions</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -9,13 +11,13 @@
       <h2>Welcome back!</h2>
     </header>
     <main id='userDashboard'>
-      <section class="user-trips" id="userTrips">
+      <!-- <section class="user-trips" id="userTrips">
         <p id="pastTrips"></p>
         <p id="presentTrips"></p>
         <p id="upcomingTrips"></p>
         <p id="pendingTrips"></p>
-      </section>
-      <article class="trips-display">
+      </section> -->
+      <section class="trips-display">
         <h3>My Trips</h3>
         <p>My Past Trips<p>
         <p id="userPastTrips"></p>
@@ -25,14 +27,14 @@
         <p id="userUpcomingTrips"></p>
         <p>My Pending Trip Requests</p>
         <p id="userPendingTrips"></p>
-      </article>
+      </section>
       <form class="request-trip-form">
         <label class="date-label" for="date">Date</label>
-        <input class="date-input" type="text" name="date" placeholder="YYYY/MM/DD" id="dateInput">
+        <input class="date-input" type="text" name="date" placeholder="YYYY/MM/DD" id="dateInput"></br>
         <label class="duration-label" for="duration">Duration of Trip</label>
-        <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput">
+        <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput"></br>
         <label class="travelers-label" for="travelers">Number of Travelers</label>
-        <input class="travelers-input" type="text" name="travelers" id="travelersInput">
+        <input class="travelers-input" type="text" name="travelers" id="travelersInput"></br>
         <label class="destination-search-label" for="destination">Destination</label>
         <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for an available destination" id="destinationInput">
         <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
