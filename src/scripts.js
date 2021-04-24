@@ -70,14 +70,18 @@ function filterDestinationsBySearch(e) {
 }
 
 function calculateTripEstimate() {
-document.getElementById('tripEstimate').innerText = 'hello';
+const startDate = document.getElementById('dateInput').value;
+const duration = document.getElementById('durationInput').value;
+const numTravelers = document.getElementById('travelersInput').value;
+const destination = document.getElementById('destinationInput').value;
 
   //invoke estimate trip cost from trip class
   //invoke domUpdates to display price from whatever estimate returns
 
-// HTMLFormElement.reset()
 
 
+
+document.getElementById('tripEstimate').innerText = 'hello';
 }
 
 function submitNewTripRequest() {
