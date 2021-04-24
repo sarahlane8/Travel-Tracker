@@ -29,11 +29,11 @@ function onPageLoad() {
     destinations = allData.destinationsData;
     singleTraveler = allData.singleTravelerData;
     combineDataSets(trips, destinations);
-    currentTraveler = new Traveler(singleTraveler)//new instance of traveler
+    currentTraveler = new Traveler(singleTraveler)
     filterTripsByTraveler(singleTraveler.id)
     domUpdates.greetUser(currentTraveler)
-    // console.log(25, currentTraveler.myFutureTrips)
     domUpdates.displayTrips(currentTraveler)
+    domUpdates.displayTotalSpent(currentTraveler)
   })
 }
 

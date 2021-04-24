@@ -13,7 +13,6 @@ const domUpdates = {
 
 
   displayTrips(traveler) {
-    console.log(traveler)
     const myTripsDisplay = document.getElementById('tripsDisplayArea')
     const userPastTrips = document.getElementById('userPastTrips');
     const userPresentTrip = document.getElementById('userPresentTrip');
@@ -62,6 +61,11 @@ const domUpdates = {
     pageArea.innerHTML = tripCardsToDisplay;
   },
 
+  displayTotalSpent(traveler) {
+    const todaysDate = dayjs().format('YYYY/MM/DD')
+    const totalAmount = traveler.calculateSpentOnTripsThisYear(todaysDate);
+    document.getElementById('moneySpent').innerText = `You spent $${totalAmount} on trips in the last year!`
+  },
 
 }
 
