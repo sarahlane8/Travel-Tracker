@@ -26,14 +26,12 @@ function onPageLoad() {
     destinations = allData.destinationsData;
     singleTraveler = allData.singleTravelerData;
     combineDataSets(trips, destinations);
-    currentTraveler = new Traveler(singleTraveler)
-    console.log(30, currentTraveler)
+    currentTraveler = new Traveler(singleTraveler)//new instance of traveler
+    filterTripsByTraveler(singleTraveler.id)
     domUpdates.greetUser(currentTraveler)
-    //invoke datamodel to update trips
     domUpdates.displayTrips(currentTraveler)
   })
-  }
-
+}
 
 
 function combineDataSets(tripData, destinationData) {
@@ -50,11 +48,14 @@ function combineDataSets(tripData, destinationData) {
 }
 
 
-// filterMyTrips(trips) {//move to stripts
-//   const myTrips = trips.filter(trip => trip.userID === this.id)
-//   this.myTrips.push(...myTrips)
-//   this.sortMyTrips(this.myTrips)
-// }
+function filterTripsByTraveler(travelerID) {//move to stripts
+  const myTrips = trips.filter(trip => trip.userID === travelerID)
+  // this.myTrips.push(...myTrips)
+  // console.log(traveler)
+  currentTraveler.sortMyTrips(myTrips)
+  // console.log(59, myTrips)
+}
+
 function calculateTripEstimate() {
   console.log('hello')
   //invoke estimate trip cost from trip class
