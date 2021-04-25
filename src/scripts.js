@@ -96,12 +96,14 @@ function calculateTripEstimate() {
   pendingTrip = new Trip(tripData);
   const pendingTripEstimate = pendingTrip.estimateTripCost();
   domUpdates.displayTripEstimate(pendingTripEstimate);
+  console.log('PENDING TRIP', pendingTrip)
+  console.log('USER TRIPS', currentTraveler.myTrips);
+  console.log('ALL TRIPS', trips)
 }
 
 
 function submitNewTripRequest() {
-  console.log(103, pendingTrip.id)
-  networkRequests.addNewTrip(
+  addNewTrip(
     {id: pendingTrip.id,
       userID: pendingTrip.userID,
       destinationID: pendingTrip.destinationID,
@@ -111,6 +113,7 @@ function submitNewTripRequest() {
       status: 'pending',
       suggestedActivities: []
     })
+
 
   //invoke post request from networkRequests
   //update the data model
