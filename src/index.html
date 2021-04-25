@@ -32,20 +32,19 @@
           <label class="date-label" for="dateInput">Departure Date</label>
           <input class="date-input" type="date" name="date" placeholder="yyyy/mm/dd" id="dateInput" required></br>
           <label class="duration-label" for="durationInput">Duration of Trip</label>
-          <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput" required></br>
+          <input class="duration-input" type="number" name="duration" placeholder="number of days" id="durationInput" required></br>
           <label class="travelers-label" for="travelersInput">Number of Travelers</label>
-          <input class="travelers-input" type="text" name="travelers" id="travelersInput" required></br>
+          <input class="travelers-input" type="number" name="travelers" id="travelersInput" required></br>
           <label class="destination-search-label" for="destinationInput">Destination</label>
           <input class="destination-input" list="destinations" name="destinationSearch" placeholder="Search for destination" id="destinationInput" required>
-<!-- type="text"  -->
           <datalist id="destinations">
           </datalist>
-          <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
+          <button class="get-trip-estimate hidden" id="getTripEstimate">Get Trip Estimate</button>
           <p id="tripEstimate"></p>
-          <button class="submit-request" id="submitRequest">Submit My Request</button>
+          <button class="submit-request hidden" id="submitRequest">Submit My Request</button>
         </form>
       </div>
-      <section class="destinations-display" id="destinationsDisplay">
+      <section class="destinations-display">
         <p>Available Destinations</p>
         <p id="destinationsDisplay"></p>
       </section>

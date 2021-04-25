@@ -64,7 +64,7 @@ class Traveler {
         return sum;
       }, 0)
       const totalCost = (cost * 0.1) + cost;
-      return totalCost;
+      return Number.parseFloat(totalCost).toFixed(2);
     }
   }
 
