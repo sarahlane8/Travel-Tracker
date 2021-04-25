@@ -54,6 +54,7 @@ const fetchAllTravelersData = () => {
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = object => {
+  console.log(object)
   fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify(object),

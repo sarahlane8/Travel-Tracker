@@ -93,8 +93,16 @@ const domUpdates = {
 },
 
   displayTripEstimate(estimate) {
-    document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}. Book now!`
+    document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}. Book now!`;
   },
+
+  displayDateErrorMessage(date) {
+    document.getElementById('tripEstimate').innerText = `Please choose a departure date after ${date}`;
+  },
+
+  displayNumberErrorMessage(category) {
+    document.getElementById('tripEstimate').innerText = `Please enter a valid number for ${category}`;
+  }
 
 }
 

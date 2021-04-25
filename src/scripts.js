@@ -2,7 +2,8 @@ import Traveler from './traveler.js';//do i need this here?
 import Trip from './trip.js';
 import domUpdates from './domUpdates.js'
 import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests'
-
+const dayjs = require('dayjs')
+dayjs().format()
 //change traveler later based on the log in page
 
 //*******MEDIA QUERIES********//
@@ -12,7 +13,7 @@ const searchbar = document.getElementById('destinationInput')
 let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
-getEstimateButton.addEventListener('click', calculateTripEstimate)
+getEstimateButton.addEventListener('click', checkValidation)
 submitRequestButton.addEventListener('click', submitNewTripRequest)
 searchbar.addEventListener('keyup', filterDestinationsBySearch)
 
@@ -70,6 +71,46 @@ function filterDestinationsBySearch(e) {
   })
 }
 
+function validateFormInputs() {
+  checkDateInput();
+  checkDurationInput();
+  checkTravelersInput();
+    // document.getElementById('tripEstimate').innerText = 'Please enter a valid number';
+
+//iterate over duration, if
+  const numTravelers = document.getElementById('travelersInput').value;
+  const destination = document.getElementById('destinationInput').value;
+
+// if (dayjs(date).isBefore(trip.date))
+
+
+// console.log('DATE INPUT', dateInput.value, typeof dateInput.value)
+console.log('DURATION INPUT', durationInput.value)
+// console.log('TRAVELERS INPUT', travelersInput.value, typeof travelersInput.value)
+// console.log('DESTINATION INPUT', destinationInput.value, typeof destinationInput.value)
+  calculateTripEstimate();
+}
+
+function checkDateInput() {
+  const startDate = document.getElementById('dateInput').value;
+  const todaysDate = dayjs().format('YYYY-MM-DD')
+  if (dayjs(startDate).isBefore(todaysDate)) {
+    domUpdates.displayDateErrorMessage(todaysDate);
+    return;
+  }
+}
+
+function checkDurationInput() {
+  const duration = document.getElementById('durationInput').value;//string
+  const validNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  duration.split("").forEach(num => {
+    if (!validNumbers.includes(parseInt(num))) {
+      domUpdates.displayNumberErrorMessage();
+    }
+    return;
+  })
+}
+
 function calculateTripEstimate() {
   const startDate = document.getElementById('dateInput').value;
   const duration = document.getElementById('durationInput').value;
@@ -98,8 +139,8 @@ function calculateTripEstimate() {
   const pendingTripEstimate = pendingTrip.estimateTripCost();
   domUpdates.displayTripEstimate(pendingTripEstimate);
   console.log('PENDING TRIP', pendingTrip)
-  console.log('USER TRIPS', currentTraveler.myTrips);
-  console.log('ALL TRIPS', trips)
+  // console.log('USER TRIPS', currentTraveler.myTrips);
+  // console.log('ALL TRIPS', trips)
 }
 
 
@@ -114,6 +155,7 @@ function submitNewTripRequest() {
       status: 'pending',
       suggestedActivities: []
     })
+
 
 
   //invoke post request from networkRequests
