@@ -32,6 +32,7 @@ function onPageLoad() {
     domUpdates.displayTrips(currentTraveler)
     domUpdates.displayTotalSpent(currentTraveler)
     domUpdates.displayDestinationCards(destinations.destinations)
+    domUpdates.displayDestinationDropdownOptions(destinations.destinations)
   })
 }
 

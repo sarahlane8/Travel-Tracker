@@ -83,6 +83,15 @@ const domUpdates = {
   document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
   },
 
+  displayDestinationDropdownOptions(destinationData) {
+    let destinationDropdownOptions = '';
+    destinationData.forEach(trip => {
+      destinationDropdownOptions+=
+      `<option value="${trip.destination}">`
+    })
+  document.getElementById('destinations').innerHTML = destinationDropdownOptions;
+},
+
   displayTripEstimate(estimate) {
     document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}. Book now!`
   },

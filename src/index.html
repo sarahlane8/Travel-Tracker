@@ -35,7 +35,10 @@
           <label class="travelers-label" for="travelersInput">Number of Travelers</label>
           <input class="travelers-input" type="text" name="travelers" id="travelersInput" required></br>
           <label class="destination-search-label" for="destinationInput">Destination</label>
-          <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for destination" id="destinationInput" required>
+          <input class="destination-input" list="destinations" name="destinationSearch" placeholder="Search for destination" id="destinationInput" required>
+<!-- type="text"  -->
+          <datalist id="destinations">
+          </datalist>
           <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
           <p id="tripEstimate"></p>
           <button class="submit-request" id="submitRequest">Submit My Request</button>
