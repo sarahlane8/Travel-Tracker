@@ -1,12 +1,22 @@
 @import "styles";
 
-@media screen and (max-width: 900px) {
-  main {
-    // flex-direction: column;
-    flex-direction: column-reverse;
-  }
+@media screen and (max-width: 1125px) {
   .destinations-display {
     display: none;
   }
-  // section.classList.add('hidden')
+  .form-section, .trips-display {
+    width: 50%;
+    padding: 25px;
+  }
+}
+
+
+@media screen and (max-width: 745px) {
+  main {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .form-section, .trips-display {
+    width: 95%
+  }
 }
