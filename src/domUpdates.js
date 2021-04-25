@@ -22,22 +22,22 @@ const domUpdates = {
       myTripsDisplay.innerText = "Book your first trip with us!"
     }
     if (traveler.myPastTrips.length === 0) {
-      userPastTrips.innerText = "You don't have any past trips!"
+      userPastTrips.innerText = "😯 You don't have any past trips! 😯"
     } else if (traveler.myPastTrips) {
       domUpdates.renderUserTripCards(traveler.myPastTrips, userPastTrips)
     }
     if (!traveler.myCurrentTrip) {
-      userPresentTrip.innerText = "You're stuck at home for now!"
+      userPresentTrip.innerText = "🏠 You're stuck at home for now! 🏠"
     } else if (traveler.myCurrentTrip) {
       domUpdates.renderUserTripCards(traveler.myCurrentTrip, userPresentTrip)
     }
     if (traveler.myFutureTrips.length === 0) {
-      userFutureTrips.innerText = "You don't have any upcoming trips!"
+      userFutureTrips.innerText = "😩 You don't have any upcoming trips! 😩"
     } else if (traveler.myFutureTrips) {
       domUpdates.renderUserTripCards(traveler.myFutureTrips, userFutureTrips)
     }
     if (traveler.myPendingTrips.length === 0) {
-      userPendingTrips.innerText = "You don't have any pending trips!"
+      userPendingTrips.innerText = "😭 You don't have any pending trips! 😭"
     } else {
       domUpdates.renderUserTripCards(traveler.myPendingTrips, userPendingTrips)
     }
