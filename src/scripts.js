@@ -6,10 +6,10 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 //change traveler later based on the log in page
 
 //*******MEDIA QUERIES********//
-const getEstimateButton = document.getElementById('getTripEstimate');
-const submitRequestButton = document.getElementById('submitRequest');
+const getEstimateButton = document.querySelector('.get-trip-estimate');
+const submitRequestButton = document.querySelector('.submit-request');
 const searchbar = document.getElementById('destinationInput')
-let travelers, trips, destinations, singleTraveler, currentTraveler;
+let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', calculateTripEstimate)
@@ -32,6 +32,7 @@ function onPageLoad() {
     domUpdates.displayTrips(currentTraveler)
     domUpdates.displayTotalSpent(currentTraveler)
     domUpdates.displayDestinationCards(destinations.destinations)
+    domUpdates.displayDestinationDropdownOptions(destinations.destinations)
   })
 }
 
@@ -70,15 +71,54 @@ function filterDestinationsBySearch(e) {
 }
 
 function calculateTripEstimate() {
-  console.log('hello')
-  //invoke estimate trip cost from trip class
-  //invoke domUpdates to display price from whatever estimate returns
+  const startDate = document.getElementById('dateInput').value;
+  const duration = document.getElementById('durationInput').value;
+  const numTravelers = document.getElementById('travelersInput').value;
+  const destination = document.getElementById('destinationInput').value;
+  let locationID, estimatedLodging, estimatedFlight;
+  trips.forEach(trip => {
+    if (trip.destination.toLowerCase() === destination.toLowerCase()) {
+      locationID = trip.destinationID;
+      estimatedLodging = trip.estimatedLodgingCostPerDay;
+      estimatedFlight = trip.estimatedFlightCostPerPerson;
+    }
+  });
+  const tripData =
+  {
+    id: trips.length + 1,
+    userID: currentTraveler.id,
+    destinationID: locationID,
+    travelers: numTravelers,
+    date: startDate,
+    duration: duration,
+    estimatedLodgingCostPerDay: estimatedLodging,
+    estimatedFlightCostPerPerson: estimatedFlight
+  };
+  pendingTrip = new Trip(tripData);
+  const pendingTripEstimate = pendingTrip.estimateTripCost();
+  domUpdates.displayTripEstimate(pendingTripEstimate);
+  console.log('PENDING TRIP', pendingTrip)
+  console.log('USER TRIPS', currentTraveler.myTrips);
+  console.log('ALL TRIPS', trips)
 }
 
+
 function submitNewTripRequest() {
-  console.log('hello')
-  //make new instance of trips
+  addNewTrip(
+    {id: pendingTrip.id,
+      userID: pendingTrip.userID,
+      destinationID: pendingTrip.destinationID,
+      travelers: parseInt(pendingTrip.travelers),
+      date: pendingTrip.date.split('-').join('/'),
+      duration: parseInt(pendingTrip.duration),
+      status: 'pending',
+      suggestedActivities: []
+    })
+
+
   //invoke post request from networkRequests
-  //invoke something from dom Updates to say you're request has been submitted!
+  //update the data model
+  //invoke something from dom Updates to say your request has been submitted!
   //update dom to show new trip in my pending trip requests
+  //update dom to clear form
 }

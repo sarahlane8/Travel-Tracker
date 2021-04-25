@@ -11,17 +11,8 @@
       <h2 id="userGreeting"></h2>
     </header>
     <main id='userDashboard'>
-      <!-- <section class="user-trips" id="userTrips">
-        <p id="pastTrips"></p>
-        <p id="presentTrips"></p>
-        <p id="upcomingTrips"></p>
-        <p id="pendingTrips"></p>
-      </section> -->
       <section class="trips-display">
         <h3 id="tripsDisplayArea">My Trips</h3>
-        <!-- <article id="tripCardsDisplay">
-
-        </article> -->
         <p>My Past Trips<p>
         <p id="userPastTrips"></p>
         <p>My Present Trip</p>
@@ -35,16 +26,19 @@
         <article class="user-total-money-spent">
           <p id="moneySpent"></p>
         </article>
-        <form class="request-trip-form">
+        <form class="request-trip-form" onsubmit="return false">
           <h3>Request a new trip!</h3>
           <label class="date-label" for="dateInput">Departure Date</label>
-          <input class="date-input" type="date" name="date" placeholder="YYYY/MM/DD" id="dateInput"></br>
+          <input class="date-input" type="date" name="date" placeholder="yyyy/mm/dd" id="dateInput" required></br>
           <label class="duration-label" for="durationInput">Duration of Trip</label>
-          <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput"></br>
+          <input class="duration-input" type="text" name="duration" placeholder="number of days" id="durationInput" required></br>
           <label class="travelers-label" for="travelersInput">Number of Travelers</label>
-          <input class="travelers-input" type="text" name="travelers" id="travelersInput"></br>
+          <input class="travelers-input" type="text" name="travelers" id="travelersInput" required></br>
           <label class="destination-search-label" for="destinationInput">Destination</label>
-          <input class="destination-input" type="text" name="destinationSearch" placeholder="Search for destination" id="destinationInput">
+          <input class="destination-input" list="destinations" name="destinationSearch" placeholder="Search for destination" id="destinationInput" required>
+<!-- type="text"  -->
+          <datalist id="destinations">
+          </datalist>
           <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
           <p id="tripEstimate"></p>
           <button class="submit-request" id="submitRequest">Submit My Request</button>
