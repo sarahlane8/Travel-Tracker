@@ -100,7 +100,17 @@ function calculateTripEstimate() {
 
 
 function submitNewTripRequest() {
-  console.log(103, pendingTrip)
+  console.log(103, pendingTrip.id)
+  networkRequests.addNewTrip(
+    {id: pendingTrip.id,
+      userID: pendingTrip.userID,
+      destinationID: pendingTrip.destinationID,
+      travelers: parseInt(pendingTrip.travelers),
+      date: pendingTrip.date.split('-').join('/'),
+      duration: parseInt(pendingTrip.duration),
+      status: 'pending',
+      suggestedActivities: []
+    })
 
   //invoke post request from networkRequests
   //update the data model
