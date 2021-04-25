@@ -70,19 +70,34 @@ function filterDestinationsBySearch(e) {
 }
 
 function calculateTripEstimate() {
-const startDate = document.getElementById('dateInput').value;
-const duration = document.getElementById('durationInput').value;
-const numTravelers = document.getElementById('travelersInput').value;
-const destination = document.getElementById('destinationInput').value;
-
-  //invoke estimate trip cost from trip class
-  //invoke domUpdates to display price from whatever estimate returns
-
-
-
-
-document.getElementById('tripEstimate').innerText = 'hello';
+  const startDate = document.getElementById('dateInput').value;
+  const duration = document.getElementById('durationInput').value;
+  const numTravelers = document.getElementById('travelersInput').value;
+  const destination = document.getElementById('destinationInput').value;
+  let locationID, estimatedLodging, estimatedFlight;
+  trips.forEach(trip => {
+    if (trip.destination.toLowerCase() === destination.toLowerCase()) {
+      locationID = trip.destinationID;
+      estimatedLodging = trip.estimatedLodgingCostPerDay;
+      estimatedFlight = trip.estimatedFlightCostPerPerson;
+    }
+  });
+  const tripData =
+  {
+    id: trips.length + 1,
+    userID: currentTraveler.id,
+    destinationID: locationID,
+    travelers: numTravelers,
+    date: startDate,
+    duration: duration,
+    estimatedLodgingCostPerDay: estimatedLodging,
+    estimatedFlightCostPerPerson: estimatedFlight
+  };
+  let trip = new Trip(tripData);
+  const tripEstimate = trip.estimateTripCost();
+  domUpdates.displayTripEstimate(tripEstimate);
 }
+
 
 function submitNewTripRequest() {
   console.log('hello')

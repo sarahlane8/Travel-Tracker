@@ -83,6 +83,10 @@ const domUpdates = {
   document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
   },
 
+  displayTripEstimate(estimate) {
+    document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}. Book now!`
+  },
+
 }
 
 
