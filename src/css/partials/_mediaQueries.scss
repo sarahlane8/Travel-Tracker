@@ -1,0 +1,15 @@
+@import "styles";
+
+@media screen and (max-width: 900px) {
+  main {
+    flex-direction: column;
+  }
+  // section.classList.add('hidden')
+}
+
+
+
+
+// if (section.id === "destinationsDisplay") {
+//   section.classList.add("hidden");
+// }
