@@ -13,13 +13,25 @@ header {
   color: white;
 }
 
+.header {
+  font-size: x-large;
+  color: #46494C;
+}
 h1 {
   margin: 5px;
   font-size: xxx-large;
 }
-
+h3 {
+  margin: 10px;
+  font-size: xx-large;
+}
+p, h3 {
+  text-align: center;
+  margin: 5px, 0;
+}
 .submit-request, .get-trip-estimate {
   @include rounded-corners(5px);
+  padding: 10px;
 }
 
 button:hover {
@@ -31,6 +43,11 @@ main {
   display: flex;
 }
 
+// .input {
+//   padding: 5px;
+//   margin: 10px 0;
+// }
+
 .trips-display, .form-section, .destinations-display {
   flex-direction: column;
   @include width(33%);
@@ -40,6 +57,9 @@ main {
 
 input {
     width: -webkit-fill-available;
+    @include rounded-corners(5px);
+    padding: 5px;
+    margin: 10px 0;
 }
 
 .form-section {
@@ -47,7 +67,7 @@ input {
 }
 
 .location-pic {
-  width: 125px;
+  width: 200px;
   height: 125px;
 }
 .trips-display, .destinations-display {
@@ -62,6 +82,11 @@ article {
   border: 2px solid #478978;
   margin-bottom: 10px;
   padding: 5px;
+}
+
+.buttons {
+  // padding: 20px;
+  text-align: center;
 }
 
 // .hidden {
