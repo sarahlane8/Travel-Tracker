@@ -9,7 +9,7 @@ import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } 
 const getEstimateButton = document.querySelector('.get-trip-estimate');
 const submitRequestButton = document.querySelector('.submit-request');
 const searchbar = document.getElementById('destinationInput')
-let travelers, trips, destinations, singleTraveler, currentTraveler;
+let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', calculateTripEstimate)
@@ -93,16 +93,18 @@ function calculateTripEstimate() {
     estimatedLodgingCostPerDay: estimatedLodging,
     estimatedFlightCostPerPerson: estimatedFlight
   };
-  let trip = new Trip(tripData);
-  const tripEstimate = trip.estimateTripCost();
-  domUpdates.displayTripEstimate(tripEstimate);
+  pendingTrip = new Trip(tripData);
+  const pendingTripEstimate = pendingTrip.estimateTripCost();
+  domUpdates.displayTripEstimate(pendingTripEstimate);
 }
 
 
 function submitNewTripRequest() {
-  console.log('hello')
-  //make new instance of trips
+  console.log(103, pendingTrip)
+
   //invoke post request from networkRequests
-  //invoke something from dom Updates to say you're request has been submitted!
+  //update the data model
+  //invoke something from dom Updates to say your request has been submitted!
   //update dom to show new trip in my pending trip requests
+  //update dom to clear form
 }
