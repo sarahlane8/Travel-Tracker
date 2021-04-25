@@ -9,10 +9,13 @@ header {
   background-color: $header-background-color;
   @include padding(5px)
   @include centered;
+  color: white
+
 }
 
 h1 {
-  color: $main-text-color;
+  color: white
+
   // font-family: Roboto;
 }
 
