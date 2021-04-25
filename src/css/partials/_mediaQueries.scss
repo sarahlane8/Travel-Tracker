@@ -5,7 +5,7 @@
     display: none;
   }
   .form-section, .trips-display {
-    width: 50%;
+    @include width(50%)
     padding: 25px;
   }
 }
@@ -17,6 +17,6 @@
     align-items: center;
   }
   .form-section, .trips-display {
-    width: 95%
+    @include width(95%)
   }
 }

@@ -10,10 +10,12 @@ header {
   background-color: $header-background-color;
   @include padding(5px)
   @include centered;
+  color: white;
 }
 
-header, h1 {
-  color: white
+h1 {
+  margin: 5px;
+  font-size: xxx-large;
 }
 
 .submit-request, .get-trip-estimate {
@@ -27,8 +29,8 @@ button:hover {
 
 main {
   display: flex;
-
 }
+
 .trips-display, .form-section, .destinations-display {
   flex-direction: column;
   @include width(33%);
