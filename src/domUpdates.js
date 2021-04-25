@@ -101,8 +101,18 @@ const domUpdates = {
   },
 
   displayNumberErrorMessage(category) {
-    document.getElementById('tripEstimate').innerText = `Please enter a valid number for ${category}`;
-  }
+    // 'durationInput'
+    if (category === 'durationInput') {
+      document.getElementById('tripEstimate').innerText = "Please enter a valid number for duration of trip.";
+    }
+    if (category === 'travelersInput') {
+      document.getElementById('tripEstimate').innerText = "Please enter a valid number for number of travelers.";
+    }
+  },
+
+  displayDestinationErrorMessage() {
+    document.getElementById('tripEstimate').innerText = "Please choose a valid destination."
+  },
 
 }
 

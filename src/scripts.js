@@ -2,8 +2,10 @@ import Traveler from './traveler.js';//do i need this here?
 import Trip from './trip.js';
 import domUpdates from './domUpdates.js'
 import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests'
-const dayjs = require('dayjs')
-dayjs().format()
+const dayjs = require('dayjs');
+dayjs().format();
+const isBetween = require('dayjs/plugin/isBetween');
+dayjs.extend(isBetween);
 //change traveler later based on the log in page
 
 //*******MEDIA QUERIES********//
@@ -13,7 +15,7 @@ const searchbar = document.getElementById('destinationInput')
 let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
-getEstimateButton.addEventListener('click', checkValidation)
+getEstimateButton.addEventListener('click', validateFormInputs)
 submitRequestButton.addEventListener('click', submitNewTripRequest)
 searchbar.addEventListener('keyup', filterDestinationsBySearch)
 
@@ -54,10 +56,9 @@ function combineDataSets(tripData, destinationData) {
 }
 
 
-function filterTripsByTraveler(travelerID) {//move to stripts
+function filterTripsByTraveler(travelerID) {
   const myTrips = trips.filter(trip => trip.userID === travelerID)
   currentTraveler.sortMyTrips(myTrips)
-  // console.log(54, currentTraveler)
 }
 
 function filterDestinationsBySearch(e) {
@@ -73,22 +74,18 @@ function filterDestinationsBySearch(e) {
 
 function validateFormInputs() {
   checkDateInput();
-  checkDurationInput();
-  checkTravelersInput();
-    // document.getElementById('tripEstimate').innerText = 'Please enter a valid number';
-
-//iterate over duration, if
-  const numTravelers = document.getElementById('travelersInput').value;
-  const destination = document.getElementById('destinationInput').value;
-
-// if (dayjs(date).isBefore(trip.date))
-
-
-// console.log('DATE INPUT', dateInput.value, typeof dateInput.value)
-console.log('DURATION INPUT', durationInput.value)
-// console.log('TRAVELERS INPUT', travelersInput.value, typeof travelersInput.value)
-// console.log('DESTINATION INPUT', destinationInput.value, typeof destinationInput.value)
-  calculateTripEstimate();
+  if (checkDateInput()) {
+    checkNumbersInput('durationInput');
+  }
+  if (checkNumbersInput('durationInput')) {
+    checkNumbersInput('travelersInput');
+  }
+  if (checkNumbersInput('travelersInput')) {
+    checkDestinationInput();
+  }
+  if (checkDestinationInput()) {
+    calculateTripEstimate();
+  }
 }
 
 function checkDateInput() {
@@ -97,18 +94,32 @@ function checkDateInput() {
   if (dayjs(startDate).isBefore(todaysDate)) {
     domUpdates.displayDateErrorMessage(todaysDate);
     return;
+  } else {
+    return true;
   }
 }
 
-function checkDurationInput() {
-  const duration = document.getElementById('durationInput').value;//string
-  const validNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  duration.split("").forEach(num => {
-    if (!validNumbers.includes(parseInt(num))) {
-      domUpdates.displayNumberErrorMessage();
-    }
+function checkNumbersInput(inputType) {
+  const input = document.getElementById(inputType).value;
+  console.log(104, input)
+  const result = input.split('').map(num => parseInt(num))
+  if (result.includes(NaN) || (!input)) {
+    domUpdates.displayNumberErrorMessage(inputType);
     return;
-  })
+  } else {
+    return true
+  }
+}
+
+function checkDestinationInput() {
+  const city = document.getElementById('destinationInput').value;
+  const allCities = destinations.destinations.map(location => location.destination)
+  if (!allCities.includes(city)) {
+    domUpdates.displayDestinationErrorMessage();
+    return;
+  } else {
+    return true;
+  }
 }
 
 function calculateTripEstimate() {
@@ -138,9 +149,6 @@ function calculateTripEstimate() {
   pendingTrip = new Trip(tripData);
   const pendingTripEstimate = pendingTrip.estimateTripCost();
   domUpdates.displayTripEstimate(pendingTripEstimate);
-  console.log('PENDING TRIP', pendingTrip)
-  // console.log('USER TRIPS', currentTraveler.myTrips);
-  // console.log('ALL TRIPS', trips)
 }
 
 
