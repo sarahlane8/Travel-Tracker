@@ -114,7 +114,6 @@ const domUpdates = {
   },
 
   displayNumberErrorMessage(category) {
-    // 'durationInput'
     if (category === 'durationInput') {
       document.getElementById('tripEstimate').innerText = "Please enter a valid number for duration of trip.";
     }
@@ -127,7 +126,42 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = "Please choose a valid destination."
   },
 
+  clearErrorMessage() {
+    document.getElementById('tripEstimate').innerText = '';
+  },
+
+  displayTripEstimateErrorMessage() {
+    document.getElementById('tripEstimate').innerText = "Sorry, something went wrong! Please check your request inputs again!"
+  },
+
+  enableRequestButton() {
+    if (document.querySelector('.submit-request').classList.contains('disable')) {
+      document.querySelector('.submit-request').classList.remove('disable');
+    }
+  },
+
+  toggleElement(element) {
+    if (document.querySelector(element).classList.contains('disable')) {
+      document.querySelector(element).classList.remove('disable');
+    } else {
+      document.querySelector(element).classList.add('disable');
+    }
+  },
+
+  displayRequestSubmittedMessage() {
+    document.getElementById('tripEstimate').innerText = 'Your trip has been submitted for approval by an agent!'
+    domUpdates.toggleElement('.submit-request');
+    domUpdates.toggleElement('.request-trip-form');
+  },
+
+  clearForm() {
+    document.getElementById('tripEstimate').innerText = ''
+    document.querySelector('.request-trip-form').reset();
+    domUpdates.toggleElement('.request-trip-form');
+    
+  },
 }
+
 
 
 

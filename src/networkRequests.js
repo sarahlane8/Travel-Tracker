@@ -42,19 +42,13 @@ const fetchSingleTravelerData = id => {
     .catch(err => console.log('ERROR', err));
 };
 //************FETCHING ALL TRAVELERS' DATA************//
-const fetchAllTravelersData = () => {
-  const travelersData = fetch('http://localhost:3001/api/v1/travelers')
-    .then(response => response.json())
-    .then(travelersData => {
-      return travelersData;
-    })
-    .catch(err => console.log('ERROR', err));
-};
+
+
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = object => {
-  console.log(object)
-  fetch('http://localhost:3001/api/v1/trips', {
+  console.log('OBJECT', object)
+  return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify(object),
     headers: {
@@ -62,26 +56,29 @@ const addNewTrip = object => {
     }
   })
   .then(response => response.json())
-  .then(data => {
-    return data;
+  .then(response => {
+    checkForError(response)
+    console.log('POST', response)
+  return response;//give me a message saying it worked
 })
   .catch(err => console.log('ERROR', err));
 }
 
+
 //************ADDING A NEW DESTINATION************//
-const addNewDestination = object => {
-  fetch('http://localhost:3001/api/v1/destinations', {
-    method: 'POST',
-    body: JSON.stringify(object),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .catch(err => console.log('ERROR', err));
-}
+// const addNewDestination = object => {
+//   fetch('http://localhost:3001/api/v1/destinations', {
+//     method: 'POST',
+//     body: JSON.stringify(object),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   .catch(err => console.log('ERROR', err));
+// }
 
 
 
 
 
-export { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination };
+export { fetchAllData, fetchSingleTravelerData, addNewTrip };
