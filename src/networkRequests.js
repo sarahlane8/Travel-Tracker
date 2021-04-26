@@ -5,7 +5,6 @@ const fetchAllData = id => {
   const tripsData = fetch('http://localhost:3001/api/v1/trips')
     .then(response => response.json())
     .then(tripsData => {
-      // console.log(15, tripsData)
       return tripsData;
     });
 
@@ -62,6 +61,10 @@ const addNewTrip = object => {
       'Content-Type': 'application/json'
     }
   })
+  .then(response => response.json())
+  .then(data => {
+    return data;
+})
   .catch(err => console.log('ERROR', err));
 }
 
