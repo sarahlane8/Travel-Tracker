@@ -22,7 +22,6 @@ searchbar.addEventListener('keyup', filterDestinationsBySearch)
 signInButton.addEventListener('click', validateUserName)
 
 
-// window.onload = onPageLoad();
 
 function validateUserName() {
   const userNameInput = document.getElementById('userName').value;
@@ -34,6 +33,8 @@ function validateUserName() {
   }
   if (0 < userID && userID < 51) {
       validatePassword(userID)
+  } else {
+    domUpdates.displayUserNameErrorMessage();
   }
 }
 
@@ -42,6 +43,8 @@ function validatePassword(userID) {
   if (passwordInput === 'travel2020') {
     onPageLoad(userID);
     domUpdates.hideLogInForm();
+  } else {
+    domUpdates.displayPasswordErrorMessage();
   }
 }
 

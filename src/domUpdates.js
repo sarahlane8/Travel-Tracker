@@ -6,6 +6,14 @@ dayjs.extend(isBetween);
 
 
 const domUpdates = {
+  displayUserNameErrorMessage() {
+    document.getElementById('userNameErrorMessage').innerText = "Please try your username again!"
+  },
+
+  displayPasswordErrorMessage() {
+    document.getElementById('passwordErrorMessage').innerText = "Please try your password again!"
+  },
+
   greetUser(traveler) {
     let firstName = traveler.name.split(' ')[0];
     document.getElementById('userGreeting').innerHTML = `Welcome back, ${firstName}!`;
@@ -70,7 +78,7 @@ const domUpdates = {
   displayTotalSpent(traveler) {
     const todaysDate = dayjs().format('YYYY/MM/DD')
     const totalAmount = traveler.calculateSpentOnTripsThisYear(todaysDate);
-    document.getElementById('moneySpent').innerText = `You spent $${totalAmount} on trips in the last year!`
+    document.getElementById('moneySpent').innerText = totalAmount;
   },
 
   displayDestinationCards(destinationData) {
