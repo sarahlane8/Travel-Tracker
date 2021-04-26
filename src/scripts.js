@@ -12,14 +12,31 @@ dayjs.extend(isBetween);
 const getEstimateButton = document.querySelector('.get-trip-estimate');
 const submitRequestButton = document.querySelector('.submit-request');
 const searchbar = document.getElementById('destinationInput');
-const signInButton = document.getElementById('signIn')
+const signInButton = document.getElementById('signIn');
+const dateInput = document.getElementById('dateInput');
+const tripDurationInput = document.getElementById('durationInput');
+const numberOfTravelersInput = document.getElementById('travelersInput');
+const destinationInput = document.getElementById('destinationInput');
 let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', validateFormInputs)
-submitRequestButton.addEventListener('click', submitNewTripRequest)
-searchbar.addEventListener('keyup', filterDestinationsBySearch)
-signInButton.addEventListener('click', validateUserName)
+submitRequestButton.addEventListener('click', submitNewTripRequest);
+searchbar.addEventListener('keyup', filterDestinationsBySearch);
+signInButton.addEventListener('click', validateUserName);
+
+
+
+dateInput.addEventListener('blur', checkDateInput);
+tripDurationInput.addEventListener('blur', function() {
+  checkNumbersInput('durationInput')
+  });
+numberOfTravelersInput.addEventListener('blur', function() {
+  checkNumbersInput('travelersInput')
+  });
+destinationInput.addEventListener('blur', checkDestinationInput);
+
+
 
 
 
@@ -50,10 +67,10 @@ function validatePassword(userID) {
 function onPageLoad(userID) {
   fetchAllData(userID)
     .then(allData => {
-      trips = allData.tripsData;
-      destinations = allData.destinationsData;
-      singleTraveler = allData.singleTravelerData;
-      combineDataSets(trips, destinations);
+      trips = allData.tripsData
+      destinations = allData.destinationsData
+      singleTraveler = allData.singleTravelerData
+      combineDataSets(trips, destinations)
       currentTraveler = new Traveler(singleTraveler)
       filterTripsByTraveler(singleTraveler.id)
       domUpdates.greetUser(currentTraveler)
@@ -61,12 +78,7 @@ function onPageLoad(userID) {
       domUpdates.displayTotalSpent(currentTraveler)
       domUpdates.displayDestinationCards(destinations.destinations)
       domUpdates.displayDestinationDropdownOptions(destinations.destinations)
-
-
-  console.log(currentTraveler.myTrips)
-
-
-    })
+    });
 }
 
 function combineDataSets(tripData, destinationData) {
@@ -101,43 +113,35 @@ function filterDestinationsBySearch(e) {
     domUpdates.displayDestinationCards(filteredDestinations)
   })
 }
+// *************************************************BELOW
 
 function validateFormInputs() {
-  checkDateInput();
-  if (checkDateInput()) {
-    checkNumbersInput('durationInput');
-  }
-  if (checkNumbersInput('durationInput')) {
-    checkNumbersInput('travelersInput');
-  }
-  if (checkNumbersInput('travelersInput')) {
-    checkDestinationInput();
-  }
-  if (checkDestinationInput()) {
+  if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
     calculateTripEstimate();
+  } else {
+    document.getElementById('tripEstimate').innerText = "Sorry, something went wrong! Please check your request inputs again!"
   }
 }
 
 function checkDateInput() {
-  const startDate = document.getElementById('dateInput').value;
+  const startDate = dateInput.value;
   const todaysDate = dayjs().format('YYYY-MM-DD')
   if (dayjs(startDate).isBefore(todaysDate)) {
     domUpdates.displayDateErrorMessage(todaysDate);
-    // return;
   } else {
+    domUpdates.clearErrorMessage()
     return true;
   }
 }
 
 function checkNumbersInput(inputType) {
   const input = document.getElementById(inputType).value;
-  // console.log(104, input)
   const result = input.split('').map(num => parseInt(num))
   if (result.includes(NaN) || (!input)) {
     domUpdates.displayNumberErrorMessage(inputType);
-    return;
   } else {
-    return true
+    domUpdates.clearErrorMessage()
+    return true;
   }
 }
 
@@ -146,11 +150,13 @@ function checkDestinationInput() {
   const allCities = destinations.destinations.map(location => location.destination)
   if (!allCities.includes(city)) {
     domUpdates.displayDestinationErrorMessage();
-    return;
   } else {
+    domUpdates.clearErrorMessage();
     return true;
   }
 }
+
+// **************************************************************************
 
 function calculateTripEstimate() {
   const startDate = document.getElementById('dateInput').value;

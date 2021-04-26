@@ -42,14 +42,8 @@ const fetchSingleTravelerData = id => {
     .catch(err => console.log('ERROR', err));
 };
 //************FETCHING ALL TRAVELERS' DATA************//
-const fetchAllTravelersData = () => {
-  const travelersData = fetch('http://localhost:3001/api/v1/travelers')
-    .then(response => response.json())
-    .then(travelersData => {
-      return travelersData;
-    })
-    .catch(err => console.log('ERROR', err));
-};
+
+
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = object => {
@@ -69,19 +63,19 @@ const addNewTrip = object => {
 }
 
 //************ADDING A NEW DESTINATION************//
-const addNewDestination = object => {
-  fetch('http://localhost:3001/api/v1/destinations', {
-    method: 'POST',
-    body: JSON.stringify(object),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .catch(err => console.log('ERROR', err));
-}
+// const addNewDestination = object => {
+//   fetch('http://localhost:3001/api/v1/destinations', {
+//     method: 'POST',
+//     body: JSON.stringify(object),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   .catch(err => console.log('ERROR', err));
+// }
 
 
 
 
 
-export { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination };
+export { fetchAllData, fetchSingleTravelerData, addNewTrip };

@@ -127,7 +127,11 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = "Please choose a valid destination."
   },
 
+  clearErrorMessage() {
+    document.getElementById('tripEstimate').innerText = '';
+  }
 }
+
 
 
 
