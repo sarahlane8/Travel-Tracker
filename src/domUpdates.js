@@ -1,4 +1,3 @@
-// import Traveler from './traveler.js';
 const dayjs = require('dayjs')
 dayjs().format()
 const isBetween = require('dayjs/plugin/isBetween');
@@ -84,8 +83,8 @@ const domUpdates = {
   displayDestinationCards(destinationData) {
     let destinationCardsToDisplay = '';
     destinationData.forEach(trip => {
-    destinationCardsToDisplay +=
-    `<article class="card">
+      destinationCardsToDisplay +=
+      `<article class="card">
       <div class="upper-card">
        <img class="location-pic" src=${trip.image} alt=${trip.alt}>
       </div>
@@ -93,18 +92,18 @@ const domUpdates = {
         <p class="location">${trip.destination}</p>
       </div>
     </article>`
-  })
-  document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
+    })
+    document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
   },
 
   displayDestinationDropdownOptions(destinationData) {
     let destinationDropdownOptions = '';
     destinationData.forEach(trip => {
-      destinationDropdownOptions+=
+      destinationDropdownOptions +=
       `<option value="${trip.destination}">`
     })
-  document.getElementById('destinations').innerHTML = destinationDropdownOptions;
-},
+    document.getElementById('destinations').innerHTML = destinationDropdownOptions;
+  },
 
   displayTripEstimate(estimate) {
     document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}. Book now!`;

@@ -1,7 +1,7 @@
 import Traveler from './traveler.js';//do i need this here?
 import Trip from './trip.js';
 import domUpdates from './domUpdates.js'
-import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests'
+import { fetchAllData, addNewTrip } from './networkRequests'
 const dayjs = require('dayjs');
 dayjs().format();
 const isBetween = require('dayjs/plugin/isBetween');
@@ -25,14 +25,13 @@ signInButton.addEventListener('click', validateUserName)
 
 function validateUserName() {
   const userNameInput = document.getElementById('userName').value;
-  const passwordInput = document.getElementById('password').value;
   const result = userNameInput.split('traveler');
   let userID;
   if (!result[0]) {
     userID = result[1];
   }
   if (0 < userID && userID < 51) {
-      validatePassword(userID)
+    validatePassword(userID)
   } else {
     domUpdates.displayUserNameErrorMessage();
   }
@@ -50,19 +49,19 @@ function validatePassword(userID) {
 
 function onPageLoad(userID) {
   fetchAllData(userID)
-  .then(allData => {
-    trips = allData.tripsData;
-    destinations = allData.destinationsData;
-    singleTraveler = allData.singleTravelerData;
-    combineDataSets(trips, destinations);
-    currentTraveler = new Traveler(singleTraveler)
-    filterTripsByTraveler(singleTraveler.id)
-    domUpdates.greetUser(currentTraveler)
-    domUpdates.displayTrips(currentTraveler)
-    domUpdates.displayTotalSpent(currentTraveler)
-    domUpdates.displayDestinationCards(destinations.destinations)
-    domUpdates.displayDestinationDropdownOptions(destinations.destinations)
-  })
+    .then(allData => {
+      trips = allData.tripsData;
+      destinations = allData.destinationsData;
+      singleTraveler = allData.singleTravelerData;
+      combineDataSets(trips, destinations);
+      currentTraveler = new Traveler(singleTraveler)
+      filterTripsByTraveler(singleTraveler.id)
+      domUpdates.greetUser(currentTraveler)
+      domUpdates.displayTrips(currentTraveler)
+      domUpdates.displayTotalSpent(currentTraveler)
+      domUpdates.displayDestinationCards(destinations.destinations)
+      domUpdates.displayDestinationDropdownOptions(destinations.destinations)
+    })
 }
 
 function combineDataSets(tripData, destinationData) {
