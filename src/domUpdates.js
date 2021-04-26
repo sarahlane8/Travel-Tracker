@@ -13,7 +13,8 @@ const domUpdates = {
 
   hideLogInForm() {
     document.querySelector('.user-sign-in').classList.add('hidden');
-    document.querySelector('.main-section').classList.remove('hidden');
+    document.getElementById('userDashboard').classList.remove('hidden');
+    document.getElementById('userGreeting').classList.remove('hidden');
   },
 
 
