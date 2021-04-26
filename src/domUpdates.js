@@ -106,7 +106,7 @@ const domUpdates = {
   },
 
   displayTripEstimate(estimate) {
-    document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}. Book now!`;
+    document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}, including agent's fee. Book now!`;
   },
 
   displayDateErrorMessage(date) {
