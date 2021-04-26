@@ -61,6 +61,11 @@ function onPageLoad(userID) {
       domUpdates.displayTotalSpent(currentTraveler)
       domUpdates.displayDestinationCards(destinations.destinations)
       domUpdates.displayDestinationDropdownOptions(destinations.destinations)
+
+
+  console.log(currentTraveler.myTrips)
+
+
     })
 }
 
@@ -118,7 +123,7 @@ function checkDateInput() {
   const todaysDate = dayjs().format('YYYY-MM-DD')
   if (dayjs(startDate).isBefore(todaysDate)) {
     domUpdates.displayDateErrorMessage(todaysDate);
-    return;
+    // return;
   } else {
     return true;
   }
@@ -126,7 +131,7 @@ function checkDateInput() {
 
 function checkNumbersInput(inputType) {
   const input = document.getElementById(inputType).value;
-  console.log(104, input)
+  // console.log(104, input)
   const result = input.split('').map(num => parseInt(num))
   if (result.includes(NaN) || (!input)) {
     domUpdates.displayNumberErrorMessage(inputType);
@@ -178,8 +183,7 @@ function calculateTripEstimate() {
 
 
 function submitNewTripRequest() {
-  addNewTrip(
-    {id: pendingTrip.id,
+  const object = ( {id: pendingTrip.id,
       userID: pendingTrip.userID,
       destinationID: pendingTrip.destinationID,
       travelers: parseInt(pendingTrip.travelers),
@@ -187,13 +191,50 @@ function submitNewTripRequest() {
       duration: parseInt(pendingTrip.duration),
       status: 'pending',
       suggestedActivities: []
-    })
+    } );
+  addNewTrip(object)
+  // .then(data => {
+  //   console.log(data);
+  //   currentTraveler.addTrip(pendingTrip);
+  //   domUpdates.displayTrips(currentTraveler);
+  //   domUpdates.displayTotalSpent(currentTraveler)
+  // })
+
+//   currentTraveler.addTrip(pendingTrip);
+//   console.log(currentTraveler)
+//   domUpdates.displayTrips(currentTraveler);
+//   domUpdates.displayTotalSpent(currentTraveler);
+// )
 
 
 
-  //invoke post request from networkRequests
-  //update the data model
-  //invoke something from dom Updates to say your request has been submitted!
-  //update dom to show new trip in my pending trip requests
+
+
+
+
+
+
+
+
+
+    //update the data model
+    // trip
+
+
+  //invoke something from dom Updates to say your request has been submitted! on a reset timer
+
   //update dom to clear form
 }
+
+
+
+// function setResetTimer() {
+//   setTimeout(function(){resetBoard()}, 2000);
+// }
+//
+// function resetBoard() {
+//   gameBoard.classList.remove('disable');//disable submit and estimate button til after timeout
+//   game.updatePlayerTurn();
+//   displayPlayerTurn(game.playerTurn.token);
+//   clearBoard();
+// }

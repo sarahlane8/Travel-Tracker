@@ -69,6 +69,10 @@ class Traveler {
     }
   }
 
+  addTrip(trip) {
+    this.myTrips.push(trip)
+  }
+
 }
 
 
