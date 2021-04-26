@@ -11,6 +11,11 @@ const domUpdates = {
     document.getElementById('userGreeting').innerHTML = `Welcome back, ${firstName}!`;
   },
 
+  hideLogInForm() {
+    document.querySelector('.user-sign-in').classList.add('hidden');
+    document.querySelector('.main-section').classList.remove('hidden');
+  },
+
 
   displayTrips(traveler) {
     const myTripsDisplay = document.getElementById('tripsDisplayArea')

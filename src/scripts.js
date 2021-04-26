@@ -19,7 +19,7 @@ let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip
 getEstimateButton.addEventListener('click', validateFormInputs)
 submitRequestButton.addEventListener('click', submitNewTripRequest)
 searchbar.addEventListener('keyup', filterDestinationsBySearch)
-signInButton.addEventListener('click', validateUser)
+signInButton.addEventListener('click', validateUserName)
 
 
 // window.onload = onPageLoad();
@@ -38,11 +38,15 @@ function validateUserName() {
 }
 
 function validatePassword(userID) {
-  
+  const passwordInput = document.getElementById('password').value;
+  if (passwordInput === 'travel2020') {
+    onPageLoad(userID);
+    domUpdates.hideLogInForm();
+  }
 }
 
-function onPageLoad() {
-  fetchAllData(25)
+function onPageLoad(userID) {
+  fetchAllData(userID)
   .then(allData => {
     trips = allData.tripsData;
     destinations = allData.destinationsData;
