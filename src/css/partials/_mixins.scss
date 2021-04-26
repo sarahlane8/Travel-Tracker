@@ -1,14 +1,16 @@
 
-//button rounded corners
 @mixin rounded-corners($radius) {
   border-radius: $radius
 }
+
 @mixin padding($padding1){
   padding: $padding1, 0;
 }
+
 @mixin width($width) {
   width: $width;
 }
+
 @mixin centered() {
   display: flex;
   flex-direction: column;
