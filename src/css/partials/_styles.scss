@@ -1,10 +1,15 @@
 @import 'variables';
 
-
 body {
   background-color: $primary-background-color;
   font-family: Roboto;
 }
+
+
+main {
+  display: flex;
+}
+
 
 header {
   background-color: $header-background-color;
@@ -13,46 +18,54 @@ header {
   color: white;
 }
 
+
 .user-sign-in {
   text-align: center;
   width: fit-content;
   margin: auto;
 }
 
+
 .header {
   font-size: x-large;
   color: #46494C;
 }
+
+
 h1 {
   margin: 5px;
   font-size: xxx-large;
 }
-h3 {
-  margin: 10px;
-  font-size: xx-large;
-}
+
+
 p, h3 {
   text-align: center;
   margin: 5px, 0;
+  font-size: x-large;
 }
-// .submit-request, .get-trip-estimate {
+
+
+h3 {
+  font-size: xx-large;
+}
+
+
 button {
   @include rounded-corners(5px);
   padding: 10px;
+
+  &:hover{
+    background-color: #478978;
+    color: white;
+  }
 }
 
-button:hover {
-  background-color: #478978;
-  color: white;
-}
 
 .sign-in {
   padding: 5px 40px;
   margin-top: 18px;
 }
-main {
-  display: flex;
-}
+
 
 .trips-display, .form-section, .destinations-display {
   flex-direction: column;
@@ -61,6 +74,7 @@ main {
 
 }
 
+
 input {
     width: -webkit-fill-available;
     @include rounded-corners(5px);
@@ -68,18 +82,24 @@ input {
     margin: 10px 0;
 }
 
+
 .form-section {
   padding: 5px;
 }
+
 
 .location-pic {
   width: 200px;
   height: 125px;
 }
+
+
 .trips-display, .destinations-display {
   height: 75vh;
   overflow-y: scroll;
 }
+
+
 article {
   display: flex;
   flex-direction: column;
@@ -90,10 +110,11 @@ article {
   padding: 5px;
 }
 
+
 .buttons {
-  // padding: 20px;
   text-align: center;
 }
+
 
 .hidden {
   display: none;

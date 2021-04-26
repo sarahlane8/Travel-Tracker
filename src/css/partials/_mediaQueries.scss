@@ -10,7 +10,6 @@
   }
 }
 
-
 @media screen and (max-width: 745px) {
   main {
     flex-direction: column-reverse;
@@ -20,11 +19,13 @@
     @include width(95%)
   }
 }
+
 @media screen and (max-width: 600px) {
   h1 {
     font-size: xx-large;
   }
 }
+
 @media screen and (max-width: 408px) {
   h1 {
     font-size: x-large;
