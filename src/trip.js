@@ -6,8 +6,8 @@ class Trip {
     this.travelers = tripData.travelers;
     this.date = tripData.date;
     this.duration = tripData.duration;
-    this.status = "pending";
-    this.suggestedActivities = [];
+    this.status = tripData.status || 'pending';
+    this.suggestedActivities = tripData.suggestedActivities || [];
     this.estimatedLodgingCostPerDay = tripData.estimatedLodgingCostPerDay;
     this.estimatedFlightCostPerPerson = tripData.estimatedFlightCostPerPerson;
   }
@@ -17,8 +17,8 @@ class Trip {
     let totalLodgingCost = this.estimatedLodgingCostPerDay * this.duration;
     let totalCost = totalFlightCost + totalLodgingCost;
     let total = (totalCost * 0.1) + totalCost;
-    let finalCost = Number.parseFloat(total).toFixed(2);
-    return finalCost;
+    let finalCost = Number(total).toFixed(2);
+    return parseInt(finalCost);
   }
 }
 

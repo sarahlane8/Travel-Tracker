@@ -50,6 +50,6 @@ describe('Trip', () => {
   })
 
   it('should estimate how much a trip will cost', () => {
-    expect(trip.estimateTripCost()).to.equal(26675)
+    expect(trip.estimateTripCost()).to.equal(26675.00)
   })
 })
