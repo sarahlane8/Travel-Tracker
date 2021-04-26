@@ -1,3 +1,34 @@
+# Welcome to Wanderlust Excursions!
+
+- [Description](#description)
+-[Installation](#installation)
+-[How To Use The Website](#how_to_use_the_website)
+-[Technologies Used](#technologies_used)
+-[Contributor](#contributor)
+
+### Description
+The goal of this project was to design a user interface with accessibility in mind, while accessing and sending data from a remote API.  Object oriented programming and test driven development were utilized to ensure a properly functioning application.
+
+### Installation
+To use this application, follow these instructions:
+* From your terminal, clone the repo.  
+`$git clone git@github.com:sarahlane8/Travel-Tracker.git`  
+* Move into the root directory of the project.  
+* Now you must install the required npm dependencies.  
+`$npm install`
+* Now you must start the local server  
+`$npm start`
+* You must also clone down the Travel-Tracker API for the application to function properly. Open a separate tab in your terminal.  
+`$git clone git@github.com:turingschool-examples/travel-tracker-api.git`
+* Move into the root directory
+* `$npm install`
+* Start the local API server
+* `$npm start`
+* Open your browser [here](http://localhost:8080/) to be taken to the log in page
+* You're ready to go!
+
+
+
 
 
 
@@ -6,8 +37,15 @@
 
 ![BreakPoints Demo](https://media.giphy.com/media/yzeANV4boStFPKNild/giphy.gif)
 
+![Demo Estimate Trip Cost](https://media.giphy.com/media/VvTOx6yH5Yl6Mu1SqU/giphy.gif)
 
-
+technologies_used
+mocha
+chai
+SASS
+fetch API
+dayjs
+Webpack
 
 # Webpack Starter Kit
 
