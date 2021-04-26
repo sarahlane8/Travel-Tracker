@@ -50,7 +50,7 @@ h3 {
 }
 
 
-button {
+button, .clear-form-btn {
   @include rounded-corners(5px);
   padding: 10px;
 
@@ -111,10 +111,14 @@ article {
 }
 
 
-.buttons {
+.buttons, .clear-form-btn {
   text-align: center;
 }
 
+
+.disable {
+  pointer-events: none;
+}
 
 .hidden {
   display: none;

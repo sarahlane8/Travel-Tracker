@@ -6,40 +6,34 @@ const dayjs = require('dayjs');
 dayjs().format();
 const isBetween = require('dayjs/plugin/isBetween');
 dayjs.extend(isBetween);
-//change traveler later based on the log in page
+
 
 //*******MEDIA QUERIES********//
-const getEstimateButton = document.querySelector('.get-trip-estimate');
-const submitRequestButton = document.querySelector('.submit-request');
-const searchbar = document.getElementById('destinationInput');
 const signInButton = document.getElementById('signIn');
 const dateInput = document.getElementById('dateInput');
 const tripDurationInput = document.getElementById('durationInput');
 const numberOfTravelersInput = document.getElementById('travelersInput');
 const destinationInput = document.getElementById('destinationInput');
+const getEstimateButton = document.querySelector('.get-trip-estimate');
+const submitRequestButton = document.querySelector('.submit-request');
 let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', validateFormInputs)
 submitRequestButton.addEventListener('click', submitNewTripRequest);
-searchbar.addEventListener('keyup', filterDestinationsBySearch);
+destinationInput.addEventListener('keyup', filterDestinationsBySearch);
 signInButton.addEventListener('click', validateUserName);
-
-
-
 dateInput.addEventListener('blur', checkDateInput);
 tripDurationInput.addEventListener('blur', function() {
   checkNumbersInput('durationInput')
-  });
+});
 numberOfTravelersInput.addEventListener('blur', function() {
   checkNumbersInput('travelersInput')
-  });
+});
 destinationInput.addEventListener('blur', checkDestinationInput);
 
 
-
-
-
+//*******Functions******//
 function validateUserName() {
   const userNameInput = document.getElementById('userName').value;
   const result = userNameInput.split('traveler');
@@ -97,7 +91,6 @@ function combineDataSets(tripData, destinationData) {
   trips = result;
 }
 
-
 function filterTripsByTraveler(travelerID) {
   const myTrips = trips.filter(trip => trip.userID === travelerID)
   currentTraveler.sortMyTrips(myTrips)
@@ -112,15 +105,6 @@ function filterDestinationsBySearch(e) {
     }
     domUpdates.displayDestinationCards(filteredDestinations)
   })
-}
-// *************************************************BELOW
-
-function validateFormInputs() {
-  if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
-    calculateTripEstimate();
-  } else {
-    document.getElementById('tripEstimate').innerText = "Sorry, something went wrong! Please check your request inputs again!"
-  }
 }
 
 function checkDateInput() {
@@ -156,7 +140,14 @@ function checkDestinationInput() {
   }
 }
 
-// **************************************************************************
+function validateFormInputs() {
+  if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
+    calculateTripEstimate();
+    domUpdates.toggleElement('.submit-request')
+  } else {
+    domUpdates.displayTripEstimateErrorMessage()
+  }
+}
 
 function calculateTripEstimate() {
   const startDate = document.getElementById('dateInput').value;
@@ -165,7 +156,8 @@ function calculateTripEstimate() {
   const destination = document.getElementById('destinationInput').value;
   let locationID, estimatedLodging, estimatedFlight;
   trips.forEach(trip => {
-    if (trip.destination.toLowerCase() === destination.toLowerCase()) {
+    // if (trip.destination.toLowerCase() === destination.toLowerCase()) {
+    if (trip.destination === destination) {
       locationID = trip.destinationID;
       estimatedLodging = trip.estimatedLodgingCostPerDay;
       estimatedFlight = trip.estimatedFlightCostPerPerson;
@@ -187,8 +179,8 @@ function calculateTripEstimate() {
   domUpdates.displayTripEstimate(pendingTripEstimate);
 }
 
-
 function submitNewTripRequest() {
+
   const object = ( {id: pendingTrip.id,
       userID: pendingTrip.userID,
       destinationID: pendingTrip.destinationID,
@@ -212,17 +204,6 @@ function submitNewTripRequest() {
 //   domUpdates.displayTotalSpent(currentTraveler);
 // )
 
-
-
-
-
-
-
-
-
-
-
-
     //update the data model
     // trip
 
@@ -230,17 +211,12 @@ function submitNewTripRequest() {
   //invoke something from dom Updates to say your request has been submitted! on a reset timer
 
   //update dom to clear form
+  domUpdates.displayRequestSubmittedMessage()//attach error handling to this
+  console.log('PENDING TRIP', pendingTrip)
+  console.log('trips', trips)
+  setResetTimer()
 }
 
-
-
-// function setResetTimer() {
-//   setTimeout(function(){resetBoard()}, 2000);
-// }
-//
-// function resetBoard() {
-//   gameBoard.classList.remove('disable');//disable submit and estimate button til after timeout
-//   game.updatePlayerTurn();
-//   displayPlayerTurn(game.playerTurn.token);
-//   clearBoard();
-// }
+function setResetTimer() {
+  setTimeout(function(){domUpdates.clearForm()}, 9000)
+}
