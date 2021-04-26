@@ -1,7 +1,7 @@
 import Traveler from './traveler.js';//do i need this here?
 import Trip from './trip.js';
 import domUpdates from './domUpdates.js'
-import { fetchAllData, fetchSingleTravelerData, addNewTrip, addNewDestination } from './networkRequests'
+import { fetchAllData, addNewTrip } from './networkRequests'
 const dayjs = require('dayjs');
 dayjs().format();
 const isBetween = require('dayjs/plugin/isBetween');
@@ -11,32 +11,57 @@ dayjs.extend(isBetween);
 //*******MEDIA QUERIES********//
 const getEstimateButton = document.querySelector('.get-trip-estimate');
 const submitRequestButton = document.querySelector('.submit-request');
-const searchbar = document.getElementById('destinationInput')
+const searchbar = document.getElementById('destinationInput');
+const signInButton = document.getElementById('signIn')
 let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', validateFormInputs)
 submitRequestButton.addEventListener('click', submitNewTripRequest)
 searchbar.addEventListener('keyup', filterDestinationsBySearch)
+signInButton.addEventListener('click', validateUserName)
 
-window.onload = onPageLoad();
 
 
-function onPageLoad() {
-  fetchAllData(25)
-  .then(allData => {
-    trips = allData.tripsData;
-    destinations = allData.destinationsData;
-    singleTraveler = allData.singleTravelerData;
-    combineDataSets(trips, destinations);
-    currentTraveler = new Traveler(singleTraveler)
-    filterTripsByTraveler(singleTraveler.id)
-    domUpdates.greetUser(currentTraveler)
-    domUpdates.displayTrips(currentTraveler)
-    domUpdates.displayTotalSpent(currentTraveler)
-    domUpdates.displayDestinationCards(destinations.destinations)
-    domUpdates.displayDestinationDropdownOptions(destinations.destinations)
-  })
+function validateUserName() {
+  const userNameInput = document.getElementById('userName').value;
+  const result = userNameInput.split('traveler');
+  let userID;
+  if (!result[0]) {
+    userID = result[1];
+  }
+  if (0 < userID && userID < 51) {
+    validatePassword(userID)
+  } else {
+    domUpdates.displayUserNameErrorMessage();
+  }
+}
+
+function validatePassword(userID) {
+  const passwordInput = document.getElementById('password').value;
+  if (passwordInput === 'travel2020') {
+    onPageLoad(userID);
+    domUpdates.hideLogInForm();
+  } else {
+    domUpdates.displayPasswordErrorMessage();
+  }
+}
+
+function onPageLoad(userID) {
+  fetchAllData(userID)
+    .then(allData => {
+      trips = allData.tripsData;
+      destinations = allData.destinationsData;
+      singleTraveler = allData.singleTravelerData;
+      combineDataSets(trips, destinations);
+      currentTraveler = new Traveler(singleTraveler)
+      filterTripsByTraveler(singleTraveler.id)
+      domUpdates.greetUser(currentTraveler)
+      domUpdates.displayTrips(currentTraveler)
+      domUpdates.displayTotalSpent(currentTraveler)
+      domUpdates.displayDestinationCards(destinations.destinations)
+      domUpdates.displayDestinationDropdownOptions(destinations.destinations)
+    })
 }
 
 function combineDataSets(tripData, destinationData) {

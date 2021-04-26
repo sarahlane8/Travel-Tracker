@@ -9,9 +9,21 @@
   <body>
     <header>
       <h1>🏖Wanderlust Excursions⛱</h1>
-      <h2 id="userGreeting"></h2>
+      <h2 class="hidden" id="userGreeting"></h2>
     </header>
-    <main id='userDashboard'>
+    <section class="user-sign-in">
+      <h2>Welcome back!</h2>
+      <form class="log-in" onsubmit="return false">
+        <label class="user-name input" for="userName">Please Enter Username</label>
+        <input class="input" type="text" name="username" id="userName" required></br>
+        <p id="userNameErrorMessage"></p>
+        <label class="password input" for="password">Please Enter Password</label>
+        <input class="input" type="password" name="password" id="password" required></br>
+        <p id="passwordErrorMessage"></p>
+        <button class="sign-in" id="signIn">Sign In</button>
+      </form>
+    </section>
+    <main class="main-section hidden" id='userDashboard'>
       <section class="trips-display">
         <h3 id="tripsDisplayArea">My Trips</h3>
         <h4 class="header">My Past Trips<h4>
@@ -40,9 +52,9 @@
           <datalist id="destinations">
           </datalist>
           <div class="buttons">
-            <button class="get-trip-estimate hidden" id="getTripEstimate">Get Trip Estimate</button>
+            <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
             <p id="tripEstimate"></p>
-            <button class="submit-request hidden" id="submitRequest">Submit My Request</button>
+            <button class="submit-request" id="submitRequest">Submit My Request</button>
           </div>
         </form>
       </div>

@@ -1,4 +1,3 @@
-// import Traveler from './traveler.js';
 const dayjs = require('dayjs')
 dayjs().format()
 const isBetween = require('dayjs/plugin/isBetween');
@@ -6,9 +5,23 @@ dayjs.extend(isBetween);
 
 
 const domUpdates = {
+  displayUserNameErrorMessage() {
+    document.getElementById('userNameErrorMessage').innerText = "Please try your username again!"
+  },
+
+  displayPasswordErrorMessage() {
+    document.getElementById('passwordErrorMessage').innerText = "Please try your password again!"
+  },
+
   greetUser(traveler) {
     let firstName = traveler.name.split(' ')[0];
     document.getElementById('userGreeting').innerHTML = `Welcome back, ${firstName}!`;
+  },
+
+  hideLogInForm() {
+    document.querySelector('.user-sign-in').classList.add('hidden');
+    document.getElementById('userDashboard').classList.remove('hidden');
+    document.getElementById('userGreeting').classList.remove('hidden');
   },
 
 
@@ -64,14 +77,14 @@ const domUpdates = {
   displayTotalSpent(traveler) {
     const todaysDate = dayjs().format('YYYY/MM/DD')
     const totalAmount = traveler.calculateSpentOnTripsThisYear(todaysDate);
-    document.getElementById('moneySpent').innerText = `You spent $${totalAmount} on trips in the last year!`
+    document.getElementById('moneySpent').innerText = totalAmount;
   },
 
   displayDestinationCards(destinationData) {
     let destinationCardsToDisplay = '';
     destinationData.forEach(trip => {
-    destinationCardsToDisplay +=
-    `<article class="card">
+      destinationCardsToDisplay +=
+      `<article class="card">
       <div class="upper-card">
        <img class="location-pic" src=${trip.image} alt=${trip.alt}>
       </div>
@@ -79,18 +92,18 @@ const domUpdates = {
         <p class="location">${trip.destination}</p>
       </div>
     </article>`
-  })
-  document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
+    })
+    document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
   },
 
   displayDestinationDropdownOptions(destinationData) {
     let destinationDropdownOptions = '';
     destinationData.forEach(trip => {
-      destinationDropdownOptions+=
+      destinationDropdownOptions +=
       `<option value="${trip.destination}">`
     })
-  document.getElementById('destinations').innerHTML = destinationDropdownOptions;
-},
+    document.getElementById('destinations').innerHTML = destinationDropdownOptions;
+  },
 
   displayTripEstimate(estimate) {
     document.getElementById('tripEstimate').innerText = `This trip will cost $${estimate}. Book now!`;

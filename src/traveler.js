@@ -64,7 +64,8 @@ class Traveler {
         return sum;
       }, 0)
       const totalCost = (cost * 0.1) + cost;
-      return Number.parseFloat(totalCost).toFixed(2);
+      const finalCost = Number.parseFloat(totalCost).toFixed(2);
+      return `You spent $${finalCost} on trips in the last year!`
     }
   }
 
