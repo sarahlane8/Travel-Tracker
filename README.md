@@ -27,17 +27,23 @@ To use this application, follow these instructions:
 * Open your browser [here](http://localhost:8080/) to be taken to the log in page
 * You're ready to go!
 
+### How To Use The Website
 
-
-
-
-
-
+The first page you will see is the login page. All usernames begin with `traveler` followed by a number, which is the traveler's ID.  There are 50 travelers registered with the website, so any one of them may sign in.  Typing in `traveler20`, for example, will fetch Gregg's information.  All travelers have the same password of `travel2020`.  Usernames and passwords are case-sensitive, and a message will appear if the username and password do not meet the correct criteria.
 ![Login Demo](https://media.giphy.com/media/3fqVJ73tvp2ErwrKXz/giphy.gif)
 
+The user dashboard greets the user at the top and displays their trips on the left side of the screen, separated by past trips, current trips they may be on, upcoming trips, and any trips that are still pending an agent's approval.  It also displays how much money they have spent on trips in the last calendar year, if they have traveled during that time.  In the center, a request trip form exists so they may book future trips.  On the right, pictures of all the available destinations that Wanderlust Excursions travels to is available.
+<p align="center">
+<img height=250px; width = 500px; alt="UserDashboard" src="https://user-images.githubusercontent.com/70901622/116112002-640e2d80-a674-11eb-8bbb-89d6d3b9549d.png">
+</p>
+
+The request trip form allows users to choose a start date, how many days they would like to go for, how many people are going, and where they would like to go.  They may start typing a location in the input field, and the destination cards on the right will filter down as they become more specific with their location, and then they may choose it from the drop down.  Clicking the estimate cost will display how much the trip will be, including an agent's fee. 
+After they submit a trip request, the form will clear, and the pending trip will display on the user's dashboard.  
+![Demo Estimate Trip Cost](https://media.giphy.com/media/VvTOx6yH5Yl6Mu1SqU/giphy.gif)
+
+Several breakpoints were utilized to ensure the website would be accessible across devices.
 ![BreakPoints Demo](https://media.giphy.com/media/yzeANV4boStFPKNild/giphy.gif)
 
-![Demo Estimate Trip Cost](https://media.giphy.com/media/VvTOx6yH5Yl6Mu1SqU/giphy.gif)
 
 technologies_used
 mocha
