@@ -57,11 +57,13 @@ const addNewTrip = object => {
   })
   .then(response => response.json())
   .then(response => {
+    checkForError(response)
     console.log('POST', response)
   return response;//give me a message saying it worked
 })
   .catch(err => console.log('ERROR', err));
 }
+
 
 //************ADDING A NEW DESTINATION************//
 // const addNewDestination = object => {

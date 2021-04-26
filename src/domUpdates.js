@@ -134,6 +134,12 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = "Sorry, something went wrong! Please check your request inputs again!"
   },
 
+  enableRequestButton() {
+    if (document.querySelector('.submit-request').classList.contains('disable')) {
+      document.querySelector('.submit-request').classList.remove('disable');
+    }
+  },
+
   toggleElement(element) {
     if (document.querySelector(element).classList.contains('disable')) {
       document.querySelector(element).classList.remove('disable');
@@ -152,6 +158,7 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = ''
     document.querySelector('.request-trip-form').reset();
     domUpdates.toggleElement('.request-trip-form');
+    
   },
 }
 

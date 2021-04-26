@@ -143,7 +143,7 @@ function checkDestinationInput() {
 function validateFormInputs() {
   if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
     calculateTripEstimate();
-    domUpdates.toggleElement('.submit-request')
+    domUpdates.enableRequestButton()
   } else {
     domUpdates.displayTripEstimateErrorMessage()
   }
@@ -192,6 +192,9 @@ function submitNewTripRequest() {
     } );
   addNewTrip(object)
   .then(response => {
+    console.log(195, destinations)
+    console.log(195, pendingTrip)
+    console.log(196, response)
     updatePendingTrip(pendingTrip)
     currentTraveler.myTrips.push(pendingTrip)
     currentTraveler.sortMyTrips(currentTraveler.myTrips)
