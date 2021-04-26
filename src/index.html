@@ -13,12 +13,12 @@
     </header>
     <section class="user-sign-in">
       <h2>Welcome back!</h2>
-      <form class="log-in">
+      <form class="log-in" onsubmit="return false">
         <label class="user-name input" for="userName">Please Enter Username</label>
         <input class="input" type="text" name="username" id="userName" required></br>
         <label class="password input" for="password">Please Enter Password</label>
-        <input class="input" type="text" name="password" id="password" required></br>
-        <button class="sign-in">Sign In</button>
+        <input class="input" type="password" name="password" id="password" required></br>
+        <button class="sign-in" id="signIn">Sign In</button>
       </form>
     </section>
     <main class="hidden" id='userDashboard'>

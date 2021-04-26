@@ -11,16 +11,35 @@ dayjs.extend(isBetween);
 //*******MEDIA QUERIES********//
 const getEstimateButton = document.querySelector('.get-trip-estimate');
 const submitRequestButton = document.querySelector('.submit-request');
-const searchbar = document.getElementById('destinationInput')
+const searchbar = document.getElementById('destinationInput');
+const signInButton = document.getElementById('signIn')
 let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', validateFormInputs)
 submitRequestButton.addEventListener('click', submitNewTripRequest)
 searchbar.addEventListener('keyup', filterDestinationsBySearch)
+signInButton.addEventListener('click', validateUser)
 
-window.onload = onPageLoad();
 
+// window.onload = onPageLoad();
+
+function validateUserName() {
+  const userNameInput = document.getElementById('userName').value;
+  const passwordInput = document.getElementById('password').value;
+  const result = userNameInput.split('traveler');
+  let userID;
+  if (!result[0]) {
+    userID = result[1];
+  }
+  if (0 < userID && userID < 51) {
+      validatePassword(userID)
+  }
+}
+
+function validatePassword(userID) {
+  
+}
 
 function onPageLoad() {
   fetchAllData(25)
