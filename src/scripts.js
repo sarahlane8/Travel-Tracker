@@ -192,35 +192,12 @@ function submitNewTripRequest() {
     } );
   addNewTrip(object)
   .then(response => {
-    // console.log(response)
-    // console.log(196, pendingTrip)
-
     updatePendingTrip(pendingTrip)
-    currentTraveler.myTrips.push(pendingTrip);
-    currentTraveler.sortMyTrips(currentTraveler.myTrips);
-    console.log(201, currentTraveler)
-    // console.log('SCRIPTS 195', response)
-    // console.log('PendingTrip', pendingTrip)
-    // console.log('currentTrips', currentTraveler.myTrips)
+    currentTraveler.myTrips.push(pendingTrip)
+    currentTraveler.sortMyTrips(currentTraveler.myTrips)
+    domUpdates.displayTrips(currentTraveler)
   })
-
-
-
-  //   currentTraveler.addTrip(pendingTrip);
-  //   domUpdates.displayTrips(currentTraveler);
-  //   domUpdates.displayTotalSpent(currentTraveler)
-  // })
-
-//   currentTraveler.addTrip(pendingTrip);
-//   console.log(currentTraveler)
-//   domUpdates.displayTrips(currentTraveler);
-//   domUpdates.displayTotalSpent(currentTraveler);
-// )
-
-
   domUpdates.displayRequestSubmittedMessage()//attach error handling to this
-  console.log('PENDING TRIP', pendingTrip)
-  console.log('trips', trips)
   setResetTimer()
 }
 
@@ -233,16 +210,6 @@ function updatePendingTrip(trip) {
       }
     })
 }
-
-
-//   destinationData.destinations.forEach(destination => {
-//     if (trip.destinationID === destination.id) {
-//       trip['estimatedLodgingCostPerDay'] = destination.estimatedLodgingCostPerDay;
-//       trip['estimatedFlightCostPerPerson'] = destination.estimatedFlightCostPerPerson;
-//       trip['image'] = destination.image;
-//       trip['alt'] = destination.alt;
-//       trip['destination'] = destination.destination;
-//     }
 
 function setResetTimer() {
   setTimeout(function(){domUpdates.clearForm()}, 7000)
