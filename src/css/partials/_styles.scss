@@ -35,15 +35,15 @@ p, h3 {
   text-align: center;
   margin: 5px, 0;
 }
-// .submit-request, .get-trip-estimate {
+
 button {
   @include rounded-corners(5px);
   padding: 10px;
-}
 
-button:hover {
-  background-color: #478978;
-  color: white;
+  &:hover{
+    background-color: #478978;
+    color: white;
+  }
 }
 
 .sign-in {
@@ -91,7 +91,6 @@ article {
 }
 
 .buttons {
-  // padding: 20px;
   text-align: center;
 }
 
