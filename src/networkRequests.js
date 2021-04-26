@@ -47,8 +47,8 @@ const fetchSingleTravelerData = id => {
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = object => {
-  console.log(object)
-  fetch('http://localhost:3001/api/v1/trips', {
+  console.log('OBJECT', object)
+  return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify(object),
     headers: {
@@ -56,8 +56,9 @@ const addNewTrip = object => {
     }
   })
   .then(response => response.json())
-  .then(data => {
-    return data;
+  .then(response => {
+    console.log('POST', response)
+  return response;//give me a message saying it worked
 })
   .catch(err => console.log('ERROR', err));
 }

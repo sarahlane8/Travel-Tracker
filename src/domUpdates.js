@@ -152,7 +152,7 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = ''
     document.querySelector('.request-trip-form').reset();
     domUpdates.toggleElement('.request-trip-form');
-  }
+  },
 }
 
 

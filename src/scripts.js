@@ -168,9 +168,9 @@ function calculateTripEstimate() {
     id: trips.length + 1,
     userID: currentTraveler.id,
     destinationID: locationID,
-    travelers: numTravelers,
+    travelers: parseInt(numTravelers),
     date: startDate,
-    duration: duration,
+    duration: parseInt(duration),
     estimatedLodgingCostPerDay: estimatedLodging,
     estimatedFlightCostPerPerson: estimatedFlight
   };
@@ -184,15 +184,28 @@ function submitNewTripRequest() {
   const object = ( {id: pendingTrip.id,
       userID: pendingTrip.userID,
       destinationID: pendingTrip.destinationID,
-      travelers: parseInt(pendingTrip.travelers),
+      travelers: pendingTrip.travelers,
       date: pendingTrip.date.split('-').join('/'),
-      duration: parseInt(pendingTrip.duration),
+      duration: pendingTrip.duration,
       status: 'pending',
       suggestedActivities: []
     } );
   addNewTrip(object)
-  // .then(data => {
-  //   console.log(data);
+  .then(response => {
+    // console.log(response)
+    // console.log(196, pendingTrip)
+
+    updatePendingTrip(pendingTrip)
+    currentTraveler.myTrips.push(pendingTrip);
+    currentTraveler.sortMyTrips(currentTraveler.myTrips);
+    console.log(201, currentTraveler)
+    // console.log('SCRIPTS 195', response)
+    // console.log('PendingTrip', pendingTrip)
+    // console.log('currentTrips', currentTraveler.myTrips)
+  })
+
+
+
   //   currentTraveler.addTrip(pendingTrip);
   //   domUpdates.displayTrips(currentTraveler);
   //   domUpdates.displayTotalSpent(currentTraveler)
@@ -204,19 +217,33 @@ function submitNewTripRequest() {
 //   domUpdates.displayTotalSpent(currentTraveler);
 // )
 
-    //update the data model
-    // trip
 
-
-  //invoke something from dom Updates to say your request has been submitted! on a reset timer
-
-  //update dom to clear form
   domUpdates.displayRequestSubmittedMessage()//attach error handling to this
   console.log('PENDING TRIP', pendingTrip)
   console.log('trips', trips)
   setResetTimer()
 }
 
+function updatePendingTrip(trip) {
+  destinations.destinations.forEach(destination => {
+      if (destination.id === trip.destinationID) {
+        trip['image'] = destination.image;
+        trip['alt'] = destination.alt;
+        trip['destination'] = destination.destination;
+      }
+    })
+}
+
+
+//   destinationData.destinations.forEach(destination => {
+//     if (trip.destinationID === destination.id) {
+//       trip['estimatedLodgingCostPerDay'] = destination.estimatedLodgingCostPerDay;
+//       trip['estimatedFlightCostPerPerson'] = destination.estimatedFlightCostPerPerson;
+//       trip['image'] = destination.image;
+//       trip['alt'] = destination.alt;
+//       trip['destination'] = destination.destination;
+//     }
+
 function setResetTimer() {
-  setTimeout(function(){domUpdates.clearForm()}, 9000)
+  setTimeout(function(){domUpdates.clearForm()}, 7000)
 }
