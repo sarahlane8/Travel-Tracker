@@ -18,11 +18,11 @@ const getEstimateButton = document.querySelector('.get-trip-estimate');
 const submitRequestButton = document.querySelector('.submit-request');
 let trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
+
 //*******Event Listeners******//
-getEstimateButton.addEventListener('click', validateFormInputs)
-submitRequestButton.addEventListener('click', submitNewTripRequest);
-destinationInput.addEventListener('keyup', filterDestinationsBySearch);
 signInButton.addEventListener('click', validateUserName);
+destinationInput.addEventListener('keyup', filterDestinationsBySearch);
+destinationInput.addEventListener('blur', checkDestinationInput);
 dateInput.addEventListener('blur', checkDateInput);
 tripDurationInput.addEventListener('blur', function() {
   checkNumbersInput('durationInput')
@@ -30,7 +30,8 @@ tripDurationInput.addEventListener('blur', function() {
 numberOfTravelersInput.addEventListener('blur', function() {
   checkNumbersInput('travelersInput')
 });
-destinationInput.addEventListener('blur', checkDestinationInput);
+getEstimateButton.addEventListener('click', validateFormInputs);
+submitRequestButton.addEventListener('click', submitNewTripRequest);
 
 
 //*******Functions******//
@@ -93,39 +94,39 @@ function combineDataSets(tripData, destinationData) {
 }
 
 function filterTripsByTraveler(travelerID) {
-  const myTrips = trips.filter(trip => trip.userID === travelerID)
-  currentTraveler.sortMyTrips(myTrips)
+  const myTrips = trips.filter(trip => trip.userID === travelerID);
+  currentTraveler.sortMyTrips(myTrips);
 }
 
 function filterDestinationsBySearch(e) {
-  let searchText = e.target.value.toLowerCase()
+  let searchText = e.target.value.toLowerCase();
   let filteredDestinations = [];
   destinations.destinations.forEach(location => {
     if (location.destination.toLowerCase().includes(searchText)) {
       filteredDestinations.push(location)
     }
-    domUpdates.displayDestinationCards(filteredDestinations)
+    domUpdates.displayDestinationCards(filteredDestinations);
   })
 }
 
 function checkDateInput() {
   const startDate = dateInput.value;
-  const todaysDate = dayjs().format('YYYY-MM-DD')
+  const todaysDate = dayjs().format('YYYY-MM-DD');
   if (dayjs(startDate).isBefore(todaysDate)) {
     domUpdates.displayDateErrorMessage(todaysDate);
   } else {
-    domUpdates.clearErrorMessage()
+    domUpdates.clearErrorMessage();
     return true;
   }
 }
 
 function checkNumbersInput(inputType) {
   const input = document.getElementById(inputType).value;
-  const result = input.split('').map(num => parseInt(num))
+  const result = input.split('').map(num => parseInt(num));
   if (result.includes(NaN) || (!input)) {
     domUpdates.displayNumberErrorMessage(inputType);
   } else {
-    domUpdates.clearErrorMessage()
+    domUpdates.clearErrorMessage();
     return true;
   }
 }
@@ -145,7 +146,7 @@ function validateFormInputs() {
   if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
     calculateTripEstimate();
   } else {
-    domUpdates.displayTripEstimateErrorMessage()
+    domUpdates.displayTripEstimateErrorMessage();
   }
 }
 
@@ -176,13 +177,13 @@ function calculateTripEstimate() {
   pendingTrip = new Trip(tripData);
   const pendingTripEstimate = pendingTrip.estimateTripCost();
   if (!pendingTripEstimate) {
-    domUpdates.toggleElement('.request-trip-form')
+    domUpdates.toggleElement('.request-trip-form');
     domUpdates.displayCallUsErrorMessage();
     setResetTimer();
-    domUpdates.displayDestinationCards(destinations.destinations)
+    domUpdates.displayDestinationCards(destinations.destinations);
   } else {
     domUpdates.displayTripEstimate(pendingTripEstimate);
-    domUpdates.enableRequestButton()
+    domUpdates.enableRequestButton();
   }
 }
 
@@ -198,18 +199,15 @@ function submitNewTripRequest() {
   } );
   addNewTrip(tripObject)
   .then(response => {
-    // if (response === "Trip with id 230 successfully posted")
-    console.log(response)
     updatePendingTrip(pendingTrip)
-    currentTraveler.addTrip('myTrips', pendingTrip);
-    currentTraveler.addTrip('myPendingTrips', pendingTrip);
-    trips.push(pendingTrip);
-    domUpdates.displayTrips(currentTraveler);
-    domUpdates.displayRequestSubmittedMessage();
+    currentTraveler.addTrip('myTrips', pendingTrip)
+    currentTraveler.addTrip('myPendingTrips', pendingTrip)
+    trips.push(pendingTrip)
+    domUpdates.displayTrips(currentTraveler)
+    domUpdates.displayRequestSubmittedMessage()
   })
   setResetTimer();
   domUpdates.displayDestinationCards(destinations.destinations);
-
 }
 
 function updatePendingTrip(trip) {
@@ -218,18 +216,10 @@ function updatePendingTrip(trip) {
       trip['image'] = destination.image;
       trip['alt'] = destination.alt;
       trip['destination'] = destination.destination;
-    }
-  })
+    };
+  });
 }
 
 function setResetTimer() {
-  setTimeout(function() {domUpdates.clearForm() }, 7000)
+  setTimeout(function() {domUpdates.clearForm() }, 7000);
 }
-
-// function checkForError(err) {
-//   if (err.message === "Failed To Fetch") {
-//       document.querySelector('.user-total-money-spent').innerHTML = "We're sorry, something went wrong! Try again later!")
-//      } else {
-//       document.querySelector('.user-total-money-spent').innerHTML = err)
-//      }
-// }
