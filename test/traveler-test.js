@@ -37,18 +37,19 @@ describe('Traveler', () => {
   })
 
   it('should return a list of trips based on a userID', () => {
-    expect(traveler.myTrips.length).to.equal(4);
+    expect(myTrips.length).to.equal(4);
   })
 
   it('should not have trips if a traveler has never booked a trip', () => {
     const traveler4 = new Traveler(travelers[8])
     myTrips = trips.filter(trip => trip.userID === traveler4.id);
     traveler4.sortMyTrips(myTrips)
+
     expect(traveler4.myTrips).to.deep.equal([])
   })
 
   it('should sort my trips by past, present, future, and pending trips', () => {
-    traveler.sortMyTrips(traveler.myTrips)
+    traveler.sortMyTrips(myTrips)
     expect(traveler.myCurrentTrip).to.deep.equal(undefined);
     expect(traveler.myPastTrips.length).to.equal(1);
     expect(traveler.myFutureTrips.length).to.equal(1);
@@ -63,6 +64,7 @@ describe('Traveler', () => {
     const traveler3 = new Traveler(travelers[6])
     myTrips = trips.filter(trip => trip.userID === traveler3.id);
     traveler3.sortMyTrips(myTrips)
+
     expect(traveler3.calculateSpentOnTripsThisYear('2021/04/28')).to.equal("You spent $11682.00 on trips in the last year!")
   })
 
@@ -71,12 +73,14 @@ describe('Traveler', () => {
     myTrips = trips.filter(trip => trip.userID === traveler2.id);
     traveler2.sortMyTrips(myTrips)
     traveler2.calculateSpentOnTripsThisYear('2021/04/22')
+
     expect(traveler2.calculateSpentOnTripsThisYear('2021/04/22'))
       .to.equal("You haven't traveled with us recently! We'd love to help you book your next trip!")
   })
 
   it('should be able to add a trip to a user\'s myTrips property', () => {
-    traveler.addTrip(trip);
+    traveler.addTrip('myTrips', trip);
+
     expect(traveler.myTrips.length).to.equal(5);
   })
 
