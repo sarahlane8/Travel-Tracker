@@ -1,7 +1,7 @@
-import Traveler from './traveler.js';//do i need this here?
+import Traveler from './traveler.js';
 import Trip from './trip.js';
-import domUpdates from './domUpdates.js'
-import { fetchAllData, addNewTrip } from './networkRequests'
+import domUpdates from './domUpdates.js';
+import { fetchAllData, addNewTrip } from './networkRequests';
 const dayjs = require('dayjs');
 dayjs().format();
 const isBetween = require('dayjs/plugin/isBetween');
@@ -16,7 +16,7 @@ const numberOfTravelersInput = document.getElementById('travelersInput');
 const destinationInput = document.getElementById('destinationInput');
 const getEstimateButton = document.querySelector('.get-trip-estimate');
 const submitRequestButton = document.querySelector('.submit-request');
-let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
+let trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', validateFormInputs)
@@ -182,14 +182,14 @@ function calculateTripEstimate() {
 
 function submitNewTripRequest() {
   const object = ( {id: pendingTrip.id,
-      userID: pendingTrip.userID,
-      destinationID: pendingTrip.destinationID,
-      travelers: pendingTrip.travelers,
-      date: pendingTrip.date.split('-').join('/'),
-      duration: pendingTrip.duration,
-      status: 'pending',
-      suggestedActivities: []
-    } );
+    userID: pendingTrip.userID,
+    destinationID: pendingTrip.destinationID,
+    travelers: pendingTrip.travelers,
+    date: pendingTrip.date.split('-').join('/'),
+    duration: pendingTrip.duration,
+    status: 'pending',
+    suggestedActivities: []
+  } );
   addNewTrip(object)
   .then(response => {
     updatePendingTrip(pendingTrip)
@@ -204,14 +204,14 @@ function submitNewTripRequest() {
 
 function updatePendingTrip(trip) {
   destinations.destinations.forEach(destination => {
-      if (destination.id === trip.destinationID) {
-        trip['image'] = destination.image;
-        trip['alt'] = destination.alt;
-        trip['destination'] = destination.destination;
-      }
-    })
+    if (destination.id === trip.destinationID) {
+      trip['image'] = destination.image;
+      trip['alt'] = destination.alt;
+      trip['destination'] = destination.destination;
+    }
+  })
 }
 
 function setResetTimer() {
-  setTimeout(function(){domUpdates.clearForm()}, 7000)
+  setTimeout(function() {domUpdates.clearForm() }, 7000)
 }
