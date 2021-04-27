@@ -38,7 +38,7 @@ const fetchSingleTravelerData = id => {
   const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
     .then(response => response.json())
     .then(singleTravelerData => {
-      return response;
+      return singleTravelerData;
     })
     .catch(err => domUpdates.displayServerIsDownMessage());
 };
@@ -49,12 +49,12 @@ const fetchSingleTravelerData = id => {
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = tripObject => {
   return fetch('http://localhost:3001/api/v1/trips', {
-      method: 'POST',
-      body: JSON.stringify(tripObject),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    method: 'POST',
+    body: JSON.stringify(tripObject),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
     .then(response => response.json())
     .then(response => {
       if (response.message === `Trip with id ${tripObject.id} successfully posted`) {

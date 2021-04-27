@@ -97,7 +97,7 @@ const domUpdates = {
         <p class="location">${trip.destination}</p>
       </div>
     </article>`
-  });
+    });
     document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
   },
 
