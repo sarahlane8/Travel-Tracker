@@ -1,3 +1,6 @@
+import domUpdates from './domUpdates.js';
+import './scripts.js'
+
 
 //************FETCHING ALL DATA************//
 const fetchAllData = id => {
@@ -26,11 +29,11 @@ const fetchAllData = id => {
       allData.tripsData = data[0];
       allData.destinationsData = data[1];
       allData.singleTravelerData = data[2];
+      console.log(32, allData)
       return allData;
   })
-  .catch(err => console.log('ERROR', err));
-
-}
+      .catch(err => domUpdates.displayServerIsDownMessage())
+  }
 
 //************FETCHING A SINGLE TRAVELER'S DATA************//
 const fetchSingleTravelerData = id => {
@@ -39,32 +42,42 @@ const fetchSingleTravelerData = id => {
     .then(singleTravelerData => {
       return response;
     })
-    .catch(err => console.log('ERROR', err));
+    .catch(err => domUpdates.displayServerIsDownMessage());
 };
 //************FETCHING ALL TRAVELERS' DATA************//
 
 
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
-const addNewTrip = object => {
-  console.log('OBJECT', object)
+const addNewTrip = tripObject => {
+  // console.log('OBJECT', tripObject)
   return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
-    body: JSON.stringify(object),
+    body: JSON.stringify(tripObject),
     headers: {
       'Content-Type': 'application/json'
     }
   })
   .then(response => response.json())
   .then(response => {
-    checkForError(response)
-    console.log('POST', response)
-  return response;//give me a message saying it worked
+    // checkForError(response)
+    if (response.message === `Trip with id ${tripObject.id} successfully posted`) {
+      console.log('hallelujah!')
+      console.log(73, response)
+        return response;
+    }
+    // if (response.message === "You are missing a required parameter of destinationID") {
+    //   // domUpdates.displaySubmissionErrorMessage();
+    //   // domUpdates.displayDestinationCards(destinations.destinations)
+    // }
+    // console.log('POST', response)
+
+  // return response;//give me a message saying it worked
 })
   .catch(err => console.log('ERROR', err));
 }
 
-
+// checkForError(response)
 //************ADDING A NEW DESTINATION************//
 // const addNewDestination = object => {
 //   fetch('http://localhost:3001/api/v1/destinations', {

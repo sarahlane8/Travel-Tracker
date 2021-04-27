@@ -9,9 +9,18 @@ const domUpdates = {
     document.getElementById('userNameErrorMessage').innerText = "Please try your username again!"
   },
 
+  clearUserNameErrorMessage() {
+    document.getElementById('userNameErrorMessage').innerText = ""
+  },
+
   displayPasswordErrorMessage() {
     document.getElementById('passwordErrorMessage').innerText = "Please try your password again!"
   },
+
+  // displayNetworkError(error) {
+  //   console.log(17, error)
+  //   document.querySelector('.user-total-money-spent').innerHtml = error;
+  // },
 
   greetUser(traveler) {
     let firstName = traveler.name.split(' ')[0];
@@ -57,11 +66,12 @@ const domUpdates = {
   },
 
   renderUserTripCards(filteredTrips, pageArea) {
+    pageArea.innerHTML = '';
     let tripCardsToDisplay = '';
     filteredTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
       tripCardsToDisplay +=
-      `<article class="card">
+        `<article class="card">
         <div class="upper-card">
          <img class="location-pic" src=${trip.image} alt=${trip.alt}>
         </div>
@@ -84,7 +94,7 @@ const domUpdates = {
     let destinationCardsToDisplay = '';
     destinationData.forEach(trip => {
       destinationCardsToDisplay +=
-      `<article class="card">
+        `<article class="card">
       <div class="upper-card">
        <img class="location-pic" src=${trip.image} alt=${trip.alt}>
       </div>
@@ -100,7 +110,7 @@ const domUpdates = {
     let destinationDropdownOptions = '';
     destinationData.forEach(trip => {
       destinationDropdownOptions +=
-      `<option value="${trip.destination}">`
+        `<option value="${trip.destination}">`
     })
     document.getElementById('destinations').innerHTML = destinationDropdownOptions;
   },
@@ -158,12 +168,24 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = ''
     document.querySelector('.request-trip-form').reset();
     domUpdates.toggleElement('.request-trip-form');
-    
   },
+
+  // displaySubmissionErrorMessage() {
+  //   domUpdates.displayCallUsErrorMessage();
+  //   domUpdates.toggleElement('.submit-request');
+  //   domUpdates.toggleElement('.request-trip-form');
+  // },
+
+  displayCallUsErrorMessage() {
+    document.getElementById('tripEstimate').innerText = 'We\'re sorry, something went wrong with your request.  Please try again later or call one of our travel agents at 1-800-555-5555!'
+  },
+
+  displayServerIsDownMessage() {
+    document.getElementById('userGreeting').innerText = 'We\'re sorry, something went wrong!  Please try again later or call one of our travel agents at 1-800-555-5555!'
+    document.getElementById('userDashboard').classList.add('hidden')
+  }
+
 }
-
-
-
 
 
 export default domUpdates;

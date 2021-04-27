@@ -1,7 +1,7 @@
-import Traveler from './traveler.js';//do i need this here?
+import Traveler from './traveler.js';
 import Trip from './trip.js';
-import domUpdates from './domUpdates.js'
-import { fetchAllData, addNewTrip } from './networkRequests'
+import domUpdates from './domUpdates.js';
+import { fetchAllData, addNewTrip } from './networkRequests';
 const dayjs = require('dayjs');
 dayjs().format();
 const isBetween = require('dayjs/plugin/isBetween');
@@ -16,7 +16,7 @@ const numberOfTravelersInput = document.getElementById('travelersInput');
 const destinationInput = document.getElementById('destinationInput');
 const getEstimateButton = document.querySelector('.get-trip-estimate');
 const submitRequestButton = document.querySelector('.submit-request');
-let travelers, trips, destinations, singleTraveler, currentTraveler, pendingTrip;
+let trips, destinations, singleTraveler, currentTraveler, pendingTrip;
 
 //*******Event Listeners******//
 getEstimateButton.addEventListener('click', validateFormInputs)
@@ -43,6 +43,7 @@ function validateUserName() {
   }
   if (0 < userID && userID < 51) {
     validatePassword(userID)
+    domUpdates.clearUserNameErrorMessage();
   } else {
     domUpdates.displayUserNameErrorMessage();
   }
@@ -143,7 +144,6 @@ function checkDestinationInput() {
 function validateFormInputs() {
   if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
     calculateTripEstimate();
-    domUpdates.enableRequestButton()
   } else {
     domUpdates.displayTripEstimateErrorMessage()
   }
@@ -156,7 +156,6 @@ function calculateTripEstimate() {
   const destination = document.getElementById('destinationInput').value;
   let locationID, estimatedLodging, estimatedFlight;
   trips.forEach(trip => {
-    // if (trip.destination.toLowerCase() === destination.toLowerCase()) {
     if (trip.destination === destination) {
       locationID = trip.destinationID;
       estimatedLodging = trip.estimatedLodgingCostPerDay;
@@ -176,44 +175,61 @@ function calculateTripEstimate() {
   };
   pendingTrip = new Trip(tripData);
   const pendingTripEstimate = pendingTrip.estimateTripCost();
-  domUpdates.displayTripEstimate(pendingTripEstimate);
+  if (!pendingTripEstimate) {
+    domUpdates.toggleElement('.request-trip-form')
+    domUpdates.displayCallUsErrorMessage();
+    setResetTimer();
+    domUpdates.displayDestinationCards(destinations.destinations)
+  } else {
+    domUpdates.displayTripEstimate(pendingTripEstimate);
+    domUpdates.enableRequestButton()
+  }
 }
 
 function submitNewTripRequest() {
-
-  const object = ( {id: pendingTrip.id,
-      userID: pendingTrip.userID,
-      destinationID: pendingTrip.destinationID,
-      travelers: pendingTrip.travelers,
-      date: pendingTrip.date.split('-').join('/'),
-      duration: pendingTrip.duration,
-      status: 'pending',
-      suggestedActivities: []
-    } );
-  addNewTrip(object)
+  const tripObject = ( {id: pendingTrip.id,
+    userID: pendingTrip.userID,
+    destinationID: pendingTrip.destinationID,
+    travelers: pendingTrip.travelers,
+    date: pendingTrip.date.split('-').join('/'),
+    duration: pendingTrip.duration,
+    status: 'pending',
+    suggestedActivities: []
+  } );
+  addNewTrip(tripObject)
   .then(response => {
-    console.log(195, destinations)
-    console.log(195, pendingTrip)
-    console.log(196, response)
+    // if (response === "Trip with id 230 successfully posted")
+    console.log(response)
     updatePendingTrip(pendingTrip)
-    currentTraveler.myTrips.push(pendingTrip)
-    currentTraveler.sortMyTrips(currentTraveler.myTrips)
-    domUpdates.displayTrips(currentTraveler)
+    currentTraveler.addTrip('myTrips', pendingTrip);
+    currentTraveler.addTrip('myPendingTrips', pendingTrip);
+    trips.push(pendingTrip);
+    domUpdates.displayTrips(currentTraveler);
+    domUpdates.displayRequestSubmittedMessage();
   })
-  domUpdates.displayRequestSubmittedMessage()//attach error handling to this
-  setResetTimer()
+  setResetTimer();
+  domUpdates.displayDestinationCards(destinations.destinations);
+
 }
 
 function updatePendingTrip(trip) {
   destinations.destinations.forEach(destination => {
-      if (destination.id === trip.destinationID) {
-        trip['image'] = destination.image;
-        trip['alt'] = destination.alt;
-        trip['destination'] = destination.destination;
-      }
-    })
+    if (destination.id === trip.destinationID) {
+      trip['image'] = destination.image;
+      trip['alt'] = destination.alt;
+      trip['destination'] = destination.destination;
+    }
+  })
 }
 
 function setResetTimer() {
-  setTimeout(function(){domUpdates.clearForm()}, 7000)
+  setTimeout(function() {domUpdates.clearForm() }, 7000)
 }
+
+// function checkForError(err) {
+//   if (err.message === "Failed To Fetch") {
+//       document.querySelector('.user-total-money-spent').innerHTML = "We're sorry, something went wrong! Try again later!")
+//      } else {
+//       document.querySelector('.user-total-money-spent').innerHTML = err)
+//      }
+// }
