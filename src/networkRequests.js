@@ -1,7 +1,6 @@
 import domUpdates from './domUpdates.js';
 import './scripts.js'
 
-
 //************FETCHING ALL DATA************//
 const fetchAllData = id => {
 
@@ -17,30 +16,29 @@ const fetchAllData = id => {
       return destinationsData;
     });
 
-    const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
-      .then(response => response.json())
-      .then(singleTravelerData => {
-        return singleTravelerData;
+  const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
+    .then(response => response.json())
+    .then(singleTravelerData => {
+      return singleTravelerData;
     });
 
-    return Promise.all([tripsData, destinationsData, singleTravelerData])
-      .then(data => {
-      const allData = {};
-      allData.tripsData = data[0];
-      allData.destinationsData = data[1];
-      allData.singleTravelerData = data[2];
-      console.log(32, allData)
+  return Promise.all([tripsData, destinationsData, singleTravelerData])
+    .then(data => {
+      const allData = {}
+      allData.tripsData = data[0]
+      allData.destinationsData = data[1]
+      allData.singleTravelerData = data[2]
       return allData;
-  })
-      .catch(err => domUpdates.displayServerIsDownMessage())
-  }
+    })
+    .catch(err => domUpdates.displayServerIsDownMessage());
+}
 
 //************FETCHING A SINGLE TRAVELER'S DATA************//
 const fetchSingleTravelerData = id => {
   const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
     .then(response => response.json())
     .then(singleTravelerData => {
-      return response;
+      return singleTravelerData;
     })
     .catch(err => domUpdates.displayServerIsDownMessage());
 };
@@ -50,7 +48,6 @@ const fetchSingleTravelerData = id => {
 
 //************ADDING A NEW TRIP FOR APPROVAL************//
 const addNewTrip = tripObject => {
-  // console.log('OBJECT', tripObject)
   return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     body: JSON.stringify(tripObject),
@@ -58,40 +55,17 @@ const addNewTrip = tripObject => {
       'Content-Type': 'application/json'
     }
   })
-  .then(response => response.json())
-  .then(response => {
-    // checkForError(response)
-    if (response.message === `Trip with id ${tripObject.id} successfully posted`) {
-      console.log('hallelujah!')
-      console.log(73, response)
+    .then(response => response.json())
+    .then(response => {
+      if (response.message === `Trip with id ${tripObject.id} successfully posted`) {
         return response;
-    }
-    // if (response.message === "You are missing a required parameter of destinationID") {
-    //   // domUpdates.displaySubmissionErrorMessage();
-    //   // domUpdates.displayDestinationCards(destinations.destinations)
-    // }
-    // console.log('POST', response)
-
-  // return response;//give me a message saying it worked
-})
-  .catch(err => console.log('ERROR', err));
+      }
+      if (response.message === "You are missing a required parameter of destinationID") {
+        domUpdates.displayServerIsDownMessage();
+      }
+    })
+    .catch(err => domUpdates.displayServerIsDownMessage());
 }
-
-// checkForError(response)
-//************ADDING A NEW DESTINATION************//
-// const addNewDestination = object => {
-//   fetch('http://localhost:3001/api/v1/destinations', {
-//     method: 'POST',
-//     body: JSON.stringify(object),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//   .catch(err => console.log('ERROR', err));
-// }
-
-
-
 
 
 export { fetchAllData, fetchSingleTravelerData, addNewTrip };

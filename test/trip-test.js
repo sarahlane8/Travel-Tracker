@@ -38,7 +38,7 @@ describe('Trip', () => {
   })
 
   it('should have a default status property of pending', () => {
-    let trip2 = new Trip(trips[8])
+    let trip2 = new Trip(trips[8]);
 
     expect(trip2.status).to.equal('pending');
   })
@@ -48,7 +48,7 @@ describe('Trip', () => {
   })
 
   it('should have a default value of an empty array if no suggestedActivities exist', () => {
-    let trip2 = new Trip(trips[8])
+    let trip2 = new Trip(trips[8]);
 
     expect(trip2.suggestedActivities).to.deep.equal([]);
   })
