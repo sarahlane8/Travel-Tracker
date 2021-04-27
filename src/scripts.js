@@ -202,12 +202,12 @@ function submitNewTripRequest() {
   addNewTrip(tripObject)
   .then(response => {
     // console.log(response)
-    // updatePendingTrip(pendingTrip)
-    // currentTraveler.myTrips.push(pendingTrip)
-    // currentTraveler.myPendingTrips.push(pendingTrip)
-    // trips.push(pendingTrip)
-    // domUpdates.displayTrips(currentTraveler)
-    // domUpdates.displayRequestSubmittedMessage()//attach error handling to this
+    updatePendingTrip(pendingTrip)
+    currentTraveler.myTrips.push(pendingTrip)
+    currentTraveler.myPendingTrips.push(pendingTrip)
+    trips.push(pendingTrip)
+    domUpdates.displayTrips(currentTraveler)
+    domUpdates.displayRequestSubmittedMessage()//attach error handling to this
   })
   setResetTimer();
 

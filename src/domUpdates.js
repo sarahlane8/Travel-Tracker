@@ -170,7 +170,7 @@ const domUpdates = {
     domUpdates.toggleElement('.request-trip-form');
   },
 
-  displaySubmissionErrorMessage() {
+  displaySubmissionErrorMessage() {//WHERE IS THIS BEING CALLED?????????
     domUpdates.displayCallUsErrorMessage();
     domUpdates.toggleElement('.submit-request');
     domUpdates.toggleElement('.request-trip-form');
