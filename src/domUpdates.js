@@ -6,21 +6,16 @@ dayjs.extend(isBetween);
 
 const domUpdates = {
   displayUserNameErrorMessage() {
-    document.getElementById('userNameErrorMessage').innerText = "Please try your username again!"
+    document.getElementById('userNameErrorMessage').innerText = "Please try your username again!";
   },
 
   clearUserNameErrorMessage() {
-    document.getElementById('userNameErrorMessage').innerText = ""
+    document.getElementById('userNameErrorMessage').innerText = "";
   },
 
   displayPasswordErrorMessage() {
-    document.getElementById('passwordErrorMessage').innerText = "Please try your password again!"
+    document.getElementById('passwordErrorMessage').innerText = "Please try your password again!";
   },
-
-  // displayNetworkError(error) {
-  //   console.log(17, error)
-  //   document.querySelector('.user-total-money-spent').innerHtml = error;
-  // },
 
   greetUser(traveler) {
     let firstName = traveler.name.split(' ')[0];
@@ -35,33 +30,33 @@ const domUpdates = {
 
 
   displayTrips(traveler) {
-    const myTripsDisplay = document.getElementById('tripsDisplayArea')
+    const myTripsDisplay = document.getElementById('tripsDisplayArea');
     const userPastTrips = document.getElementById('userPastTrips');
     const userPresentTrip = document.getElementById('userPresentTrip');
     const userFutureTrips = document.getElementById('userUpcomingTrips');
     const userPendingTrips = document.getElementById('userPendingTrips');
     if (!traveler.myTrips) {
-      myTripsDisplay.innerText = "Book your first trip with us!"
+      myTripsDisplay.innerText = "Book your first trip with us!";
     }
     if (traveler.myPastTrips.length === 0) {
-      userPastTrips.innerText = "😯 You don't have any past trips! 😯"
+      userPastTrips.innerText = "😯 You don't have any past trips! 😯";
     } else if (traveler.myPastTrips) {
-      domUpdates.renderUserTripCards(traveler.myPastTrips, userPastTrips)
+      domUpdates.renderUserTripCards(traveler.myPastTrips, userPastTrips);
     }
     if (!traveler.myCurrentTrip) {
-      userPresentTrip.innerText = "🏠 You're stuck at home for now! 🏠"
+      userPresentTrip.innerText = "🏠 You're stuck at home for now! 🏠";
     } else if (traveler.myCurrentTrip) {
-      domUpdates.renderUserTripCards(traveler.myCurrentTrip, userPresentTrip)
+      domUpdates.renderUserTripCards(traveler.myCurrentTrip, userPresentTrip);
     }
     if (traveler.myFutureTrips.length === 0) {
-      userFutureTrips.innerText = "😩 You don't have any upcoming trips! 😩"
+      userFutureTrips.innerText = "😩 You don't have any upcoming trips! 😩";
     } else if (traveler.myFutureTrips) {
-      domUpdates.renderUserTripCards(traveler.myFutureTrips, userFutureTrips)
+      domUpdates.renderUserTripCards(traveler.myFutureTrips, userFutureTrips);
     }
     if (traveler.myPendingTrips.length === 0) {
-      userPendingTrips.innerText = "😭 You don't have any pending trips! 😭"
+      userPendingTrips.innerText = "😭 You don't have any pending trips! 😭";
     } else {
-      domUpdates.renderUserTripCards(traveler.myPendingTrips, userPendingTrips)
+      domUpdates.renderUserTripCards(traveler.myPendingTrips, userPendingTrips);
     }
   },
 
@@ -69,7 +64,7 @@ const domUpdates = {
     pageArea.innerHTML = '';
     let tripCardsToDisplay = '';
     filteredTrips.forEach(trip => {
-      let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
+      let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD');
       tripCardsToDisplay +=
         `<article class="card">
         <div class="upper-card">
@@ -85,7 +80,7 @@ const domUpdates = {
   },
 
   displayTotalSpent(traveler) {
-    const todaysDate = dayjs().format('YYYY/MM/DD')
+    const todaysDate = dayjs().format('YYYY/MM/DD');
     const totalAmount = traveler.calculateSpentOnTripsThisYear(todaysDate);
     document.getElementById('moneySpent').innerText = totalAmount;
   },
@@ -102,7 +97,7 @@ const domUpdates = {
         <p class="location">${trip.destination}</p>
       </div>
     </article>`
-    })
+  });
     document.getElementById('destinationsDisplay').innerHTML = destinationCardsToDisplay;
   },
 
@@ -111,7 +106,7 @@ const domUpdates = {
     destinationData.forEach(trip => {
       destinationDropdownOptions +=
         `<option value="${trip.destination}">`
-    })
+    });
     document.getElementById('destinations').innerHTML = destinationDropdownOptions;
   },
 
@@ -141,7 +136,7 @@ const domUpdates = {
   },
 
   displayTripEstimateErrorMessage() {
-    document.getElementById('tripEstimate').innerText = "Sorry, something went wrong! Please check your request inputs again!"
+    document.getElementById('tripEstimate').innerText = "Sorry, something went wrong! Please check your request inputs again!";
   },
 
   enableRequestButton() {
@@ -159,7 +154,7 @@ const domUpdates = {
   },
 
   displayRequestSubmittedMessage() {
-    document.getElementById('tripEstimate').innerText = 'Your trip has been submitted for approval by an agent!'
+    document.getElementById('tripEstimate').innerText = 'Your trip has been submitted for approval by an agent!';
     domUpdates.toggleElement('.submit-request');
     domUpdates.toggleElement('.request-trip-form');
   },
@@ -170,18 +165,12 @@ const domUpdates = {
     domUpdates.toggleElement('.request-trip-form');
   },
 
-  // displaySubmissionErrorMessage() {
-  //   domUpdates.displayCallUsErrorMessage();
-  //   domUpdates.toggleElement('.submit-request');
-  //   domUpdates.toggleElement('.request-trip-form');
-  // },
-
   displayCallUsErrorMessage() {
-    document.getElementById('tripEstimate').innerText = 'We\'re sorry, something went wrong with your request.  Please try again later or call one of our travel agents at 1-800-555-5555!'
+    document.getElementById('tripEstimate').innerText = 'We\'re sorry, something went wrong with your request.  Please try again later or call one of our travel agents at 1-800-555-5555!';
   },
 
   displayServerIsDownMessage() {
-    document.getElementById('userGreeting').innerText = 'We\'re sorry, something went wrong!  Please try again later or call one of our travel agents at 1-800-555-5555!'
+    document.getElementById('userGreeting').innerText = 'We\'re sorry, something went wrong!  Please try again later or call one of our travel agents at 1-800-555-5555!';
     document.getElementById('userDashboard').classList.add('hidden')
   }
 
