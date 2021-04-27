@@ -32,20 +32,9 @@ const fetchAllData = id => {
       console.log(32, allData)
       return allData;
   })
-      .catch(err => domUpdates.displayServerIsDownMessage())//checkForError(err))
-
+      .catch(err => domUpdates.displayServerIsDownMessage())
   }
 
-// const checkForError = err => {
-//   if (err.message === "Failed to fetch") {
-//     console.log('nope');
-//     // domUpdates.displayCallUsErrorMessage()
-//       // document.querySelector('.user-total-money-spent').innerText = "We're sorry, something went wrong! Try again later!")
-//      } else {
-//        console.log(err)
-//        // document.querySelector('.user-total-money-spent').innerHTML = err)
-//      }
-// }
 //************FETCHING A SINGLE TRAVELER'S DATA************//
 const fetchSingleTravelerData = id => {
   const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
@@ -53,7 +42,7 @@ const fetchSingleTravelerData = id => {
     .then(singleTravelerData => {
       return response;
     })
-    .catch(err => err);
+    .catch(err => domUpdates.displayServerIsDownMessage());
 };
 //************FETCHING ALL TRAVELERS' DATA************//
 
