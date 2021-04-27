@@ -144,7 +144,7 @@ function checkDestinationInput() {
 function validateFormInputs() {
   if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
     calculateTripEstimate();
-    domUpdates.enableRequestButton()
+    // domUpdates.enableRequestButton()
   } else {
     domUpdates.displayTripEstimateErrorMessage()
   }
@@ -177,7 +177,16 @@ function calculateTripEstimate() {
   };
   pendingTrip = new Trip(tripData);
   const pendingTripEstimate = pendingTrip.estimateTripCost();
-  domUpdates.displayTripEstimate(pendingTripEstimate);
+  if (!pendingTripEstimate) {
+    domUpdates.toggleElement('.request-trip-form')
+    domUpdates.displayCallUsErrorMessage();
+    setResetTimer();
+    domUpdates.displayDestinationCards(destinations.destinations)
+  } else {
+    domUpdates.displayTripEstimate(pendingTripEstimate);
+    domUpdates.enableRequestButton()
+  }
+  // console.log(pendingTripEstimate)
 }
 
 function submitNewTripRequest() {
@@ -200,7 +209,10 @@ function submitNewTripRequest() {
     // domUpdates.displayTrips(currentTraveler)
     // domUpdates.displayRequestSubmittedMessage()//attach error handling to this
   })
-  setResetTimer()
+  setResetTimer();
+
+  domUpdates.displayDestinationCards(destinations.destinations)
+
 }
 
 function updatePendingTrip(trip) {
@@ -216,4 +228,3 @@ function updatePendingTrip(trip) {
 function setResetTimer() {
   setTimeout(function() {domUpdates.clearForm() }, 7000)
 }
-export default { destinations }

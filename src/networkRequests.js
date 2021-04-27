@@ -1,5 +1,5 @@
 import domUpdates from './domUpdates.js';
-import './scripts.js'
+// import './scripts.js'
 
 //************FETCHING ALL DATA************//
 const fetchAllData = id => {
