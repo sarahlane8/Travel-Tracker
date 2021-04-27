@@ -181,7 +181,7 @@ function calculateTripEstimate() {
 }
 
 function submitNewTripRequest() {
-  const object = ( {id: pendingTrip.id,
+  const tripObject = ( {id: pendingTrip.id,
     userID: pendingTrip.userID,
     destinationID: pendingTrip.destinationID,
     travelers: pendingTrip.travelers,
@@ -190,14 +190,15 @@ function submitNewTripRequest() {
     status: 'pending',
     suggestedActivities: []
   } );
-  addNewTrip(object)
+  addNewTrip(tripObject)
   .then(response => {
-    updatePendingTrip(pendingTrip)
-    currentTraveler.myTrips.push(pendingTrip)
-    currentTraveler.myPendingTrips.push(pendingTrip)
-    trips.push(pendingTrip)
-    domUpdates.displayTrips(currentTraveler)
-    domUpdates.displayRequestSubmittedMessage()//attach error handling to this
+    // console.log(response)
+    // updatePendingTrip(pendingTrip)
+    // currentTraveler.myTrips.push(pendingTrip)
+    // currentTraveler.myPendingTrips.push(pendingTrip)
+    // trips.push(pendingTrip)
+    // domUpdates.displayTrips(currentTraveler)
+    // domUpdates.displayRequestSubmittedMessage()//attach error handling to this
   })
   setResetTimer()
 }
@@ -215,3 +216,4 @@ function updatePendingTrip(trip) {
 function setResetTimer() {
   setTimeout(function() {domUpdates.clearForm() }, 7000)
 }
+export default { destinations }

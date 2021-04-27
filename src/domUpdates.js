@@ -168,8 +168,14 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = ''
     document.querySelector('.request-trip-form').reset();
     domUpdates.toggleElement('.request-trip-form');
-
   },
+
+  displaySubmissionErrorMessage() {
+    document.getElementById('tripEstimate').innerText = 'We\'re sorry, something went wrong with your request.  Please try again later or call one of our travel agents at 1-800-555-5555!'
+    domUpdates.toggleElement('.submit-request');
+    domUpdates.toggleElement('.request-trip-form');
+  }
+
 }
 
 
