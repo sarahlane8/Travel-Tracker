@@ -9,9 +9,18 @@ const domUpdates = {
     document.getElementById('userNameErrorMessage').innerText = "Please try your username again!"
   },
 
+  clearUserNameErrorMessage() {
+    document.getElementById('userNameErrorMessage').innerText = ""
+  },
+
   displayPasswordErrorMessage() {
     document.getElementById('passwordErrorMessage').innerText = "Please try your password again!"
   },
+
+  // displayNetworkError(error) {
+  //   console.log(17, error)
+  //   document.querySelector('.user-total-money-spent').innerHtml = error;
+  // },
 
   greetUser(traveler) {
     let firstName = traveler.name.split(' ')[0];
@@ -57,6 +66,7 @@ const domUpdates = {
   },
 
   renderUserTripCards(filteredTrips, pageArea) {
+    pageArea.innerHTML = '';
     let tripCardsToDisplay = '';
     filteredTrips.forEach(trip => {
       let endDate = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD')
@@ -158,7 +168,7 @@ const domUpdates = {
     document.getElementById('tripEstimate').innerText = ''
     document.querySelector('.request-trip-form').reset();
     domUpdates.toggleElement('.request-trip-form');
-    
+
   },
 }
 

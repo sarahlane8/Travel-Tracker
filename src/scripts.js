@@ -43,6 +43,7 @@ function validateUserName() {
   }
   if (0 < userID && userID < 51) {
     validatePassword(userID)
+    domUpdates.clearUserNameErrorMessage();
   } else {
     domUpdates.displayUserNameErrorMessage();
   }
@@ -180,6 +181,7 @@ function calculateTripEstimate() {
 }
 
 function submitNewTripRequest() {
+  console.log('currentTraveler', currentTraveler)
 
   const object = ( {id: pendingTrip.id,
       userID: pendingTrip.userID,
@@ -192,15 +194,18 @@ function submitNewTripRequest() {
     } );
   addNewTrip(object)
   .then(response => {
-    console.log(195, destinations)
-    console.log(195, pendingTrip)
-    console.log(196, response)
+    // console.log('destinations', destinations)
+    console.log('pendingTrip', pendingTrip)
+    console.log('all trips', trips)
     updatePendingTrip(pendingTrip)
     currentTraveler.myTrips.push(pendingTrip)
-    currentTraveler.sortMyTrips(currentTraveler.myTrips)
+    currentTraveler.myPendingTrips.push(pendingTrip)
+    trips.push(pendingTrip)
+    // currentTraveler.sortMyTrips(currentTraveler.myTrips)
     domUpdates.displayTrips(currentTraveler)
+    console.log('currentTraveler', currentTraveler)
+    domUpdates.displayRequestSubmittedMessage()//attach error handling to this
   })
-  domUpdates.displayRequestSubmittedMessage()//attach error handling to this
   setResetTimer()
 }
 

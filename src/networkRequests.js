@@ -28,7 +28,13 @@ const fetchAllData = id => {
       allData.singleTravelerData = data[2];
       return allData;
   })
-  .catch(err => console.log('ERROR', err));
+  .catch(err => console.log(32, err))
+  //   if (err) {
+  //
+  //   // console.log(33, err === 'Failed to fetch')
+  //   document.querySelector('.user-total-money-spent').innerHtml = err;
+  // }
+  // })
 
 }
 
