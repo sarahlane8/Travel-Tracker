@@ -170,20 +170,17 @@ const domUpdates = {
     domUpdates.toggleElement('.request-trip-form');
   },
 
-  displaySubmissionErrorMessage() {//WHERE IS THIS BEING CALLED?????????
-    domUpdates.displayCallUsErrorMessage();
-    domUpdates.toggleElement('.submit-request');
-    domUpdates.toggleElement('.request-trip-form');
-  },
+  // displaySubmissionErrorMessage() {
+  //   domUpdates.displayCallUsErrorMessage();
+  //   domUpdates.toggleElement('.submit-request');
+  //   domUpdates.toggleElement('.request-trip-form');
+  // },
 
   displayCallUsErrorMessage() {
     document.getElementById('tripEstimate').innerText = 'We\'re sorry, something went wrong with your request.  Please try again later or call one of our travel agents at 1-800-555-5555!'
-  },
+  }
 
 }
-
-
-
 
 
 export default domUpdates;

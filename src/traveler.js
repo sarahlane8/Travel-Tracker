@@ -69,8 +69,8 @@ class Traveler {
     }
   }
 
-  addTrip(trip) {
-    this.myTrips.push(trip)
+  addTrip(property, trip) {
+    this[property].push(trip)
   }
 
 }

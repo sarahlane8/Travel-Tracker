@@ -144,7 +144,6 @@ function checkDestinationInput() {
 function validateFormInputs() {
   if (checkDateInput() && checkNumbersInput('durationInput') && checkNumbersInput('travelersInput') && checkDestinationInput()) {
     calculateTripEstimate();
-    // domUpdates.enableRequestButton()
   } else {
     domUpdates.displayTripEstimateErrorMessage()
   }
@@ -157,7 +156,6 @@ function calculateTripEstimate() {
   const destination = document.getElementById('destinationInput').value;
   let locationID, estimatedLodging, estimatedFlight;
   trips.forEach(trip => {
-    // if (trip.destination.toLowerCase() === destination.toLowerCase()) {
     if (trip.destination === destination) {
       locationID = trip.destinationID;
       estimatedLodging = trip.estimatedLodgingCostPerDay;
@@ -186,7 +184,6 @@ function calculateTripEstimate() {
     domUpdates.displayTripEstimate(pendingTripEstimate);
     domUpdates.enableRequestButton()
   }
-  // console.log(pendingTripEstimate)
 }
 
 function submitNewTripRequest() {
@@ -201,17 +198,15 @@ function submitNewTripRequest() {
   } );
   addNewTrip(tripObject)
   .then(response => {
-    // console.log(response)
     updatePendingTrip(pendingTrip)
-    currentTraveler.myTrips.push(pendingTrip)
-    currentTraveler.myPendingTrips.push(pendingTrip)
-    trips.push(pendingTrip)
-    domUpdates.displayTrips(currentTraveler)
-    domUpdates.displayRequestSubmittedMessage()//attach error handling to this
+    currentTraveler.addTrip('myTrips', pendingTrip);
+    currentTraveler.addTrip('myPendingTrips', pendingTrip);
+    trips.push(pendingTrip);
+    domUpdates.displayTrips(currentTraveler);
+    domUpdates.displayRequestSubmittedMessage();
   })
   setResetTimer();
-
-  domUpdates.displayDestinationCards(destinations.destinations)
+  domUpdates.displayDestinationCards(destinations.destinations);
 
 }
 
