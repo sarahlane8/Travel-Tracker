@@ -13,7 +13,7 @@
     </header>
     <section class="user-sign-in">
       <h2>Welcome back!</h2>
-      <form class="log-in" onsubmit="return false">
+      <form class="log-in" onsubmit="return false" aria-label="Log in">
         <label class="user-name input" for="userName">Please Enter Username</label>
         <input class="input" type="text" name="username" id="userName" required></br>
         <p id="userNameErrorMessage"></p>
@@ -39,7 +39,7 @@
         <article class="user-total-money-spent">
           <h4 class="header" id="moneySpent"></h4>
         </article>
-        <form class="request-trip-form" onsubmit="return false">
+        <form class="request-trip-form" onsubmit="return false" aria-label="Request a new trip">
           <h3>Request a new trip!</h3>
           <label class="date-label input" for="dateInput">Departure Date</label>
           <input class="date-input input" type="date" name="date" placeholder="yyyy/mm/dd" id="dateInput" required></br>
