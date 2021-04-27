@@ -198,14 +198,14 @@ function submitNewTripRequest() {
     suggestedActivities: []
   } );
   addNewTrip(tripObject)
-  .then(response => {
-    updatePendingTrip(pendingTrip)
-    currentTraveler.addTrip('myTrips', pendingTrip)
-    currentTraveler.addTrip('myPendingTrips', pendingTrip)
-    trips.push(pendingTrip)
-    domUpdates.displayTrips(currentTraveler)
-    domUpdates.displayRequestSubmittedMessage()
-  })
+    .then(response => {
+      updatePendingTrip(pendingTrip)
+      currentTraveler.addTrip('myTrips', pendingTrip)
+      currentTraveler.addTrip('myPendingTrips', pendingTrip)
+      trips.push(pendingTrip)
+      domUpdates.displayTrips(currentTraveler)
+      domUpdates.displayRequestSubmittedMessage()
+    })
   setResetTimer();
   domUpdates.displayDestinationCards(destinations.destinations);
 }
@@ -216,7 +216,7 @@ function updatePendingTrip(trip) {
       trip['image'] = destination.image;
       trip['alt'] = destination.alt;
       trip['destination'] = destination.destination;
-    };
+    }
   });
 }
 
