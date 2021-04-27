@@ -181,8 +181,6 @@ function calculateTripEstimate() {
 }
 
 function submitNewTripRequest() {
-  console.log('currentTraveler', currentTraveler)
-
   const object = ( {id: pendingTrip.id,
       userID: pendingTrip.userID,
       destinationID: pendingTrip.destinationID,
@@ -194,16 +192,11 @@ function submitNewTripRequest() {
     } );
   addNewTrip(object)
   .then(response => {
-    // console.log('destinations', destinations)
-    console.log('pendingTrip', pendingTrip)
-    console.log('all trips', trips)
     updatePendingTrip(pendingTrip)
     currentTraveler.myTrips.push(pendingTrip)
     currentTraveler.myPendingTrips.push(pendingTrip)
     trips.push(pendingTrip)
-    // currentTraveler.sortMyTrips(currentTraveler.myTrips)
     domUpdates.displayTrips(currentTraveler)
-    console.log('currentTraveler', currentTraveler)
     domUpdates.displayRequestSubmittedMessage()//attach error handling to this
   })
   setResetTimer()
