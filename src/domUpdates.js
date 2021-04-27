@@ -182,6 +182,7 @@ const domUpdates = {
 
   displayServerIsDownMessage() {
     document.getElementById('userGreeting').innerText = 'We\'re sorry, something went wrong!  Please try again later or call one of our travel agents at 1-800-555-5555!'
+    document.getElementById('userDashboard').classList.add('hidden')
   }
 
 }
