@@ -1,5 +1,6 @@
 import domUpdates from './domUpdates.js';
-// import './scripts.js'
+import './scripts.js'
+
 
 //************FETCHING ALL DATA************//
 const fetchAllData = id => {
@@ -28,18 +29,23 @@ const fetchAllData = id => {
       allData.tripsData = data[0];
       allData.destinationsData = data[1];
       allData.singleTravelerData = data[2];
+      console.log(32, allData)
       return allData;
   })
-  .catch(err => console.log(32, err))
-  //   if (err) {
-  //
-  //   // console.log(33, err === 'Failed to fetch')
-  //   document.querySelector('.user-total-money-spent').innerHtml = err;
-  // }
-  // })
+      .catch(err => domUpdates.displayServerIsDownMessage())//checkForError(err))
 
-}
+  }
 
+// const checkForError = err => {
+//   if (err.message === "Failed to fetch") {
+//     console.log('nope');
+//     // domUpdates.displayCallUsErrorMessage()
+//       // document.querySelector('.user-total-money-spent').innerText = "We're sorry, something went wrong! Try again later!")
+//      } else {
+//        console.log(err)
+//        // document.querySelector('.user-total-money-spent').innerHTML = err)
+//      }
+// }
 //************FETCHING A SINGLE TRAVELER'S DATA************//
 const fetchSingleTravelerData = id => {
   const singleTravelerData = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
@@ -47,7 +53,7 @@ const fetchSingleTravelerData = id => {
     .then(singleTravelerData => {
       return response;
     })
-    .catch(err => console.log('ERROR', err));
+    .catch(err => err);
 };
 //************FETCHING ALL TRAVELERS' DATA************//
 
@@ -71,11 +77,11 @@ const addNewTrip = tripObject => {
       console.log(73, response)
         return response;
     }
-    if (response.message === "You are missing a required parameter of destinationID") {
-      domUpdates.displaySubmissionErrorMessage();
-      // domUpdates.displayDestinationCards(destinations.destinations)
-    }
-    console.log('POST', response)
+    // if (response.message === "You are missing a required parameter of destinationID") {
+    //   // domUpdates.displaySubmissionErrorMessage();
+    //   // domUpdates.displayDestinationCards(destinations.destinations)
+    // }
+    // console.log('POST', response)
 
   // return response;//give me a message saying it worked
 })

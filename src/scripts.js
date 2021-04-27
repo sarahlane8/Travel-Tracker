@@ -198,6 +198,8 @@ function submitNewTripRequest() {
   } );
   addNewTrip(tripObject)
   .then(response => {
+    // if (response === "Trip with id 230 successfully posted")
+    console.log(response)
     updatePendingTrip(pendingTrip)
     currentTraveler.addTrip('myTrips', pendingTrip);
     currentTraveler.addTrip('myPendingTrips', pendingTrip);
@@ -223,3 +225,11 @@ function updatePendingTrip(trip) {
 function setResetTimer() {
   setTimeout(function() {domUpdates.clearForm() }, 7000)
 }
+
+// function checkForError(err) {
+//   if (err.message === "Failed To Fetch") {
+//       document.querySelector('.user-total-money-spent').innerHTML = "We're sorry, something went wrong! Try again later!")
+//      } else {
+//       document.querySelector('.user-total-money-spent').innerHTML = err)
+//      }
+// }
