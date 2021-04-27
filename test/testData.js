@@ -141,14 +141,14 @@ let trips = [
     "estimatedLodgingCostPerDay": 995,
     "estimatedFlightCostPerPerson": 90
   }, {
-    "id": 9,
+    "id": 80,
     "userID": 2,
     "destinationID": 19,
     "travelers": 5,
     "date": "2019/12/19",
     "duration": 19,
-    "status": "approved",
-    "suggestedActivities": ["swimming"],
+    "status": null,
+    "suggestedActivities": null,
     "estimatedLodgingCostPerDay": 60,
     "estimatedFlightCostPerPerson": 500
   }, {

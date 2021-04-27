@@ -37,8 +37,20 @@ describe('Trip', () => {
     expect(trip.status).to.equal('approved');
   })
 
+  it('should have a default status property of pending', () => {
+    let trip2 = new Trip(trips[8])
+
+    expect(trip2.status).to.equal('pending');
+  })
+
   it('should have a property of suggestedActivities', () => {
     expect(trip.suggestedActivities).to.deep.equal(['reading']);
+  })
+
+  it('should have a default value of an empty array if no suggestedActivities exist', () => {
+    let trip2 = new Trip(trips[8])
+
+    expect(trip2.suggestedActivities).to.deep.equal([]);
   })
 
   it('should have a property of estimatedLodgingCostPerDay', () => {
