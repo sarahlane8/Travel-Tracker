@@ -1,72 +1,70 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wanderlust Excursions</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <h1>🏖Wanderlust Excursions⛱</h1>
-      <h2 class="user-greeting hidden" id="userGreeting"></h2>
-    </header>
-    <section class="user-sign-in">
-      <h2>Welcome back!</h2>
-      <form class="log-in" onsubmit="return false" aria-label="Log in">
-        <label class="user-name input" for="userName">Please Enter Username</label>
-        <input class="input" type="text" name="username" id="userName" required></br>
-        <p id="userNameErrorMessage"></p>
-        <label class="password input" for="password">Please Enter Password</label>
-        <input class="input" type="password" name="password" id="password" required></br>
-        <p id="passwordErrorMessage"></p>
-        <button class="sign-in" id="signIn">Sign In</button>
-      </form>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wanderlust Excursions</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>🏖Wanderlust Excursions⛱</h1>
+    <h2 class="user-greeting hidden" id="userGreeting"></h2>
+  </header>
+  <section class="user-sign-in">
+    <h2>Welcome back!</h2>
+    <form class="log-in" onsubmit="return false" aria-label="Log in">
+      <label class="user-name input" for="userName">Please Enter Username</label>
+      <input class="input" type="text" name="username" id="userName" required></br>
+      <p id="userNameErrorMessage"></p>
+      <label class="password input" for="password">Please Enter Password</label>
+      <input class="input" type="password" name="password" id="password" required></br>
+      <p id="passwordErrorMessage"></p>
+      <button class="sign-in" id="signIn">Sign In</button>
+    </form>
+  </section>
+  <main class="main-section hidden" id='userDashboard'>
+    <section class="trips-display">
+      <h3 id="tripsDisplayArea">My Trips</h3>
+      <h4 class="header">My Past Trips<h4>
+          <p id="userPastTrips"></p>
+          <h4 class="header">My Present Trip</h4>
+          <p id="userPresentTrip"></p>
+          <h4 class="header">My Upcoming Trips</h4>
+          <p id="userUpcomingTrips"></p>
+          <h4 class="header">My Pending Trip Requests</h4>
+          <p id="userPendingTrips"></p>
     </section>
-    <main class="main-section hidden" id='userDashboard'>
-      <section class="trips-display">
-        <h3 id="tripsDisplayArea">My Trips</h3>
-        <h4 class="header">My Past Trips<h4>
-        <p id="userPastTrips"></p>
-        <h4 class="header">My Present Trip</h4>
-        <p id="userPresentTrip"></p>
-        <h4 class="header">My Upcoming Trips</h4>
-        <p id="userUpcomingTrips"></p>
-        <h4 class="header">My Pending Trip Requests</h4>
-        <p id="userPendingTrips"></p>
-      </section>
-      <div class="form-section">
-        <article class="user-total-money-spent">
-          <h4 class="header" id="moneySpent"></h4>
-        </article>
-        <form class="request-trip-form" onsubmit="return false" aria-label="Request a new trip">
-          <h3>Request a new trip!</h3>
-          <label class="date-label input" for="dateInput">Departure Date</label>
-          <input class="date-input input" type="date" name="date" placeholder="yyyy/mm/dd" id="dateInput" required></br>
-          <label class="duration-label input" for="durationInput">Duration of Trip</label>
-          <input class="duration-input input" type="number" name="duration" placeholder="number of days" id="durationInput" required></br>
-          <label class="travelers-label input" for="travelersInput">Number of Travelers</label>
-          <input class="travelers-input input" type="number" name="travelers" id="travelersInput" required></br>
-          <label class="destination-search-label input" for="destinationInput">Destination</label>
-          <input class="destination-input input" list="destinations" name="destinationSearch" placeholder="Search for destination" id="destinationInput" required>
-          <datalist id="destinations">
-          </datalist>
-          <div class="buttons">
-            <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
-            <p id="tripEstimate"></p>
-            <button class="submit-request disable" id="submitRequest">Submit My Request</button>
-          </div>
-        </form>
-      </div>
-      <section class="destinations-display">
-        <h3>Available Destinations</h3>
-        <p id="destinationsDisplay"></p>
-      </section>
-    </main>
-  </body>
+    <div class="form-section">
+      <article class="user-total-money-spent">
+        <h4 class="header" id="moneySpent"></h4>
+      </article>
+      <form class="request-trip-form" onsubmit="return false" aria-label="Request a new trip">
+        <h3>Request a new trip!</h3>
+        <label class="date-label input" for="dateInput">Departure Date</label>
+        <input class="date-input input" type="date" name="date" placeholder="yyyy/mm/dd" id="dateInput" required></br>
+        <label class="duration-label input" for="durationInput">Duration of Trip</label>
+        <input class="duration-input input" type="number" name="duration" placeholder="number of days" id="durationInput" required></br>
+        <label class="travelers-label input" for="travelersInput">Number of Travelers</label>
+        <input class="travelers-input input" type="number" name="travelers" id="travelersInput" required></br>
+        <label class="destination-search-label input" for="destinationInput">Destination</label>
+        <input class="destination-input input" list="destinations" name="destinationSearch" placeholder="Search for destination" id="destinationInput" required>
+        <datalist id="destinations">
+        </datalist>
+        <div class="buttons">
+          <button class="get-trip-estimate" id="getTripEstimate">Get Trip Estimate</button>
+          <p id="tripEstimate"></p>
+          <button class="submit-request disable" id="submitRequest">Submit My Request</button>
+        </div>
+      </form>
+    </div>
+    <section class="destinations-display">
+      <h3>Available Destinations</h3>
+      <p id="destinationsDisplay"></p>
+    </section>
+  </main>
+</body>
+
 </html>
-
-
-
-
-<!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
